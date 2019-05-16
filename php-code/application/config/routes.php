@@ -52,3 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+#配置自己的业务uri
+
+$route['restroom/(.+)'] = 'search/restroom/$1';
+$route['restroom/(:num)'] = 'search/restroom/$1';
+
+
+

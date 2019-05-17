@@ -56,3 +56,11 @@ $route['res/(:any)/(:any)/(:any)'] = 'res/$1/$2/$3';
 $route['res/(:any)'] = 'res/$1/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+#配置自己的业务uri
+
+$route['restroom/(.+)'] = 'search/restroom/$1';
+$route['restroom/(:num)'] = 'search/restroom/$1';
+
+
+

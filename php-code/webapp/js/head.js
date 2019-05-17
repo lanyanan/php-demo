@@ -1,0 +1,1 @@
+document.writeln('<link rel="stylesheet" href="/webapp/lib/layui/css/layui.css"  media="all">'); 

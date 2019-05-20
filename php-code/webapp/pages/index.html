@@ -51,8 +51,8 @@
   <li class="layui-nav-item layui-nav-itemed">
   	<a href="javascript:;">内容管理</a>
     <dl class="layui-nav-child">
-      <dd class="layui-this"><a href="javascript:;"  data-id="video" data-url="webapp/pages/res/video/index" class="site-demo-active" >&nbsp;&nbsp;&nbsp;视频管理</a></dd>
-      <dd><a href="javascript:;"  data-id="album" data-url="webapp/pages/res/album/index" class="site-demo-active" >&nbsp;&nbsp;&nbsp;图集管理</a></dd>
+      <dd class="layui-this"><a href="javascript:;"  data-id="video" data-url="/webapp/pages/res/video/index" class="site-demo-active" >&nbsp;&nbsp;&nbsp;视频管理</a></dd>
+      <dd><a href="javascript:;"  data-id="album" data-url="/webapp/pages/res/album/index" class="site-demo-active" >&nbsp;&nbsp;&nbsp;图集管理</a></dd>
       <dd><a href="javascript:;"  data-id="information" data-url="#" class="site-demo-active" >&nbsp;&nbsp;&nbsp;资讯管理</a></dd>
     </dl>
   </li>
@@ -136,7 +136,11 @@ layui.use('element', function() {
                 if ($(this).attr("lay-id") == dataid.attr("data-id")) {
                     isData = true;
                     var src = dataid.attr("data-url")
-                    $(".layui-tab-item.layui-show").find("iframe").attr("src",src+'.html');
+                     $.each($(".layui-tab-item iframe"), function () {
+		                if ($(this).attr("data-frameid") == dataid.attr("data-id")) {
+							$(this).attr('src', src + ".html");
+		                }
+            })
                 }
             })
             if (isData == false) {

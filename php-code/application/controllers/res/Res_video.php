@@ -20,8 +20,8 @@ class Res_video extends Api_Controller {
         $this -> response_found($data);
     }
     
-    public function add() {
-        $data = $this->res_video_model->add();
+    public function add($isPublish = NULL) {
+        $data = $this->res_video_model->add($isPublish);
         if (empty($data)) {
             $this -> response_message($data, '0', '新增失败'); 
         } else {
@@ -29,8 +29,8 @@ class Res_video extends Api_Controller {
         }
     }
     
-    public function edit($id = NULL) {
-        $data = $this->res_video_model->edit($id);
+    public function edit($id = NULL, $isPublish = NULL) {
+        $data = $this->res_video_model->edit($id, $isPublish);
         if (empty($data)) {
             $this -> response_message($data, '0', '修改失败'); 
         } else {
@@ -41,6 +41,11 @@ class Res_video extends Api_Controller {
     public function delete($id = NULL) {
         $this->res_video_model->delete($id);
         $this -> response_message($id, '1', '删除成功');
+    }
+    
+    public function delete_batch() {
+        $data = $this -> res_video_model -> delete_batch();
+        $this -> response($data);
     }
     
 }

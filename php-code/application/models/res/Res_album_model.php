@@ -22,19 +22,27 @@ class Res_album_model extends Api_Model
     }
     
     public function detail($id) {
-        $queryField = 'res_album.*,  dic_district.name, dic_content_category.content_category_name, ht.house_type_name';
+        $queryField = 't.*,  dic_district.name, dic_content_category.content_category_name, ht.house_type_name';
         $this -> simpleQuery($queryField);
         $this->db->join('dic_house_type as ht', 'ht.id = t.house_type_id', 'left');
         $this -> db -> where('t.id', $id);
         $this -> not_delete();
-        return $this->db->get()->row_array();
+        
+        #查询关联图片
+        $data = $this->db->get()->row_array();
+        $this->db->select(" * ");
+        $this->db->from('res_image t');
+        $this -> db -> where('t.album_id', $id);
+        $this -> not_delete();
+        $data['images'] = $this->db->get() -> result_array();
+        return $data;
         
     }
     
     public function add()
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
-            'author', 'house_type', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
+            'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
         $data = get_request_field_array($fields);
         $this->db->insert('res_album', $data);
         $album_id = $this->db->insert_id('id');
@@ -52,7 +60,7 @@ class Res_album_model extends Api_Model
     public function edit($id = null)
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
-            'author', 'house_type', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
+            'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
         $data = get_request_field_array($fields);
         $this->db->where('id', $id);
         $result = $this->db->update('res_album', $data);

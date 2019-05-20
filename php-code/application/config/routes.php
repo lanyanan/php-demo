@@ -54,6 +54,7 @@ $route['sys/(:any)/(:any)/(:any)'] = 'sys/$1/$2/$3';
 $route['sys/(:any)'] = 'sys/$1/index';
 $route['res/(:any)/(:any)/(:any)'] = 'res/$1/$2/$3';
 $route['res/(:any)'] = 'res/$1/index';
+$route['(:any)/(:any)'] = '$1/$2';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

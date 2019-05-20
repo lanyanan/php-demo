@@ -34,7 +34,8 @@ class res_video_model extends Api_Model
     public function add()
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time', 
-            'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
+            'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_name', 
+            'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields);
         $this->db->insert('res_video', $data);
         return $this->db->insert_id('id');
@@ -43,7 +44,8 @@ class res_video_model extends Api_Model
     public function edit($id = null)
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
-            'author', 'house_type', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
+            'author', 'house_type', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_name',
+            'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields);
         $this->db->where('id', $id);
         return $this->db->update('res_video', $data);
@@ -55,6 +57,18 @@ class res_video_model extends Api_Model
         );
         $this->db->where('id', $id);
         $this->db->update('res_video', $data);
+    }
+    
+    public function delete_batch() {
+        $ids = get_request_field_array(array('ids'), $this)['ids'];
+        if (empty($ids)) {
+            return FALSE;
+        }
+        $data = array(
+            'is_delete' => '1'
+        );
+        $this->db->where_in('id', $ids);
+        return $this->db->update('res_video', $data);
     }
     
 }

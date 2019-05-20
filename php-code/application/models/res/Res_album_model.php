@@ -22,12 +22,20 @@ class Res_album_model extends Api_Model
     }
     
     public function detail($id) {
-        $queryField = 'res_album.*,  dic_district.name, dic_content_category.content_category_name, ht.house_type_name';
+        $queryField = 't.*,  dic_district.name, dic_content_category.content_category_name, ht.house_type_name';
         $this -> simpleQuery($queryField);
         $this->db->join('dic_house_type as ht', 'ht.id = t.house_type_id', 'left');
         $this -> db -> where('t.id', $id);
         $this -> not_delete();
-        return $this->db->get()->row_array();
+        
+        #查询关联图片
+        $data = $this->db->get()->row_array();
+        $this->db->select(" * ");
+        $this->db->from('res_image t');
+        $this -> db -> where('t.album_id', $id);
+        $this -> not_delete();
+        $data['images'] = $this->db->get() -> result_array();
+        return $data;
         
     }
     

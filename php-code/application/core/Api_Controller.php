@@ -3,7 +3,7 @@ abstract class Api_Controller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url_helper');
+		$this->load->helper(array('form', 'url'));
 	}
 	
 	#返回json格式结果
@@ -17,7 +17,7 @@ abstract class Api_Controller extends CI_Controller {
 	
 	#返回json格式结果，自己封装信息
 	public function response_message($data, $status, $message) {
-	    echo json_encode(array('msg' => $status, 'msg' => $message, 'data' => $data), JSON_UNESCAPED_UNICODE);
+	    echo json_encode(array('code' => $status, 'msg' => $message, 'data' => $data), JSON_UNESCAPED_UNICODE);
     }
 
     #返回json格式结果，自己封装信息

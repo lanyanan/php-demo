@@ -10,8 +10,13 @@
 
 </head>
 <body>
- 
-<table class="layui-hide" id="table"></table>
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+    <button class="layui-btn layui-btn-sm" lay-event="delete">批量删除</button>
+  </div>
+</script>
+<table class="layui-hide" id="table"  lay-filter="table"></table>
               
 </body>
 <script src="/webapp/js/footer.js" charset="utf-8"></script>

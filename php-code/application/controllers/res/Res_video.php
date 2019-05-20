@@ -43,4 +43,9 @@ class Res_video extends Api_Controller {
         $this -> response_message($id, '1', '删除成功');
     }
     
+    public function delete_batch() {
+        $data = $this -> res_video_model -> delete_batch();
+        $this -> response($data);
+    }
+    
 }

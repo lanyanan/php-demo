@@ -22,6 +22,7 @@ class Res_album extends Api_Controller {
     
     public function add() {
         $data = $this->res_album_model->add();
+        echo json_encode($data);
         if (empty($data)) {
             $this -> response_message($data, '0', '新增失败'); 
         } else {

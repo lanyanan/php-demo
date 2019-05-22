@@ -65,7 +65,7 @@ layui.use('table', function(){
   });
   
   table.on('toolbar(table)', function(obj){
-<<<<<<< HEAD
+
 	  //按钮监听
 	  var checkStatus = table.checkStatus(obj.config.id);
 	  switch(obj.event){
@@ -185,51 +185,3 @@ $(document).ready(function(){
          }
      });
 });  */
-=======
-	  var checkStatus = table.checkStatus(obj.config.id);
-	  switch(obj.event){
-	    case 'add':
-	      add();
-	    break;
-	    case 'delete':
-	      delete_batch(checkStatus.data);
-	    break;
-	  };
-	});
-  
-  function add() {
-	  window.location.href = window.siteUrl + '/webapp/pages/res/video/add.html';
-  }
-  
-  function delete_batch(data) {
-	  if (data.length == 0) {
-		  layer.msg("未选择数据");
-		  return;
-	  }
-	  var ids = new Array();
-	  for (var i in data) {
-		  ids.push(data[i].id);
-	  }
-	  var data = { "ids":ids };
-	  console.log(data);
-	  $.ajax({
-          type: "POST",
-          url: window.siteUrl + '/res/res_video/delete_batch',
-          dataType: "json",
-          data: data,
-          success: function (data, msg) {
-        	  if (data.code == '1') {
-        		  layer.msg("删除成功");
-        		  table.reload('table', {
-        			  url: url
-        			  ,where: {} //设定异步数据接口的额外参数
-        			});
-        	  } else {
-        		  layer.msg("删除失败");
-        	  }
-          }
-
-      });
-  }
-});
->>>>>>> branch 'heliu' of http://git.inewhome.com/dawn/dawn-cms.git

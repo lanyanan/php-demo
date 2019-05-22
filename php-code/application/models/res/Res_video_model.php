@@ -37,18 +37,12 @@ class res_video_model extends Api_Model
     public function add($isPublish)
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time', 
-<<<<<<< HEAD
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_path', 
             'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields, $this);
         if ($isPublish == 'publish') {
             $data['publish_status'] = '1';
         }
-=======
-            'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_name', 
-            'attach_name', 'attach_suffix', 'remark');
-        $data = get_request_field_array($fields);
->>>>>>> branch 'heliu' of http://git.inewhome.com/dawn/dawn-cms.git
         $this->db->insert('res_video', $data);
         return $this->db->insert_id('id');
     }
@@ -56,11 +50,7 @@ class res_video_model extends Api_Model
     public function edit($id = null, $isPublish)
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
-<<<<<<< HEAD
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_path',
-=======
-            'author', 'house_type', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_name',
->>>>>>> branch 'heliu' of http://git.inewhome.com/dawn/dawn-cms.git
             'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields);
         if ($isPublish == 'publish') {

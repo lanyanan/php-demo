@@ -14,6 +14,12 @@ class Res_album extends Api_Controller {
         $this -> response_page($data);
     }
     
+    public function list($publish)
+    {
+        $data = $this->res_album_model->get($publish);
+        $this -> response_page($data);
+    }
+    
     public function detail($id = NULL)
     {
         $data = $this->res_album_model->detail($id);
@@ -22,7 +28,6 @@ class Res_album extends Api_Controller {
     
     public function add() {
         $data = $this->res_album_model->add();
-        echo json_encode($data);
         if (empty($data)) {
             $this -> response_message($data, '0', '新增失败'); 
         } else {
@@ -43,5 +48,22 @@ class Res_album extends Api_Controller {
         $this->res_album_model->delete($id);
         $this -> response_message($id, '1', '删除成功');
     }
+    
+    public function delete_batch() {
+        $data = $this -> res_album_model -> delete_batch();
+        $this -> response($data);
+    }
+    
+    
+    public function publish_batch() {
+        $data = $this -> res_album_model -> publish_batch();
+        $this -> response($data);
+    }
+    
+    public function sold_out_batch() {
+        $data = $this -> res_album_model -> sold_out_batch();
+        $this -> response($data);
+    }
+    
     
 }

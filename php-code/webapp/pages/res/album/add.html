@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>layui</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="/webapp/js/head.js" charset="utf-8"></script>
+<style>
+.no-margin-left {
+	margin-left: 0px;
+}
+
+.layui-inline {
+	width: 24%;
+}
+
+.select_div {
+	width: 24%;
+}
+
+.layui-table img {
+    max-width: 80%;
+}
+
+.select_div .select {
+	width: 32%;
+}
+
+.layui-upload-img {
+	width: 80%;
+}
+
+.imgDiv {
+	display: inline-block;
+	position: relative;
+}
+
+.imgDiv .cover {
+	position: absolute;
+	top: 0px;
+	right: 35px;
+	width: 50px;
+}
+</style>
+</head>
+<body>
+	<form class="layui-form" id="form" lay-filter="album-form">
+		<input id="uploadVideoFlag" type="hidden" value="0" />
+		<input id="publish_status" name="publish_status" type="hidden" value="0" />
+		<div class="layui-form-item">
+			<div class="layui-input-block no-margin-left">
+				<button class="layui-btn" id="save" lay-submit lay-filter="formDemo">保存</button>
+				<button id="save_publish" lay-submit lay-filter="publishDemo"
+					class="layui-btn layui-btn-primary">保存并发布</button>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">图集标题</label>
+			<div class="layui-input-block">
+				<input type="text" name="title" required lay-verify="required"
+					placeholder="请输入标题" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item layui-form-text">
+			<label class="layui-form-label">描述</label>
+			<div class="layui-input-block">
+				<textarea name="description" placeholder="请输入内容"
+					class="layui-textarea"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">关键字标签</label>
+			<div class="layui-input-block">
+				<input type="text" name="terms" required lay-verify="required"
+					placeholder="多个请用英文逗号分开" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">图集内容</label>
+			<div class="layui-upload">
+				<button type="button" class="layui-btn" id="test2">批量上传</button>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label"></label>
+			<div class="layui-input-block">
+				<table class="layui-table">
+					<colgroup>
+						<col align="center" width="25%">
+						<col align="center" width="20%">
+						<col align="center" width="20%">
+						<col align="center">
+					</colgroup>
+					<thead align="center">
+						<tr>
+							<th align="center">图片</th>
+							<th align="center">空间名称</th>
+							<th align="center">描述</th>
+							<th align="center">操作</th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+						<tr>
+							<td align="center">
+								<div class="imgDiv">
+									<img class="layui-upload-img" src=''/>
+								</div>
+							</td>
+							<input type="hidden" id="fristUpload" value="0" />
+							<input type="hidden" name="images.image_link" />
+							<input type="hidden" name="images.is_cover" />
+							<input type="hidden" name="images.attach_path" />
+							<input type="hidden" name="images.attach_suffix" />
+							<input type="hidden" name="images.attach_name" />
+							<td align="center"><input type="text" name="images.space_name"
+								placeholder="请输入" autocomplete="off" class="layui-input"
+								disabled /></td>
+							<td align="center"><textarea name="images.description"
+									placeholder="请输入内容" class="layui-textarea" disabled>
+								</textarea></td>
+							<td align="center" class="operator">
+								<div class="layui-btn-group">
+									<button id="set_cover" lay-filter="set_cover"
+										class="layui-btn  layui-btn-disabled" disabled="disabled">
+										<i class="layui-icon">&#xe605;</i>设为封面图
+									</button>
+									<button id="move_up" lay-filter="move_up"
+										class="layui-btn  layui-btn-disabled" disabled="disabled">
+										<i class="layui-icon">&#xe619;</i>上移
+									</button>
+									<button id="move_down" lay-filter="move_down"
+										class="layui-btn  layui-btn-disabled" disabled="disabled">
+										<i class="layui-icon">&#xe61a;</i>下移
+									</button>
+									<button id="delete" lay-filter="delete"
+										class="layui-btn  layui-btn-disabled" disabled="disabled">
+										<i class="layui-icon">&#xe640;</i>删除
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">类型</label>
+				<div class="layui-input-block">
+					<select name="publish_type"  required
+						lay-verify="required">
+						<option value="">请选择（原创/转载）</option>
+						<option value="0">原创</option>
+						<option value="1">转载</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">内容分类</label>
+				<div class="layui-input-block">
+					<select name="content_category_id"  required
+						lay-verify="required">
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">来源</label>
+				<div class="layui-input-block">
+					<input type="text" name="source"
+						placeholder="请输入来源" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">作者</label>
+				<div class="layui-input-block">
+					<input type="text" name="author"
+						placeholder="请输入作者" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline select_div">
+				<label class="layui-form-label">户型</label>
+				<div class="layui-input-inline select">
+					<select name="house_type_1" lay-filter="house_type_1">
+						<option value="">请选择户型</option>
+					</select>
+				</div>
+				<div class="layui-input-inline select">
+					<select name="house_type_2" lay-filter="house_type_2">
+						<option value="">请选择</option>
+					</select> <input type='hidden' name='house_type_id' />
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">面积</label>
+				<div class="layui-input-block">
+					<select name="floor_area">
+						<option value=""></option>
+						<option value="0">60m²以下</option>
+						<option value="1">60-80m²</option>
+						<option value="2">80m-100m²</option>
+						<option value="3">100-120m²</option>
+						<option value="4">120-180m²</option>
+						<option value="5">180m²以上</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">风格</label>
+				<div class="layui-input-block">
+					<select name="style">
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">造价</label>
+				<div class="layui-input-block">
+					<select name="cost">
+						<option value=""></option>
+						<option value="0">3万以下</option>
+						<option value="1">3-5万</option>
+						<option value="2">5-8万</option>
+						<option value="3">8-15万</option>
+						<option value="4">15-20万</option>
+						<option value="5">20万以上</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline select_div">
+				<label class="layui-form-label">城市</label>
+				<div class="layui-input-inline select">
+					<select name="district_1" lay-filter="district_1" >
+						<option value="">请选择省份</option>
+					</select>
+				</div>
+				<div class="layui-input-inline select">
+					<select name="district_2" lay-filter="district_2" >
+						<option value="">请选择城市</option>
+					</select>
+				</div>
+				<input type='hidden' name='district_id' />
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">楼盘</label>
+				<div class="layui-input-block">
+					<input type="text" name="building"
+						placeholder="" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+<script src="/webapp/js/footer.js" charset="utf-8"></script>
+<script src="/webapp/js/res/album/add.js" charset="utf-8"></script>
+</html>

@@ -17,7 +17,9 @@ layui.use([ 'form', 'upload' ], function() {
 	});
 	
 	form.on('submit(publishDemo)', function(data) {
-		var url = window.siteUrl + '/res/res_video/add/publish';
+		$("#publish_status").val("1");
+		data.field['publish_status'] = '1';
+		var url = window.siteUrl + '/res/res_video/add';
 		submit(data, url);
 		return false;
 	});
@@ -25,21 +27,19 @@ layui.use([ 'form', 'upload' ], function() {
 	//加载内容分类
 	renderContentCategorySelect($("select[name='content_category_id']"));
 	
+	// 加载风格分类
+	renderStyleSelect($("select[name='style']"));
+	
 	//加载户型
 	var houseTypeParentId = '0';
 	renderHourseSelect( $("select[name='house_type_1']"), houseTypeParentId);
+	renderHourseSelect( $("select[name='house_type_2']"), "1");
 	// 户型级联操作
 	form.on('select(house_type_1)', function (data) {
 		houseTypeParentId = data.value;
+		$("select[name='house_type_2']").attr('disabled',false);
 		$("input[name='house_type_id']").val(houseTypeParentId);
-		if (houseTypeParentId != '1') {
-			$("select[name='house_type_2']").attr('disabled',false);
-			renderHourseSelect( $("select[name='house_type_2']"), houseTypeParentId);
-		} else {
-			$("select[name='house_type_2']").html("");
-			$("select[name='house_type_2']").attr("disabled",true);
-			form.render('select');
-		}
+		renderHourseSelect( $("select[name='house_type_2']"), houseTypeParentId);
     });
 	form.on('select(house_type_2)', function (data) {
 		$("input[name='house_type_id']").val(data.value);
@@ -182,6 +182,28 @@ layui.use([ 'form', 'upload' ], function() {
 					$select.append("<option value=''></option>");
 					for (var i in result) {
 						$select.append("<option value='"+result[i].id+"'>"+result[i].content_category_name+"</option>");
+					}
+					form.render('select');
+				} else {
+					layer.msg("加载内容分类数据失败，请刷新页面--" + data.msg);
+				}
+			}
+
+		});
+	}
+	
+	function renderStyleSelect($select) {
+		$.ajax({
+			type : "GET",
+			url : window.siteUrl + '/dic/dic_style/get_list',
+			dataType : "json",
+			success : function(data, msg) {
+				if (data.code == '1') {
+					var result = data.data;
+					$select.html("");
+					$select.append("<option value=''></option>");
+					for (var i in result) {
+						$select.append("<option value='"+result[i].id+"'>"+result[i].style_name+"</option>");
 					}
 					form.render('select');
 				} else {

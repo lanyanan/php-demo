@@ -18,6 +18,18 @@ class Sys_user_model extends Api_Model
         return $result;
     }
     
+    public function get_by_username($login_name)
+    {
+        $this->db->select('*');
+        $this->db->from('sys_user');
+        $this->db->join('dic_district', 'dic_district.id = sys_user.district_id', 'left');
+        $this -> not_delete('sys_user');
+        $this->db->where('sys_user.login_name', $login_name);
+        $query = $this->db->get();
+        #隐藏掉密码
+        return $query->row_array();
+    }
+    
     public function detail($id = null) {
         $this->db->select('*');
         $this->db->from('sys_user');
@@ -35,17 +47,29 @@ class Sys_user_model extends Api_Model
     
     public function add()
     {
+        //登录名不能重复
+        $fields = array('nick_name', 'login_name', 'password', 'user_sex', 'mobile');
+        $request = get_request_field_array($fields, $this);
+        if ($this -> validate($request['login_name'])) {
+            return '登录名已存在'; 
+        }
         $this->load->library('encryption');
-        $request =  json_decode(@file_get_contents("php://input") , true);
         $data = array(
             'nick_name' =>  $request['nick_name'],
             'login_name' => $request['login_name'],
-            'password' => $this->encryption->encrypt($request['password']),
+            'password' =>  password_hash($request['password'], PASSWORD_DEFAULT),
             'user_sex' =>  $request['user_sex'],
             'mobile' =>  $request['mobile'],
         );
-        
         return $this->db->insert('sys_user', $data);
+    }
+    
+    public function validate($login_name) {
+        $this->db->select('*');
+        $this->db->from('sys_user');
+        $this->db->where('sys_user.login_name', $login_name);
+        $query = $this->db->get();
+        return $query->row_array();
     }
     
     public function edit($id = null)
@@ -55,6 +79,14 @@ class Sys_user_model extends Api_Model
             'nick_name' => $request['nick_name'],
             'user_sex' => $request['user_sex'],
             'mobile' => $request['mobile'],
+        );
+        $this->db->where('id', $id);
+        return $this->db->update('sys_user', $data);
+    }
+    
+    public function flushField($field, $id) {
+        $data = array(
+            $field => time(),
         );
         $this->db->where('id', $id);
         return $this->db->update('sys_user', $data);

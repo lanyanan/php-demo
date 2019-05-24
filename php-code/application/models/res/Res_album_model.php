@@ -2,13 +2,15 @@
 class Res_album_model extends Api_Model
 {
 
-    public function get()
+    public function get($publish = NULL)
     {
         $queryField = 't.*,  dic_district.name, dic_content_category.content_category_name, st.like_count, st.collect_count';
         $this -> simpleQuery($queryField, TRUE);
         $this->db->join('statis_res_like_collect st', 't.id = st.res_id and st.res_type = "2"', 'left');
         $this -> not_delete();
         
+        $this -> find_list_by_publis_status($publish);
+        $this -> searchByVideoOrAlbumRequest();
         return $this -> getCountPage('res_album');
     }
     
@@ -22,7 +24,7 @@ class Res_album_model extends Api_Model
     }
     
     public function detail($id) {
-        $queryField = 't.*,  dic_district.name, dic_content_category.content_category_name, ht.house_type_name';
+        $queryField = 't.*,  dic_district.name, dic_district.pid as districtPid,  dic_content_category.content_category_name, ht.house_type_name, ht.parent_type as houseTypePid';
         $this -> simpleQuery($queryField);
         $this->db->join('dic_house_type as ht', 'ht.id = t.house_type_id', 'left');
         $this -> db -> where('t.id', $id);
@@ -34,7 +36,12 @@ class Res_album_model extends Api_Model
         $this->db->from('res_image t');
         $this -> db -> where('t.album_id', $id);
         $this -> not_delete();
-        $data['images'] = $this->db->get() -> result_array();
+        $result_array = $this->db->get() -> result_array();
+        foreach ( $result_array as $k => $val ) {
+            $result_array[$k]['attach_url'] = $this -> signatureurl( $result_array[$k]['attach_path']);
+        }
+        $data['images'] = $result_array;
+        
         return $data;
         
     }
@@ -67,11 +74,23 @@ class Res_album_model extends Api_Model
         
         $images = get_request_field_array(array('images'))['images'];
         $count = 0;
+        $imagesAdd = array();
+        $imagesUpdate = array();
         foreach ( $images as $k => $val ) {
             $images[$k]["album_id"] = $id;
             $images[$k]["order_num"] = $count++;
+            if (empty($images[$k]["id"])) {
+                array_push($imagesAdd, $images[$k]);
+            } else {
+                array_push($imagesUpdate, $images[$k]);
+            }
         }
-        $this->db->update_batch('res_image', $images, 'id');
+        if (!empty($imagesUpdate)) {
+            $this->db->update_batch('res_image', $imagesUpdate, 'id');
+        }
+        if (!empty($imagesAdd)) {
+            $this->db->insert_batch('res_image', $imagesAdd);
+        }
         return $result;
     }
     
@@ -83,6 +102,43 @@ class Res_album_model extends Api_Model
         $this->db->update('res_album', $data);
         $this->db->where('album_id', $id);
         $this->db->update('res_image', $data);
+    }
+    
+    public function delete_batch() {
+        $ids = get_request_field_array(array('ids'), $this)['ids'];
+        if (empty($ids)) {
+            return FALSE;
+        }
+        $data = array(
+            'is_delete' => '1'
+        );
+        $this->db->where_in('id', $ids);
+        return $this->db->update('res_album', $data);
+    }
+    
+    
+    public function publish_batch() {
+        $ids = get_request_field_array(array('ids'), $this)['ids'];
+        if (empty($ids)) {
+            return FALSE;
+        }
+        $data = array(
+            'publish_status' => '1'
+        );
+        $this->db->where_in('id', $ids);
+        return $this->db->update('res_album', $data);
+    }
+    
+    public function sold_out_batch() {
+        $ids = get_request_field_array(array('ids'), $this)['ids'];
+        if (empty($ids)) {
+            return FALSE;
+        }
+        $data = array(
+            'publish_status' => '2'
+        );
+        $this->db->where_in('id', $ids);
+        return $this->db->update('res_album', $data);
     }
     
 }

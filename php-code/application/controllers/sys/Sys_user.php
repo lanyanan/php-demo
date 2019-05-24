@@ -22,7 +22,7 @@ class Sys_user extends Api_Controller {
     
     public function register() {
         $data = $this->sys_user_model->add();
-        if ($data == TRUE) {
+        if ($data === TRUE) {
             $this -> response_message($data, '1', '注册成功'); 
         } else {
             $this -> response_message($data, '0', '注册失败'); 

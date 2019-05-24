@@ -27,14 +27,15 @@ class Upload_oss extends Api_Controller {
         if($this->upload->do_upload('file')) {
             // 获取文件名
             $file_ext= $this->upload->data('file_ext');
-            $object =  $config['upload_path'].$this->upload->data('file_name');
+            $original_name = $this->upload->data('file_name');
+            $object =  $config['upload_path'].$original_name;
             $config['file_name'] = date('YmdHis').rand(111,999).$file_ext;
             $src=$config['upload_path'].$config["file_name"];
 
             //获取上传对象
             $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
             $ossClient->setTimeout(3600);
-            $ossClient->setConnectTimeout(5);
+            $ossClient->setConnectTimeout(20);
             
             try{
                 //设置超时时间
@@ -52,13 +53,13 @@ class Upload_oss extends Api_Controller {
                 //上传文件
                 $result = $ossClient->uploadFile($bucket, $src, $object);
             } catch(OssException $e) {
-                printf(__FUNCTION__ . ": FAILED\n");
-                printf($e->getMessage() . "\n");
-                return;
+                $this -> response_message($e->getMessage(), '0', '上传失败，请重试');
+                exit;
             }
             $data['file_type'] = $this->upload->data('file_type'); 
             $data['file_path'] = $src;
             $data['file_name'] = $config['file_name'];
+            $data['original_name'] = $original_name;
             $data['file_url'] = $this -> signatureurl($src);
             
             $this -> response_message($data, '1', '上传成功！'); 
@@ -66,7 +67,7 @@ class Upload_oss extends Api_Controller {
         } else {
             //获取上传失败以后的错误提示
             $info=$this->upload->display_errors();
-            $this -> response_message('上传失败，请重试', '0', '上传失败，请重试');
+            $this -> response_message($info, '0', '上传失败，请重试');
             exit;
         }
     }
@@ -76,6 +77,7 @@ class Upload_oss extends Api_Controller {
      */
     private function get_config($type) {
         $config = array();
+        $config['max_size'] = 30 * 1024;
         if ($type == 'img') {
             $config['upload_path']      = 'dawn/img/'.date('Y').'/'.date('m').'/'.date('d').'/';
             $config['allowed_types']    = 'jpg|png|JPG|PNG';
@@ -99,7 +101,9 @@ class Upload_oss extends Api_Controller {
             if(!is_dir('dawn/'.$type.'/'.date('Y').'/'.date('m').'/'.date('d').'/')){
                 mkdir('dawn/'.$type.'/'.date('Y').'/'.date('m').'/'.date('d').'/', 0777);
             }
-            mkdir($config['upload_path'], 0777);
+            if(!is_dir($config['upload_path'])) {
+                mkdir($config['upload_path'], 0777);
+            }
         }
         return $config;
     }

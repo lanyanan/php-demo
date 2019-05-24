@@ -2,12 +2,14 @@
 class res_video_model extends Api_Model
 {
 
-    public function get()
+    public function get($publish = NULL)
     {
         $queryField = 't.*,  dic_district.name, dic_content_category.content_category_name, st.like_count, st.collect_count';
         $this -> simpleQuery($queryField, TRUE);
         $this->db->join('statis_res_like_collect st', 't.id = st.res_id and st.res_type = "0"', 'left');
-        $this->db->order_by('gmt_modified', 'DESC');
+        
+        $this -> find_list_by_publis_status($publish);
+        $this -> searchByVideoOrAlbumRequest();
         $this -> not_delete();
         
         return $this -> getCountPage('res_video');
@@ -34,28 +36,22 @@ class res_video_model extends Api_Model
         
     }
     
-    public function add($isPublish)
+    public function add()
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time', 
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_path', 
             'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields, $this);
-        if ($isPublish == 'publish') {
-            $data['publish_status'] = '1';
-        }
         $this->db->insert('res_video', $data);
         return $this->db->insert_id('id');
     }
     
-    public function edit($id = null, $isPublish)
+    public function edit($id = null)
     {
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_path',
             'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields);
-        if ($isPublish == 'publish') {
-            $data['publish_status'] = '1';
-        }
         $this->db->where('id', $id);
         return $this->db->update('res_video', $data);
     }
@@ -75,6 +71,30 @@ class res_video_model extends Api_Model
         }
         $data = array(
             'is_delete' => '1'
+        );
+        $this->db->where_in('id', $ids);
+        return $this->db->update('res_video', $data);
+    }
+    
+    public function publish_batch() {
+        $ids = get_request_field_array(array('ids'), $this)['ids'];
+        if (empty($ids)) {
+            return FALSE;
+        }
+        $data = array(
+            'publish_status' => '1'
+        );
+        $this->db->where_in('id', $ids);
+        return $this->db->update('res_video', $data);
+    }
+    
+    public function sold_out_batch() {
+        $ids = get_request_field_array(array('ids'), $this)['ids'];
+        if (empty($ids)) {
+            return FALSE;
+        }
+        $data = array(
+            'publish_status' => '2'
         );
         $this->db->where_in('id', $ids);
         return $this->db->update('res_video', $data);

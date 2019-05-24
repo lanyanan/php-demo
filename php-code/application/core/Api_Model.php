@@ -30,6 +30,30 @@ abstract class Api_Model extends CI_Model
         return $query;
     }
     
+    //标题，类型，来源，作者，内容分类
+    protected function searchByVideoOrAlbumRequest() {
+        $fields = array('title', 'publish_type', 'source', 'author', 'content_category_id');
+        $data = array();
+        foreach ($fields as $field) {
+            $data[$field] = $this-> input->get($field);
+        }
+        if (!empty($data['title'])) {
+            $this->db->like('t.title', $data['title']);
+        }
+        if (is_numeric($data['publish_type'])) {
+            $this->db->where('t.publish_type', $data['publish_type']);
+        }
+        if (!empty($data['source'])) {
+            $this->db->like('t.source', $data['source']);
+        }
+        if (!empty($data['author'])) {
+            $this->db->like('t.author', $data['author']);
+        }
+        if (is_numeric($data['content_category_id'])) {
+            $this->db->where('t.content_category_id', $data['content_category_id']);
+        }
+    }
+    
     /**
      * 获取签名url
      */
@@ -43,5 +67,21 @@ abstract class Api_Model extends CI_Model
         
         $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
         return $ossClient -> signUrl($bucket, $path, $expire, 'GET');
+    }
+    
+    /**
+     *  根据发布状态查找
+     */
+    function find_list_by_publis_status($publish) {
+        if ($publish == 'wait_publish') {
+            $this->db->order_by('gmt_create', 'DESC');
+            $this->db->where('t.publish_status', 0)  ;
+        } else if  ($publish == 'publish'){
+            $this->db->order_by('publish_time', 'DESC');
+            $this->db->where('t.publish_status', 1)  ;
+        } else if  ($publish == 'sold_out'){
+            $this->db->order_by('sold_out_time', 'DESC');
+            $this->db->where('t.publish_status', 2)  ;
+        }
     }
 }

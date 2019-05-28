@@ -21,7 +21,7 @@
 			<div id="large-header" class="large-header">
 				<canvas id="demo-canvas"></canvas>
 				<div class="logo_box">
-					<h3>欢迎你</h3>
+					<h3>自在家 欢迎你！</h3>
 					<form action="#" name="f" method="post">
 						<div class="input_outer">
 							<span class="u_user"></span> <input name="username" class="text"
@@ -65,11 +65,13 @@ layui.use("layer",function(){
 	function login() {
 		var username = $(" input[ name='username' ] ").val();
 		if (!username) {
-			layer.msg("请输入用户名");
+			layer.msg("请输入登录名");
+			return;
 		}
 		var password = $(" input[ name='password' ] ").val();
 		if (!password) {
 			layer.msg("请输入密码");
+			return;
 		}
 		$.ajax({
 			url : '/login/check',

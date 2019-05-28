@@ -51,6 +51,9 @@ class Res_album_model extends Api_Model
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
         $data = get_request_field_array($fields);
+        if ($data['publish_status'] == '1') {
+            $data['publish_time'] =  date('YmdHis');
+        }
         $this->db->insert('res_album', $data);
         $album_id = $this->db->insert_id('id');
 
@@ -69,6 +72,9 @@ class Res_album_model extends Api_Model
         $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
         $data = get_request_field_array($fields);
+        if ($data['publish_status'] == '1') {
+            $data['publish_time'] =  date('YmdHis');
+        }
         $this->db->where('id', $id);
         $result = $this->db->update('res_album', $data);
         
@@ -123,7 +129,8 @@ class Res_album_model extends Api_Model
             return FALSE;
         }
         $data = array(
-            'publish_status' => '1'
+            'publish_status' => '1',
+            'publish_time' =>  date('YmdHis')
         );
         $this->db->where_in('id', $ids);
         return $this->db->update('res_album', $data);
@@ -135,7 +142,8 @@ class Res_album_model extends Api_Model
             return FALSE;
         }
         $data = array(
-            'publish_status' => '2'
+            'publish_status' => '2',
+            'sold_out_time' =>  date('YmdHis')
         );
         $this->db->where_in('id', $ids);
         return $this->db->update('res_album', $data);

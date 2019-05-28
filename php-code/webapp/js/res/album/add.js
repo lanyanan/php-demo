@@ -285,6 +285,11 @@ $(document).ready(function(){
 	$tr.find('input[name="images.is_cover"]').val("1");
 	$tr.find('.imgDiv').append("<img class='layui-upload-img cover' src='/webapp/img/cover.png' />");
 	
+}).on('click', '.layui-upload-img', function(){
+	$("#bigImg").show(); 
+	$("#bigImg img").attr('src', $(this).attr('src'));
+}).on('click', '#bigImg', function(){
+	$("#bigImg").hide();
 });
 
 //重置表格

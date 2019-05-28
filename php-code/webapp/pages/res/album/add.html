@@ -44,9 +44,30 @@
 	right: 35px;
 	width: 50px;
 }
+
+#bigImg {
+  display: none;/*隐藏模态框*/
+  width: 100%;
+  height: 100%;
+  position: fixed;/*定位方式为固定定位*/
+  overflow: auto;/*不滚动*/
+  background-color: rgba(0,0,0,0.1);
+  top: 0px;
+  left: 0px;
+  z-index: 1;/*置于页面图层之上*/
+}
+
+#bigImg img{
+  display: block;/*图片表现为块*/
+  margin:25px auto;/*图片居中对齐*/
+  max-height: 94% ;
+}
 </style>
 </head>
 <body>
+	<div id="bigImg" style="display:none">
+		<img src=''/>
+	</div>
 	<form class="layui-form" id="form" lay-filter="album-form">
 		<input id="uploadVideoFlag" type="hidden" value="0" />
 		<input id="publish_status" name="publish_status" type="hidden" value="0" />

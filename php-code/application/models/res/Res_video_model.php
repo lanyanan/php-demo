@@ -42,6 +42,9 @@ class res_video_model extends Api_Model
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_path', 
             'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields, $this);
+        if ($data['publish_status'] == '1') {
+            $data['publish_time'] =  date('YmdHis');
+        }
         $this->db->insert('res_video', $data);
         return $this->db->insert_id('id');
     }
@@ -52,6 +55,9 @@ class res_video_model extends Api_Model
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status', 'attach_path',
             'attach_name', 'attach_suffix', 'remark');
         $data = get_request_field_array($fields);
+        if ($data['publish_status'] == '1') {
+            $data['publish_time'] =  date('YmdHis');
+        }
         $this->db->where('id', $id);
         return $this->db->update('res_video', $data);
     }
@@ -82,7 +88,8 @@ class res_video_model extends Api_Model
             return FALSE;
         }
         $data = array(
-            'publish_status' => '1'
+            'publish_status' => '1',
+            'publish_time' =>  date('YmdHis')
         );
         $this->db->where_in('id', $ids);
         return $this->db->update('res_video', $data);
@@ -94,7 +101,8 @@ class res_video_model extends Api_Model
             return FALSE;
         }
         $data = array(
-            'publish_status' => '2'
+            'publish_status' => '2',
+            'sold_out_time' => date('YmdHis')
         );
         $this->db->where_in('id', $ids);
         return $this->db->update('res_video', $data);

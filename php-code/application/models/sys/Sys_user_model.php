@@ -86,7 +86,7 @@ class Sys_user_model extends Api_Model
     
     public function flushField($field, $id) {
         $data = array(
-            $field => time(),
+            $field =>  date('YmdHis'),
         );
         $this->db->where('id', $id);
         return $this->db->update('sys_user', $data);

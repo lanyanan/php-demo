@@ -81,7 +81,7 @@ class Login extends CI_Controller {
     public function generateTocken($key)
     {
         $ip = ip();
-        $time = time();
+        $time =  date('YmdHis');
         $header = array(
             'typ' => 'JWT'
         );

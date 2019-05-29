@@ -12,8 +12,6 @@
 	href="/webapp/css/login/component.css" />
 <link rel="stylesheet" type="text/css"
 	href="/webapp/lib/layui/css/layui.css" />
-<script type="text/javascript" src="/webapp/lib/jquery.js"></script>
-<script type="text/javascript" src="/webapp/lib/layui/layui.js"></script>
 </head>
 <body>
 	<div class="container demo-1">
@@ -42,6 +40,9 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="/webapp/lib/jquery.js"></script>
+	<script type="text/javascript" src="/webapp/lib/layui/layui.js"></script>
+	<script type="text/javascript" src="/webapp/lib/encrypt/jsencrypt.js"></script>
 	<!-- /container -->
 	<script src="/webapp/js/login/TweenLite.min.js"></script>
 	<script src="/webapp/js/login/EasePack.min.js"></script>
@@ -73,6 +74,8 @@ layui.use("layer",function(){
 			layer.msg("请输入密码");
 			return;
 		}
+		password = encrypt(password);
+		$(" input[ name='password' ] ").val(password);
 		$.ajax({
 			url : '/login/check',
 			data : {
@@ -92,6 +95,17 @@ layui.use("layer",function(){
 			}
 		})
 	}
+	
+	//RSA公钥加密
+	function encrypt(password) {
+		var public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo3B+tB0SAStPKkMR1iKHWpuBog/uKjyza4MxOKNICpZ3rhNk73ciF3xUr8/48WRCgk6wu5Co8uC99AGavI6JQPJLRnT8wBZXQVufSKzvw0iinQE5c9/McjdQFROWcaDxfhWuaKzX3gFKLmd/ZuqWDa3EGV4ZdiV3x3mui+ILXBxwWB1f08fo83lEuU97Wr9MtQh0ixdGIgErV4VxToOeqTObM2xpruYqRN7ZQc4fNA7k20Nx2DWlHS0uQgnSXYTwPrGQ4nMw8MGi2djpgLOTKEnrJ3ThsNpoCuy4b6kA/TML8yDmGazUnYr7Xxd7T4DV90klpd4/hWU1/X6u7sQURQIDAQAB";
+		var encrypt = new JSEncrypt();
+		encrypt.setPublicKey(public_key);
+		var encrypted = encrypt.encrypt(password);
+		return encrypted;
+	}
+	
 })
+
 </script>
 </html>

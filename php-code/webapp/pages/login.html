@@ -43,7 +43,6 @@
 	<script type="text/javascript" src="/webapp/lib/jquery.js"></script>
 	<script type="text/javascript" src="/webapp/lib/layui/layui.js"></script>
 	<script type="text/javascript" src="/webapp/lib/encrypt/jsencrypt.js"></script>
-	<!-- /container -->
 	<script src="/webapp/js/login/TweenLite.min.js"></script>
 	<script src="/webapp/js/login/EasePack.min.js"></script>
 	<script src="/webapp/js/login/rAF.js"></script>
@@ -74,7 +73,7 @@ layui.use("layer",function(){
 			layer.msg("请输入密码");
 			return;
 		}
-		password = encrypt(password);
+		//password = encrypt(password);
 		$(" input[ name='password' ] ").val(password);
 		$.ajax({
 			url : '/login/check',

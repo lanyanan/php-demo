@@ -17,6 +17,7 @@ function ip() {
 function get_request_field_array($fields, $req = FALSE)
 {
     $request = json_decode(@file_get_contents("php://input"), true);
+    
     if (empty($request) && $req !== FALSE) {
         return get_request_field_array_by_post($fields, $req);
     }

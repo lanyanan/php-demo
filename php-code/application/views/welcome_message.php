@@ -17,10 +17,6 @@ body {
 	padding: 0;
 	margin: 0;
 }
-
-#page {
-	height: 100%;
-}
 </style>
 <body>
 </body>

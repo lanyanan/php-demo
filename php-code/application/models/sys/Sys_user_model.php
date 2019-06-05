@@ -20,13 +20,12 @@ class Sys_user_model extends Api_Model
     
     public function get_by_username($login_name)
     {
-        $this->db->select('*');
+        $this->db->select(' sys_user.id ,  sys_user.* , dic_district.name ');
         $this->db->from('sys_user');
         $this->db->join('dic_district', 'dic_district.id = sys_user.district_id', 'left');
         $this -> not_delete('sys_user');
         $this->db->where('sys_user.login_name', $login_name);
         $query = $this->db->get();
-        #隐藏掉密码
         return $query->row_array();
     }
     

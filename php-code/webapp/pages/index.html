@@ -86,7 +86,7 @@ body {
 			<li class="layui-nav-item"><a href="javascript:;">关键词管理</a>
 				<dl class="layui-nav-child">
 					<dd>
-						<a href="javascript:;" data-id="term-keyword" data-url="#"
+						<a href="javascript:;" data-id="term-keyword" data-url="/webapp/pages/msg/term/index"
 							class="site-demo-active">&nbsp;&nbsp;&nbsp;关键词管理</a>
 					</dd>
 					<dd>
@@ -106,7 +106,8 @@ body {
 							data-url="/webapp/pages/res/album/index" class="site-demo-active">&nbsp;&nbsp;&nbsp;图集管理</a>
 					</dd>
 					<dd>
-						<a href="javascript:;" data-id="information" data-url="/webapp/pages/res/information/index"
+						<a href="javascript:;" data-id="information"
+							data-url="/webapp/pages/res/information/index"
 							class="site-demo-active">&nbsp;&nbsp;&nbsp;资讯管理</a>
 					</dd>
 				</dl></li>
@@ -294,6 +295,13 @@ body {
 													return false;
 												});
 							}
+							
+							$(".layui-nav-item").click(function() {
+								$(".layui-nav-item").each(function(){
+									$(this).removeClass("layui-nav-itemed");
+								});
+								$(this).addClass("layui-nav-itemed");
+							})
 
 							$(".rightmenu li")
 									.click(

@@ -26,10 +26,11 @@ class Login extends CI_Controller
         // $public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAupXmT0T8HC3ea37YqwEOap82kAD5Ff+fIp7d8GrXAETElICqvjRTpzaNI+LCc4wSLajqUkZRAOPBlbOt9aL2ZE1TuZdbDljtoXFZYhMGuFJqYZzg6PsKKoNiCNDl+N9RxFB/wLAngS85U64lGUiaP8wZFrMPel44gEOtvStpvYyUoH1sSwEmvLnMYDhGNmX6vJuwurwYR18+F+J004Cy2wUqYFebKXA9QNkE07WCsbL2u9YubDqcf99W7si4wLdiI0gvwiuAxhxSrsU6eP6QAoao5z0HKMYASleNmlGP62tWqg5HpJMslChr67n/FlKWgVhANWxC9hSh3JABTCIYDwIDAQAB";
         $password = $this->input->post('password');
         // 密码解密
-        $password = $this->decode($password);
+        //$password = $this->decode($password);
 
         $username = $this->input->post('username');
         $user = $this->sys_user_model->get_by_username($username);
+        
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $user['password'] = '';
@@ -48,7 +49,6 @@ class Login extends CI_Controller
                     )
                 );
                 $this->sys_user_model->flushField('login_time', $user['id']);
-
                 // 生成tocker
                 $token = $this->generateTocken($username);
                 $data['token'] = $token;

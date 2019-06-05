@@ -7,7 +7,7 @@ class res_information_model extends Api_Model
     {
         $queryField = 't.*, dic_content_category.content_category_name, st.like_count, st.collect_count';
         $this->simpleQuery($queryField, TRUE);
-        $this->db->join('statis_res_like_collect st', 't.id = st.res_id and st.res_type = "0"', 'left');
+        $this->db->join('statis_res_like_collect st', 't.id = st.res_id and st.res_type = "2"', 'left');
 
         $this->find_list_by_publis_status($publish);
         $this->searchByVideoOrAlbumRequest();
@@ -66,7 +66,7 @@ class res_information_model extends Api_Model
             'source',
             'publish_time',
             'author',
-            'publish_status'
+            'publish_status', 'source_url'
         );
         $data = get_request_field_array($fields, $this);
         $data['cover_id'] = $imageId;
@@ -75,7 +75,10 @@ class res_information_model extends Api_Model
             $data['publish_time'] = date('YmdHis');
         }
         $this->db->insert('res_information', $data);
-        return $this->db->insert_id('id');
+        $id =  $this->db->insert_id('id');
+        //关键词保存
+        $this -> saveTerms(@$data['terms'], $id, '2');
+        return $id;
     }
 
     public function edit($id = null)
@@ -106,7 +109,7 @@ class res_information_model extends Api_Model
             'source',
             'publish_time',
             'author',
-            'publish_status'
+            'publish_status', 'source_url'
         );
         $data = get_request_field_array($fields);
         $data['cover_id'] = $imageId;
@@ -114,7 +117,10 @@ class res_information_model extends Api_Model
             $data['publish_time'] = date('YmdHis');
         }
         $this->db->where('id', $id);
-        return $this->db->update('res_information', $data);
+        $update = $this->db->update('res_information', $data);
+        //关键词保存
+        $this -> saveTerms(@$data['terms'], $id, '2');
+        return $update;
     }
 
     public function delete($id = null)
@@ -124,6 +130,8 @@ class res_information_model extends Api_Model
         );
         $this->db->where('id', $id);
         $this->db->update('res_information', $data);
+        //删除term
+        $this -> deleteTerms(array($id), '2');
     }
 
     public function delete_batch()
@@ -138,7 +146,10 @@ class res_information_model extends Api_Model
             'is_delete' => '1'
         );
         $this->db->where_in('id', $ids);
-        return $this->db->update('res_information', $data);
+        $update = $this->db->update('res_information', $data);
+        //删除term
+        $this -> deleteTerms($ids, '2');
+        return $update;
     }
 
     public function publish_batch()

@@ -4,9 +4,13 @@ class Res_album_model extends Api_Model
 
     public function get($publish = NULL)
     {
-        $queryField = 't.*,  dic_district.name, dic_content_category.content_category_name, st.like_count, st.collect_count';
+        $user = $this->session->tempdata('user');
+        $queryField = 't.*,  dic_district.name, dic_content_category.content_category_name, st.like_count, st.collect_count, pv.page_view';
+        if (!empty($user['id'])) {
+            $queryField = $queryField.", ur.like as isLike, ur.collect as isCollect, ur.look as isLook, ur.oppose as isOppose";
+        }
         $this -> simpleQuery($queryField, TRUE);
-        $this->db->join('statis_res_like_collect st', 't.id = st.res_id and st.res_type = "2"', 'left');
+        
         $this -> not_delete();
         
         $this -> find_list_by_publis_status($publish);
@@ -21,10 +25,21 @@ class Res_album_model extends Api_Model
         }
         $this->db->join('dic_content_category', 'dic_content_category.id = t.content_category_id', 'left');
         $this->db->join('dic_district', 'dic_district.id = t.district_id', 'left');
+        $this->db->join('statis_res_like_collect st', 't.id = st.res_id and st.res_type = "2"', 'left');
+        $this->db->join('statis_page_view pv', 't.id = pv.res_id and pv.res_type = "0" ', 'left');
+        
+        $user = $this->session->tempdata('user');
+        if (! empty($user['id'])) {
+            $this->db->join('statis_user_record ur', 't.id = ur.res_id and ur.res_type = "0" and ur.user_id = ' . $user['id'] . ' ', 'left');
+        }
     }
     
     public function detail($id) {
-        $queryField = 't.*,  dic_district.name, dic_district.pid as districtPid,  dic_content_category.content_category_name, ht.house_type_name, ht.parent_type as houseTypePid';
+        $user = $this->session->tempdata('user');
+        $queryField = 't.*,  dic_district.name, dic_district.pid as districtPid,  dic_content_category.content_category_name, ht.house_type_name, ht.parent_type as houseTypePid, st.like_count, st.collect_count, pv.page_view';
+        if (!empty($user['id'])) {
+            $queryField = $queryField.", ur.like as isLike, ur.collect as isCollect, ur.look as isLook, ur.oppose as isOppose";
+        }
         $this -> simpleQuery($queryField);
         $this->db->join('dic_house_type as ht', 'ht.id = t.house_type_id', 'left');
         $this -> db -> where('t.id', $id);
@@ -48,7 +63,8 @@ class Res_album_model extends Api_Model
     
     public function add()
     {
-        $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
+        //图集保存
+        $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time', 'source_url',
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
         $data = get_request_field_array($fields);
         if ($data['publish_status'] == '1') {
@@ -56,7 +72,7 @@ class Res_album_model extends Api_Model
         }
         $this->db->insert('res_album', $data);
         $album_id = $this->db->insert_id('id');
-
+        //图片保存
         $images = get_request_field_array(array('images'))['images'];
         $count = 0;
         foreach ( $images as $k => $val ) {
@@ -64,12 +80,15 @@ class Res_album_model extends Api_Model
             $images[$k]["order_num"] = $count++;
         }
         $this->db->insert_batch('res_image', $images);
+        
+        //关键词保存
+        $this -> saveTerms(@$data['terms'], $album_id, '1');
         return $album_id;
     }
     
     public function edit($id = null)
     {
-        $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time',
+        $fields = array('title', 'description', 'terms', 'publish_type', 'content_category_id', 'source', 'publish_time', 'source_url',
             'author', 'house_type_id', 'floor_area', 'district_id', 'building', 'cost', 'style', 'publish_status');
         $data = get_request_field_array($fields);
         if ($data['publish_status'] == '1') {
@@ -97,6 +116,8 @@ class Res_album_model extends Api_Model
         if (!empty($imagesAdd)) {
             $this->db->insert_batch('res_image', $imagesAdd);
         }
+        //关键词保存
+        $this -> saveTerms(@$data['terms'], $id, '1');
         return $result;
     }
     
@@ -108,6 +129,8 @@ class Res_album_model extends Api_Model
         $this->db->update('res_album', $data);
         $this->db->where('album_id', $id);
         $this->db->update('res_image', $data);
+        //删除term
+        $this -> deleteTerms(array($id), '1');
     }
     
     public function delete_batch() {
@@ -119,7 +142,11 @@ class Res_album_model extends Api_Model
             'is_delete' => '1'
         );
         $this->db->where_in('id', $ids);
-        return $this->db->update('res_album', $data);
+        $update = $this->db->update('res_album', $data);
+        
+        //删除term
+        $this -> deleteTerms($ids, '1');
+        return $update;
     }
     
     

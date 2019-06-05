@@ -2,14 +2,32 @@
 
 class LoginFilter
 {
+    protected $noNeedLogin = [
+        'login',//登录controller
+        'welcome',//欢迎页面
+        'register',//注册接口
+        'mobile',
+        'statis_page_view/view_auto_increment',//浏览量自增接口
+        'res_view',//前端列表接口
+        'res_video/detail',//视频详情接口
+        'res_album/detail',//图集详情接口
+        'msg_term',//关键词接口
+        'dic'//字典表接口
+    ];
+    
     public function checkLogin()
     {
+        
         $uri = @$_SERVER['REQUEST_URI'];
-        if (strstr($uri,'login') ||strstr($uri,'welcome') || strstr($uri,'register') ||  $uri == '/') {
-            return;
+        foreach ($this -> noNeedLogin as $value) {
+            if (strstr($uri,$value)){
+                return;
+            }
         }
+        
         $this->CI = & get_instance();
-        $this->CI->load->library('session');
+        $class = $this->CI -> router->class;
+        
         $this->CI->load->library('session');
         $this->CI->load->model('sys/sys_token_model');
         $this->CI->load->model('sys/sys_random_model');

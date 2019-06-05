@@ -116,7 +116,6 @@ layui.use([ 'form', 'upload' ], function() {
 			}
 		})
 		data['images'] = images;
-		console.log(data);
 		return data;
 	}
 

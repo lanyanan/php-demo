@@ -150,8 +150,20 @@ abstract class Api_Model extends CI_Model
         $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
        $options = array(
             OssClient::OSS_PROCESS => "video/snapshot,t_100,m_fast" );
-        $signUrl = $ossClient -> signUrl($bucket, $path, $expire, 'GET', $options);
-        return urldecode($signUrl);
+       return $this -> generateUrl($ossClient, $bucket, $path, $expire, 'GET', $options);
+    }
+    
+    /**
+     * 由于url中+号会转为空格，导致无法正常打开阿里云OSS的url，该方法递归处理，返回不带+号的url
+     */
+    private function generateUrl($ossClient, $bucket, $path, $expire, $method, $options) {
+        $signUrl = $ossClient -> signUrl($bucket, $path, $expire, $method, $options);
+        $signUrl = urldecode($signUrl);
+        if (strstr($signUrl,"+")) {
+            return $this -> generateUrl($ossClient, $bucket, $path, $expire, $method, $options);
+        } else {
+            return $signUrl;
+        }
     }
     
     /**
@@ -166,8 +178,7 @@ abstract class Api_Model extends CI_Model
         $expire =  $this->sys_config_model->detail('oss_expire_time')['prop_value'];
         
         $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
-        $signUrl = $ossClient -> signUrl($bucket, $path, $expire, 'GET');
-        return urldecode($signUrl);
+        return $this -> generateUrl($ossClient, $bucket, $path, $expire, 'GET', NULL);
     }
     
     /**

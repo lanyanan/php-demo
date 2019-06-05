@@ -8,7 +8,7 @@ class res_view_model extends Api_Model
         parent::__construct();
     }
 
-    public function get($type = NULL)
+    public function get($type = NULL, $res_type = NULL)
     {
         $user = $this->session->tempdata('user');
         if (!empty($user['id'])) {
@@ -32,6 +32,10 @@ class res_view_model extends Api_Model
         } else if ($type == '2') {
             $this->more();
         }
+        
+        if (is_numeric($res_type)) {
+            $this->db->where('t.res_type', $res_type);
+        }
 
         $data = $this->getCountPage('res_view');
         //echo $this->db->last_query();
@@ -50,7 +54,7 @@ class res_view_model extends Api_Model
     protected  function searchByTermId() {
         $term_id = @get_request_field_array(array('term_id'), $this)['term_id'];
         if (@!is_numeric($term_id)) {
-            $term_id = $this-> input->post('term_id');
+            $term_id = $this-> input->get('term_id');
         }
         if (@is_numeric($term_id)) {
             $this->db->join('msg_resource_term m', 'm.res_id = t.id and m.res_type = t.res_type ', 'left');

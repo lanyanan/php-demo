@@ -15,7 +15,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<input id="type" value="<?php echo $type; ?>" type="hidden">
 	<section class="result-page">
 		<section class="result-page-logo">
-			<img src="/static/images/home.png" /> <span>小户型怎么装才显大</span>
+			<img class="home" src="/static/images/home.png" /> <span><?php echo $title; ?></span>
 		</section>
 		<!-- <section class="result-page-search">
             <div class="search-center">
@@ -36,9 +36,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</section>
 		<section class="result-search-content">
 			<section class="home-search-content">
-			<?php foreach ($data['data'] as $data_item): ?>
+			<?php foreach ($data as $data_item): ?>
 
-               <section class="content-card">
+               <section class="content-card" data-id="<?php echo $data_item['id']; ?>" data-res-type="<?php echo $data_item['res_type']; ?>">
 					<div class="content-card-top">
 						<img src="<?php echo $data_item['attach_url']; ?>" />
 						<p><?php echo $data_item['description']; ?></p>
@@ -55,6 +55,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <?php endforeach; ?>
 		</section>
 		</section>
+            <div style="display:none;" id="template"></div>
+            <?php echo $page; //输出分页信息 ?>
 		<section class="result-search-history">
 			<section class="result-search-history-top">
 				<img src="/static/images/search.png" />
@@ -62,13 +64,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<section class="result-search-history-content">
                 <?php foreach ($term['data'] as $term_item): ?>
-                	<span class="term" data-id="<?php echo $term_item['id']; ?>"><?php echo $term_item['name']; ?></span>
+                	<span class="term" data-name="<?php echo $term_item['name']; ?>" data-id="<?php echo $term_item['id']; ?>"><?php echo $term_item['name']; ?></span>
                 <?php endforeach; ?>
             </section>
 		</section>
 		<section class="result-bottom">
 			<div class="tab-active">
-				<label></label> <span> 首页 </span>
+				<label></label> <span class="home"> 首页 </span>
 			</div>
 			<div>
 				<span> 装修案例 </span>
@@ -81,8 +83,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 		</section>
 	</section>
+	<input type="hidden" id="page" value="1" />
+	<input type="hidden" id="limit" limit="2" />
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
 <script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+<script src="/static/js/common.js"></script>
 <script src="/static/js/result.js"></script>
 </html>

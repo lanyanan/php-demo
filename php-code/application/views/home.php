@@ -35,7 +35,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<section class="home-search-content">
 			<?php foreach ($data as $data_item): ?>
 
-               <section class="content-card">
+              <section class="content-card" data-id="<?php echo $data_item['id']; ?>" data-res-type="<?php echo $data_item['res_type']; ?>">
     				<div class="content-card-top">
     					<img src="<?php echo $data_item['attach_url']; ?>" />
     					<p><?php echo $data_item['description']; ?></p>
@@ -50,13 +50,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
     				</section>
     			</section>
             <?php endforeach; ?>
+            <?php echo $page; //输出分页信息 ?>
 		</section>
-		<section class="get-more-list">
+		<div style="display:none;" id="template"></div>
+		<!-- <section class="get-more-list">
 			<span>加载更多</span>
-		</section>
+		</section> -->
 		<section class="home-bottom">
 			<div class="tab-active">
-				<label></label> <span> 首页 </span>
+				<label></label> <span  class="home"> 首页 </span>
 			</div>
 			<div>
 				<span> 装修案例 </span>
@@ -69,10 +71,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 		</section>
 	</section>
-	<input type="hidden" id="page" value="0" />
-	<input type="hidden" id="limit" limit="10" />
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
 <script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 <script src="/static/js/home.js"></script>
+<script src="/static/js/common.js"></script>
 </html>

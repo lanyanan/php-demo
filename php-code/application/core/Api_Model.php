@@ -93,8 +93,9 @@ abstract class Api_Model extends CI_Model
         $query = array();
         $query['count'] = $this->db->count_all_results($table.' t', FALSE);
         $data = get_limit($this);
-        $this->db->limit($data['end'], $data['begin']);
+        $this->db->limit($data['limit'], $data['begin']);
         $query['data'] = $this->db->get() -> result_array();
+//         echo $this -> db ->last_query();
         return $query;
     }
     
@@ -160,7 +161,7 @@ abstract class Api_Model extends CI_Model
         $signUrl = $ossClient -> signUrl($bucket, $path, $expire, $method, $options);
         $signUrl = urldecode($signUrl);
         if (strstr($signUrl,"+")) {
-            return $this -> generateUrl($ossClient, $bucket, $path, $expire, $method, $options);
+            return str_replace("+","%2b",$signUrl);;
         } else {
             return $signUrl;
         }

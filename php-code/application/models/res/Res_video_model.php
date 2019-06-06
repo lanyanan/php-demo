@@ -48,7 +48,8 @@ class res_video_model extends Api_Model
         $this->db->where('t.id', $id);
         $this->not_delete();
         $row_data = $this->db->get()->row_array();
-        $row_data['attach_url'] = $this->signatureurl($row_data['attach_path']);
+        $row_data['attach_url'] =  $this->signatureVideoCoverurl($row_data['attach_path']);
+        $row_data["play_url"] =  $this->signatureurl($row_data['attach_path']);
         return $row_data;
     }
 

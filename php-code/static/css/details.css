@@ -14,115 +14,260 @@ body {
     background: #edecec;
     margin: 0 auto;
 }
-.result-page {
-    background: #edecec;
+.details-page {
+   width: 100%;
+   background:#191919; 
 }
-.result-page-logo {
+.details-page-pic {
+    width: 100%;
+    height: auto;
     position: relative;
-    text-align: center;
-    background: #fff;
 }
-.result-page-logo:after {
-    content:'首页';
+.details-page-pic>img{
+    width: 100%;
+    height: auto;
+}
+.details-page-pic-info {
+    width: 100%;
+    height: 18.791;
+    background: #191919;
+}
+.details-page-pic-bg {
+    width: 86.66%;
+    margin: 0 auto;
+    position: relative;
+}
+.details-page-pic-bg span{
+    display: block;
+    width: 1.875rem;
+    height: 1.875rem;
     position: absolute;
-    left: 3.1rem;
-    top: 1.6rem;
-    color:#191919;
-    font-size: 1.083rem;
-    font-weight: 900;
+    top: 1.875rem;
+    right: 0;
+    background: url(../images/delete.png);
+    background-size: cover;
 }
-.result-page-logo img{
-    position: absolute;
-    left: 1.78rem;
-    top: 1.6rem;
-    width: 1.16rem;
-    height: 1.25rem;
-}
-.result-page-logo  span{
-    font-size: 1.083rem;
-    font-weight: 900;
-    color: #000000;
-    line-height: 4.58rem;
+.details-page-pic-bg img{
+    margin-top: 7.83rem;
+    width: 100%;
 }
 
-.result-page-tab {
+.details-page-pic-info-btns {
+    width: 86%;
+    height: 8.25rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.details-page-pic-info-btns > div{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.details-page-pic-info-btns > div span{
+    font-size: 0.542rem;
+    color: #fff;
+    margin-top:0.652rem;
+}
+
+.details-page-pic-info-btns > div:nth-child(1) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/share.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-btns > div:nth-child(2) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/loveS.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-btns > div:nth-child(3) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/saveS.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-btns > div:nth-child(4) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/menu.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-btns > .details-info-active:nth-child(1) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/share_active.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-btns > .details-info-active:nth-child(2) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/loveS_active.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-btns > .details-info-active:nth-child(3) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/saveS_active.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-btns > .details-info-active:nth-child(4) label{
+    display: block;
+    width: 2.07rem;
+    height: 2.07rem;
+    background: url('../images/menu_active.png') no-repeat left top;
+    background-size: 100%;
+}
+
+.details-page-pic-info-details {
+    width: 93.6%;
+    margin: 0 auto;
+}
+
+.details-page-pic-info-details-title {
+    width: 100%;
+    height: 1.79rem;
+}
+
+.details-page-pic-info-details-title span{
+    color: #4dbc15;
+    font-size: 1.25rem;
+}
+
+.details-page-pic-info-details-title p{
+    display: inline-block;
+    font-size: 1.25rem;
+    color: #fff;
+    padding-left: 0.5rem;
+}
+
+.details-page-pic-info-details-p {
+    width: 100%;
+    margin: 0.3rem auto 0;
+    max-height: 5.875rem;
+    font-size: 1.083rem;
+    color: #fff;
+    line-height: 1.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.details-page-pic-info-details-upload {
     width: 100%;
     height: 3.33rem;
     display: flex;
-    background: #f3f3f3;
-}
-.result-page-tab>div {
-    flex:1;
-    text-align: center;
-    line-height: 3.33rem;
-    display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
-.result-page-tab>div:after {
-    content: '';
-    position: absolute;
-    right:0;
-    top: 1.1rem;
-    width: 1px;
-    height: 1.2rem;
-    background: #191919;
+
+.details-page-pic-info-details-upload span{
+    display: block;
+    width: 2.96rem;
+    height: 1.25rem;
+    background: url(../images/up.png) no-repeat left top;
+    background-size: 100%;
+    cursor: pointer;
 }
-.result-page-tab>div:last-of-type::after {
-    content: '';
-    position: absolute;
-    right:0;
-    top: 1.1rem;
-    width: 0px;
-    height: 1.2rem;
+
+.details-page-iphone {
+    width:100%;
+    height: 22.92rem;
+    background: #fff;
+    padding-top: 1rem;
 }
-.result-page-tab>div label {
-    width: 1.2rem;
-    height: 1.2rem;
-    display: inline-block;
+
+.details-page-iphone-top {
+    width: 96.8%;
+    height: 14.458rem;
+    margin: 0 auto;
+    background: url(../images/iphoneborder.png) no-repeat left top;
+    background-size: 100% 100%;
 }
-.result-page-tab>div label:nth-child(1) {
-    background: url(../images/tuijian.png);
-    background-size: cover;
+
+.details-page-iphone-top input {
+    width: 92%;
+    height: 3.71rem;
+    margin: 5.5rem 2% 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding-left: 4%;
 }
-.result-page-tab>div label:nth-child(2) {
-    background: url(../images/hot.png);
-    background-size: cover;
+
+.details-page-iphone-top input::-ms-input-placeholder{   
+    color: #d3d3d3;
+    font-size: 1rem;
 }
-.result-page-tab>div label:nth-child(3) {
-    background: url(../images/more.png);
-    background-size: cover;
+.details-page-iphone-top input::-webkit-input-placeholder{
+    color: #d3d3d3;
+    font-size: 1rem;
 }
-.result-page-tab .tab-active label:nth-child(1) {
-    background: url(../images/tuijian_active.png);
-    background-size: cover;
+.details-page-iphone-top-btn {
+    width: 96%;
+    height: 3.75rem;
+    margin: 0.67rem 2% 0; 
+    background: #4dbc15;
+    line-height: 3.75rem;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
-.result-page-tab .tab-active label:nth-child(2) {
-    background: url(../images/hot_active.png);
-    background-size: cover;
-}
-.result-page-tab .tab-active label:nth-child(3) {
-    background: url(../images/more_active.png);
-    background-size: cover;
-}
-.result-page-tab>div span {
-    height: 1.2rem;
-    line-height: 1.2rem;
-    margin-left: 0.3rem;
+.details-page-iphone-top-btn span {
+    color: #fff;
     font-size: 1.25rem;
-    display: inline-block;
-    color:#191919;
+}
+.details-page-iphone-bottom {
+    width: 88%;
+    margin: 1.333rem 6%;
+}
+.details-page-iphone-bottom p{
+    color:#666666;
+    font-size: 0.917rem;
+    line-height: 1.5rem;
+}
+
+.details-page-tab {
+    width: 100%;
+    height: 3.33rem;
+    display: flex;
+    background: #f3f3f3; 
+}
+
+.details-page-tab>div {
+    width: 93.6%;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 3.33rem;
+}
+
+.details-page-tab>div span{
+    font-size: 1.25rem;
+    color: #191919;
     font-weight: 900;
 }
-.result-page-tab .tab-active span {
-    color: #4dbc15;
-    height: 1.2rem;
-    line-height: 1.2rem;
-    margin-left: 0.3rem;
-    font-size: 1.25rem;
-    display: inline-block;
-    font-weight: 900;
+.details-page-tab>div span:nth-child(2){
+    padding: 0 0.75rem;
+    color: #898989;
 }
 
 .result-search-content {
@@ -234,7 +379,6 @@ body {
     width: 100%;
     height: 3.33rem;
     display: flex;
-    margin-top: 6.83rem;
     padding-bottom: 2rem;
 }
  .result-bottom>div {

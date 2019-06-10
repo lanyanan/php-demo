@@ -59,7 +59,7 @@ function get_limit($request) {
     }
     $limit = $request-> input->get('limit');
     if (empty($limit)) {
-        $limit = 1;
+        $limit = 10;
     }
     return array('begin' => ($page - 1) * $limit, 'limit' => $limit);
 }

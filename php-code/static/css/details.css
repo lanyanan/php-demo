@@ -37,6 +37,14 @@ body {
     margin: 0 auto;
     position: relative;
 }
+.details-page-pic-bg  .swiper-container {
+    padding-top: 7.83rem;
+    width: 100%;
+} 
+.details-page-pic-bg  .swiper-container .swiper-slide img{
+    width: 100%;
+} 
+
 .details-page-pic-bg span{
     display: block;
     width: 1.875rem;
@@ -46,10 +54,7 @@ body {
     right: 0;
     background: url(../images/delete.png);
     background-size: cover;
-}
-.details-page-pic-bg img{
-    margin-top: 7.83rem;
-    width: 100%;
+    z-index:9999;
 }
 
 .details-page-pic-info-btns {
@@ -465,6 +470,9 @@ body {
     float: left;
     text-align: center;
     font-size: 1rem;
+        overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
 }
 
 @media screen and (max-width:350px) {
@@ -484,4 +492,25 @@ body {
         background: #fff;
         margin: 0 auto;
     }
+}
+.result-search-content .content-card .content-card-top .content-card-img {
+width: 100%;
+position: relative;
+}
+
+.result-search-content .content-card .content-card-top img{
+width: 100%;
+height: auto;
+}
+.result-search-content .content-card .content-card-top .content-card-img label{
+display: block;
+width: 3.75rem;
+height: 3.75rem;
+background: url(../images/play.png) no-repeat left top;
+background-size: 100% 100%;
+position: absolute;
+left: 50%;
+top: 50%;
+margin-left: -1.95rem;
+margin-top: -1.95rem
 }

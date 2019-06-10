@@ -25,7 +25,7 @@
                 $this->page = 1;
             }
             if (empty($this->limit)) {
-                $this->limit = 1;
+                $this->limit = 10;
             }
             $this->page += 1;
         }
@@ -40,7 +40,7 @@
                 } else {
                     $url = $this -> url.'?limit=' . $this -> limit .'&page=' . $this -> page;
                 }
-                $p = '<section class="get-more-list" data-href = "'.$url.'">'.
+                $p = '<section class="get-more-list" style="display:none;" data-href = "'.$url.'">'.
                         '<span>加载更多</span>'.
                         '</section>';
                 return $p;

@@ -32,12 +32,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<label></label> <span> 更多 </span>
 			</div>
 		</section>
-		<section class="home-search-content">
+		<section id="content" class="home-search-content">
 			<?php foreach ($data as $data_item): ?>
 
               <section class="content-card" data-id="<?php echo $data_item['id']; ?>" data-res-type="<?php echo $data_item['res_type']; ?>">
     				<div class="content-card-top">
-    					<img src="<?php echo $data_item['attach_url']; ?>" />
+    					<?php if ($data_item['res_type'] == '0'): ?>
+    					<div class="content-card-img">
+        					<img src="<?php echo $data_item['attach_url']; ?>" />
+        					<label></label>
+    					</div>
+    					<?php else: ?>
+    						<img src="<?php echo $data_item['attach_url']; ?>" />
+    					<?php endif; ?>
     					<p><?php echo $data_item['description']; ?></p>
     				</div>
     				<section class="content-card-bottom">
@@ -50,8 +57,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
     				</section>
     			</section>
             <?php endforeach; ?>
-            <?php echo $page; //输出分页信息 ?>
 		</section>
+            <?php echo $page; //输出分页信息 ?>
 		<div style="display:none;" id="template"></div>
 		<!-- <section class="get-more-list">
 			<span>加载更多</span>
@@ -73,7 +80,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</section>
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
-<script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+<script src="https://cdn.bootcss.com/masonry/2.1.07/jquery.masonry.min.js"></script>
 <script src="/static/js/home.js"></script>
 <script src="/static/js/common.js"></script>
 </html>

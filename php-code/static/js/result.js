@@ -1,4 +1,12 @@
 $(function(){
+	var $container = $('#content');
+	$container.imagesLoaded(function() {
+		$container.masonry({
+			itemSelector : '.content-card',
+			columnWidth : 1
+		// 每两列之间的间隙为5像素
+		});
+	});
 }).on('click', '.tab', function(){
 	$('.tab').each(function(){
 		$(this).removeClass("tab-active");
@@ -18,9 +26,12 @@ $(function(){
 	$this = $(this);
 	$href = $this.data('href');
 	$("#template").load($href, function(){
-		$(".home-search-content").append($("#template").html());
+		$("#content").append($("#template").html());
 		$("#template").html("");
 		$this.remove();
+		$('#content').imagesLoaded(function() {
+			$('#content').masonry('reload');
+		});
 	});
 }).on('click','.content-card', function(){
 	var id = $(this).data("id");
@@ -31,3 +42,10 @@ $(function(){
 		window.location.href = '/mobile/res_album/' + id;
 	}
 });
+
+$(window).scroll(function(){
+    var scrollTop = $(this).scrollTop();var scrollHeight = $(document).height();var windowHeight = $(this).height();
+    if(scrollTop + windowHeight == scrollHeight){
+    	$(".get-more-list").click();
+    }
+})

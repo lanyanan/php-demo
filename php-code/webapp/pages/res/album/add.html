@@ -113,14 +113,16 @@
 				<table class="layui-table">
 					<colgroup>
 						<col align="center" width="25%">
-						<col align="center" width="20%">
-						<col align="center" width="20%">
+						<col align="center" width="15%">
+						<col align="center" width="15%">
+						<col align="center" width="15%">
 						<col align="center">
 					</colgroup>
 					<thead align="center">
 						<tr>
 							<th align="center">图片</th>
 							<th align="center">空间名称</th>
+							<th align="center">空间</th>
 							<th align="center">描述</th>
 							<th align="center">操作</th>
 						</tr>
@@ -141,6 +143,9 @@
 							<td align="center"><input type="text" name="images.space_name"
 								placeholder="请输入" autocomplete="off" class="layui-input"
 								disabled /></td>
+							<td align="center" id="spaceTd"><select name="house_space_id" lay-filter="house_space_id" disabled>
+								<option value="">请选择空间</option>
+							</select></td>
 							<td align="center"><textarea name="images.description"
 									placeholder="请输入内容" class="layui-textarea" disabled>
 								</textarea></td>
@@ -207,17 +212,12 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<div class="layui-inline select_div">
+			<div class="layui-inline">
 				<label class="layui-form-label">户型</label>
-				<div class="layui-input-inline select">
-					<select name="house_type_1" lay-filter="house_type_1">
+				<div class="layui-input-block">
+					<select name="house_type_id" lay-filter="house_type_1">
 						<option value="">请选择户型</option>
 					</select>
-				</div>
-				<div class="layui-input-inline select">
-					<select name="house_type_2" lay-filter="house_type_2">
-						<option value="">请选择</option>
-					</select> <input type='hidden' name='house_type_id' />
 				</div>
 			</div>
 			<div class="layui-inline">

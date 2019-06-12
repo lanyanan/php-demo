@@ -13,19 +13,7 @@ layui.use([ 'form', 'upload' ], function() {
 	renderStyleSelect($("select[name='style']"));
 	
 	//加载户型
-	var houseTypeParentId = '0';
-	renderHourseSelect( $("select[name='house_type_1']"), houseTypeParentId);
-	renderHourseSelect( $("select[name='house_type_2']"), "1");
-	// 户型级联操作
-	form.on('select(house_type_1)', function (data) {
-		houseTypeParentId = data.value;
-		$("select[name='house_type_2']").attr('disabled',false);
-		$("input[name='house_type_id']").val(houseTypeParentId);
-		renderHourseSelect( $("select[name='house_type_2']"), houseTypeParentId);
-    });
-	form.on('select(house_type_2)', function (data) {
-		$("input[name='house_type_id']").val(data.value);
-	})
+	renderHourseSelect( $("select[name='house_type_id']"));
 	//加载城市
 	var districtParentId = '0';
 	renderDistrictSelect( $("select[name='district_1']"), districtParentId, "请选择省份");
@@ -70,21 +58,6 @@ layui.use([ 'form', 'upload' ], function() {
 					$("#save").show();
 				}
 				$("#save_publish").show();
-				// 初始化户型
-				if (result.houseTypePid != '0') {
-					renderHourseSelect( $("select[name='house_type_2']"), result.houseTypePid);
-					$("select[name='house_type_2']").attr('disabled',false);
-					setTimeout(function(){
-						form.val("formDemo", {
-							"house_type_1" : result.houseTypePid,
-							"house_type_2" : result.house_type_id,
-						})
-					},500)
-				} else {
-					form.val("formDemo", {
-						"house_type_1" : result.house_type_id,
-					})
-				}
 				//初始化表单城市
 				if (!!result.district_id) {
 					renderDistrictSelect($("select[name='district_2']"), result.districtPid);
@@ -190,7 +163,7 @@ layui.use([ 'form', 'upload' ], function() {
 	function renderHourseSelect($select, houseTypeParentId) {
 		$.ajax({
 			type : "GET",
-			url : window.siteUrl + '/dic/dic_house_type/get_list_by_parent/' + houseTypeParentId,
+			url : window.siteUrl + '/dic/dic_house_type/get_list',
 			dataType : "json",
 			success : function(data, msg) {
 				if (data.code == '1') {

@@ -2,7 +2,18 @@
 
 class Msg_search_model extends Api_Model
 {
-
+    
+    public function get()
+    {
+        $queryField = ' * ';
+        $this->db->from('msg_search_keyword t');
+        $this->db->order_by('search_count', 'DESC');
+        //查询前三十个
+        $this->db->limit(50, 0);
+        return $this->db->get() -> result_array();
+        //return $this->getCountPage('msg_search_keyword');
+    }
+    
     public function add($title)
     {
         $queryField = ' * ';

@@ -10,6 +10,7 @@ class Mobile extends API_Controller
         $this->load->model('res/res_view_model');
         $this->load->model('msg/msg_term_model');
         $this->load->model('res/res_album_model');
+        $this->load->model('res/res_image_model');
         $this->load->model('res/res_video_model');
         $this->load->model('msg/msg_search_model');
     }
@@ -17,6 +18,32 @@ class Mobile extends API_Controller
     public function index()
     {
         $this->home();
+    }
+    
+    /**
+     * 更多
+     */
+    public function moreSelect() {
+        $this->load->model('dic/dic_house_type_model');
+        $this->load->model('dic/dic_house_space_model');
+        $this->load->model('dic/dic_content_category_model');
+        $this->load->model('dic/dic_style_model');
+        $data = array();
+        $data['house_type'] = $this -> dic_house_type_model -> get_list();
+        $data['house_space'] = $this -> dic_house_space_model -> get_list();
+        $data['style'] = $this -> dic_style_model -> get_list();
+        $data['search'] = $this -> msg_search_model -> get();
+        $this->load->view('moreSelect', $data);
+    }
+    
+    /**
+     * 大家都爱搜
+     */
+    public function loveSearch() {
+        $data =  array();
+        $data['data'] = $this -> msg_search_model -> get();
+        //echo json_encode($data);
+        $this->load->view('loveSearch', $data);
     }
     
     /**
@@ -91,32 +118,57 @@ class Mobile extends API_Controller
     }
     
     /**
+     * 图片搜索页
      * @param string $type  NULL 全部  0视频  1图集
      */
-    public function result($type = NULL)
+    public function image_select()
     {
-        $data = $this->res_view_model->get(NULL, $type);
+        $data = $this -> image_data();
+        $this->load->view('image_select', $data);
+    }
+    
+    public function image_select_template()
+    {
         
-        $title = $this -> input->get('title');
-        $term_name = $this -> input->get('term_name');
-        
-        $this -> msg_search_model -> add($title);
+        $data = $this -> image_data();
+        $this->load->view('image_template', $data);
+    }
+    
+    private function image_data(){
+        $term_name = $this->input-> get('term_name');
+        $house_space_id = $this->input-> get('house_space_id');
         
         //分页
         $page = $this -> input->get('page');
         $limit = $this -> input->get('limit');
-        $term_id = $this -> input->get('term_id');
-        if (is_numeric($type)) {
-            $this->load->library('page',array('count'=> $data['count'], 'url'=> '/mobile/result_template/'.$type.'?&title='.$title.'&term_id='.$term_id.'&term_name='.$term_name,'limit'=> $limit,'page'=>$page));
-        } else {
-            $this->load->library('page',array('count'=> $data['count'], 'url'=> '/mobile/result_template?&title='.$title.'&term_id='.$term_id.'&term_name='.$term_name,'limit'=> $limit,'page'=>$page));
-        }
         
+        //列表数据
+        $data = $this->res_image_model -> get($house_space_id);
+        
+        //空间类型
+        $this->load->model('dic/dic_house_space_model');
+        $data['house_space_list'] = $this -> dic_house_space_model -> get_list();
+        //分页
+        $url = '/mobile/image_select_template?term_name='.$term_name.'&house_space_id='.$house_space_id;
+        $this->load->library('page',array('count'=> $data['count'], 'url'=> $url,'limit'=> $limit,'page'=>$page));
+        
+        $data['house_space_id'] = $house_space_id;
+        $data['showTitle'] = $term_name;
+        $data['page']= $this-> page -> page_nums();
+        //关键词
         $term = $this -> msg_term_model->get();
         $data['term'] = $term;
-        $data['type'] = $type;
-        $data['title'] = empty($title) ? $term_name : $title;
-        $data['page']= $this-> page -> page_nums();
+        return $data;
+    }
+    
+    
+    /**
+     * 搜索词搜索页
+     * @param string $type  NULL 全部  0视频  1图集
+     */
+    public function result($type = NULL)
+    {
+        $data = $this->result_data($type);
         $this->load->view('result', $data);
     }
     
@@ -125,27 +177,69 @@ class Mobile extends API_Controller
      */
     public function result_template($type = NULL)
     {
+        $data = $this->result_data($type);
+        $this->load->view('template', $data);
+    }
+    
+    /**
+     * 组合搜索页
+     * @param string $type  NULL 全部  0视频  1图集
+     */
+    public function select($type = NULL)
+    {
+        $data = $this->result_data($type);
+        
+        $this->load->model('dic/dic_house_type_model');
+        $this->load->model('dic/dic_content_category_model');
+        $this->load->model('dic/dic_style_model');
+        $data['house_type_list'] = $this -> dic_house_type_model -> get_list();
+        $data['style_list'] = $this -> dic_style_model -> get_list();
+        $data['search'] = $this -> msg_search_model -> get();
+        
+        $this->load->view('select', $data);
+    }
+    
+    private function result_data($type = NULL) {
         $data = $this->res_view_model->get(NULL, $type);
         
+        /**
+         * 获取前台参数返回给前台
+         * @var unknown $title
+         */
         $title = $this -> input->get('title');
+        $floor_area= $this -> input->get('floor_area');
+        $house_type_id= $this -> input->get('house_type_id');
+        $style= $this -> input->get('style');
+        $cost= $this -> input->get('cost');
         $term_name = $this -> input->get('term_name');
         
-        $this -> msg_search_model -> add($title);
+        if (!empty($title)) {
+            $this -> msg_search_model -> add($title);
+        }
         //分页
         $page = $this -> input->get('page');
         $limit = $this -> input->get('limit');
         $term_id = $this -> input->get('term_id');
         if (is_numeric($type)) {
-            $this->load->library('page',array('count'=> $data['count'], 'url'=> '/mobile/result_template/'.$type.'?&title='.$title.'&term_id='.$term_id.'&term_name='.$term_name,'limit'=> $limit,'page'=>$page));
+            $url = '/mobile/result_template/'.$type.'?&title='.$title.'&term_id='.$term_id.'&term_name='.$term_name;
         } else {
-            $this->load->library('page',array('count'=> $data['count'], 'url'=> '/mobile/result_template?&title='.$title.'&term_id='.$term_id.'&term_name='.$term_name,'limit'=> $limit,'page'=>$page));
+            $url = '/mobile/result_template?&title='.$title.'&term_id='.$term_id.'&term_name='.$term_name;
         }
+        //下一页的时候要带参数
+        $url = $url.'&floor_area='.$floor_area.'&house_type_id='.$house_type_id.'&style='.$style.'&cost='.$cost;
+        $this->load->library('page',array('count'=> $data['count'], 'url'=> $url,'limit'=> $limit,'page'=>$page));
         
         $term = $this -> msg_term_model->get();
+        $data['floor_area'] = $floor_area;
+        $data['house_type_id'] = $house_type_id;
+        $data['style'] = $style;
+        $data['cost'] = $cost;
         $data['term'] = $term;
         $data['type'] = $type;
-        $data['title'] = empty($title) ? $term_name : $title;
+        $data['showTitle'] =  empty($title) ? $term_name : $title;
+        $data['title'] = $title;
         $data['page']= $this-> page -> page_nums();
-        $this->load->view('template', $data);
+        
+        return $data;
     }
 }

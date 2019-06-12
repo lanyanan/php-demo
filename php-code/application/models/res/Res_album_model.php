@@ -36,7 +36,7 @@ class Res_album_model extends Api_Model
     
     public function detail($id) {
         $user = $this->session->tempdata('user');
-        $queryField = 't.*,  dic_district.name, dic_district.pid as districtPid,  dic_content_category.content_category_name, ht.house_type_name, ht.parent_type as houseTypePid, st.like_count, st.collect_count, pv.page_view';
+        $queryField = 't.*,  dic_district.name, dic_district.pid as districtPid,  dic_content_category.content_category_name, ht.house_type_name, st.like_count, st.collect_count, pv.page_view';
         if (!empty($user['id'])) {
             $queryField = $queryField.", ur.like as isLike, ur.collect as isCollect, ur.look as isLook, ur.oppose as isOppose";
         }

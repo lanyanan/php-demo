@@ -1,9 +1,9 @@
 <?php
-class Dic_house_type_model extends Api_Model
+class Dic_house_space_model extends Api_Model
 {
 
     public function get_list() {
-        $queryField = 't.*';
+        $queryField = ' t.*';
         $this -> simpleQuery($queryField);
         return $this->db->get() -> result_array();
     }
@@ -11,7 +11,7 @@ class Dic_house_type_model extends Api_Model
     protected function simpleQuery($queryField, $countQuery = FALSE) {
         $this->db->select($queryField);
         if ($countQuery === FALSE) {
-            $this->db->from('dic_house_type t');
+            $this->db->from('dic_house_space t');
         }
     }
     

@@ -31,19 +31,7 @@ layui.use([ 'form', 'upload' ], function() {
 	renderStyleSelect($("select[name='style']"));
 	
 	//加载户型
-	var houseTypeParentId = '0';
-	renderHourseSelect( $("select[name='house_type_1']"), houseTypeParentId);
-	renderHourseSelect( $("select[name='house_type_2']"), "1");
-	// 户型级联操作
-	form.on('select(house_type_1)', function (data) {
-		houseTypeParentId = data.value;
-		$("select[name='house_type_2']").attr('disabled',false);
-		$("input[name='house_type_id']").val(houseTypeParentId);
-		renderHourseSelect( $("select[name='house_type_2']"), houseTypeParentId);
-    });
-	form.on('select(house_type_2)', function (data) {
-		$("input[name='house_type_id']").val(data.value);
-	})
+	renderHourseSelect( $("select[name='house_type_id']"));
 	
 	//加载城市
 	var districtParentId = '0';
@@ -129,7 +117,7 @@ layui.use([ 'form', 'upload' ], function() {
 	function renderHourseSelect($select, houseTypeParentId) {
 		$.ajax({
 			type : "GET",
-			url : window.siteUrl + '/dic/dic_house_type/get_list_by_parent/' + houseTypeParentId,
+			url : window.siteUrl + '/dic/dic_house_type/get_list',
 			dataType : "json",
 			success : function(data, msg) {
 				if (data.code == '1') {

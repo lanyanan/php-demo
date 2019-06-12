@@ -44,7 +44,6 @@ body {
     right: 1.875rem;
     background: url(../images/delete.png);
     background-size: cover;
-    z-index:9999
 }
 .detailsV-page-pic-bg video{
     width: 100%;
@@ -487,9 +486,6 @@ body {
     float: left;
     text-align: center;
     font-size: 1rem;
-    overflow: hidden;
-text-overflow:ellipsis;
-white-space: nowrap;
 }
 
 @media screen and (max-width:350px) {
@@ -509,25 +505,4 @@ white-space: nowrap;
         background: #fff;
         margin: 0 auto;
     }
-}
-.result-search-content .content-card .content-card-top .content-card-img {
-width: 100%;
-position: relative;
-}
-
-.result-search-content .content-card .content-card-top img{
-width: 100%;
-height: auto;
-}
-.result-search-content .content-card .content-card-top .content-card-img label{
-display: block;
-width: 3.75rem;
-height: 3.75rem;
-background: url(../images/play.png) no-repeat left top;
-background-size: 100% 100%;
-position: absolute;
-left: 50%;
-top: 50%;
-margin-left: -1.95rem;
-margin-top: -1.95rem
 }

@@ -15,7 +15,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<input id="type" value="<?php echo $type; ?>" type="hidden">
 	<section class="result-page">
 		<section class="result-page-logo">
-			<img class="home" src="/static/images/home.png" /> <span><?php echo $title; ?></span>
+			<img class="home" src="/static/images/home.png" /> <span><?php echo $showTitle; ?></span>
 		</section>
 		<!-- <section class="result-page-search">
             <div class="search-center">
@@ -81,7 +81,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<span> 装修案例 </span>
 			</div>
 			<div>
-				<span> 大家都爱搜 </span>
+				<span  class="loveSearch"> 大家都爱搜 </span>
 			</div>
 			<div>
 				<span> 联系我们 </span>

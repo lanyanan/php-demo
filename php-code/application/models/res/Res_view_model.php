@@ -110,9 +110,9 @@ class res_view_model extends Api_Model
     {
         $user = $this->session->tempdata('user');
         if (!empty($user['id'])) {
-            $queryField = 't.*,  dic_district.name as district_name, dic_district.pid as districtPid, dic_content_category.content_category_name, ht.house_type_name, ht.parent_type as houseTypePid, st.like_count, st.collect_count, pv.page_view, ur.like as isLike, ur.collect as isCollect, ur.look as isLook, ur.oppose as isOppose';
+            $queryField = 't.*,  dic_district.name as district_name, dic_district.pid as districtPid, dic_content_category.content_category_name, ht.house_type_name, st.like_count, st.collect_count, pv.page_view, ur.like as isLike, ur.collect as isCollect, ur.look as isLook, ur.oppose as isOppose';
         } else {
-            $queryField = 't.*,  dic_district.name as district_name, dic_district.pid as districtPid, dic_content_category.content_category_name, ht.house_type_name, ht.parent_type as houseTypePid, st.like_count, st.collect_count, pv.page_view';
+            $queryField = 't.*,  dic_district.name as district_name, dic_district.pid as districtPid, dic_content_category.content_category_name, ht.house_type_name, st.like_count, st.collect_count, pv.page_view';
         }
         $res_type = get_request_field_array(array('res_type'), $this)['res_type'];
         $this->simpleQuery($queryField);

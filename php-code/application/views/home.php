@@ -68,10 +68,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<label></label> <span  class="home"> 首页 </span>
 			</div>
 			<div>
-				<span> 装修案例 </span>
+				<span > 装修案例 </span>
 			</div>
 			<div>
-				<span> 大家都爱搜 </span>
+				<span  class="loveSearch"> 大家都爱搜 </span>
 			</div>
 			<div>
 				<span> 联系我们 </span>
@@ -81,6 +81,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
 <script src="https://cdn.bootcss.com/masonry/2.1.07/jquery.masonry.min.js"></script>
-<script src="/static/js/home.js"></script>
 <script src="/static/js/common.js"></script>
+<script src="/static/js/home.js"></script>
 </html>

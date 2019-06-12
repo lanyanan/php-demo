@@ -23,27 +23,9 @@ layui.use([ 'form', 'upload' ], function() {
 	renderStyleSelect($("select[name='style']"));
 	
 	// 加载户型
-	var houseTypeParentId = '0';
-	renderHourseSelect( $("select[name='house_type_1']"), houseTypeParentId);
-	renderHourseSelect( $("select[name='house_type_2']"), "1");
-	// 户型级联操作
-	form.on('select(house_type_1)', function (data) {
-		houseTypeParentId = data.value;
-		$("select[name='house_type_2']").attr('disabled',false);
-		$("input[name='house_type_id']").val(houseTypeParentId);
-		renderHourseSelect( $("select[name='house_type_2']"), houseTypeParentId);
-		if (houseTypeParentId != '1') {
-			$('[name="house_type_2"]').attr('lay-verify', "required");
-			$('[name="house_type_2"]').attr("required", true);
-		} else {
-			$('[name="house_type_2"]').attr('lay-verify', "");
-			$('[name="house_type_2"]').attr("required", false);
-		}
-    });
-	form.on('select(house_type_2)', function (data) {
-		$("input[name='house_type_id']").val(data.value);
-	})
-	
+	renderHourseSelect( $("select[name='house_type_id']"));
+	// 加载空间
+	renderSpaceSelect( $("select[name='house_space_id']"));
 	// 加载城市
 	var districtParentId = '0';
 	renderDistrictSelect( $("select[name='district_1']"), districtParentId, "请选择省份");
@@ -74,38 +56,42 @@ layui.use([ 'form', 'upload' ], function() {
 					$("#fristUpload").val("1");
 				}
 				data = res.data;
-				$("#tbody").append('                                                                                                                            '+
-					'	<tr>                                                                                                                                    '+
-					'	<td align="center">                                                                                                                     '+
-					'		<div class="imgDiv"><img class="layui-upload-img" src="'+data.file_url+'">  </div>                                                                                                    '+
-					'	</td>                                                                                                                                   '+
-					'	<input type="hidden" name="images.is_cover" value="'+isCover+'"/>                                                                                           '+
-					'	<input type="hidden" name="images.attach_path" value="'+data.file_path+'"/>                                                                                        '+
-					'	<input type="hidden" name="images.attach_suffix" value="'+data.file_type+'"/>                                                                                      '+
-					'	<input type="hidden" name="images.attach_name" value="'+data.file_name+'"/>                                                                                        '+
-					'	<td align="center">                                                                                                                     '+
-					'		<input type="text" name="images.space_name" required                                                                                '+
-					'			lay-verify="required" placeholder="请输入" autocomplete="off"  value="'+data.original_name+'"                                                                 '+
-					'			class="layui-input"/>                                                                                                  '+
-					'	</td>                                                                                                                                   '+
-					'	<td align="center">                                                                                                                     '+
-					'		<textarea name="images.description"                                                                                                 '+
-					'			placeholder="请输入内容" class="layui-textarea" required lay-verify="required">                                                                       '+
-					'		</textarea>                                                                                                                         '+
-					'	</td>                                                                                                                                   '+
-					'	<td align="center" class="operator">                                                                                                    '+
-					'		<div class="layui-btn-group">                                                                                                       '+
-					'			<button lay-filter="set_cover"  type="button"                                                                                 '+
-					'				class="set_cover layui-btn "  ><i class="layui-icon">&#xe605;</i>设为封面图</button>            '+
-					'			<button lay-filter="move_up"   type="button"                                                                                      '+
-					'				class="move_up layui-btn "  ><i class="layui-icon">&#xe619;</i>上移</button>                  '+
-					'			<button  lay-filter="move_down"  type="button"                                                                                   '+
-					'				class="move_down layui-btn "  ><i class="layui-icon">&#xe61a;</i>下移</button>                  '+
-					'			<button lay-filter="delete"     type="button"                                                                                      '+
-					'				class="delete layui-btn "><i class="layui-icon">&#xe640;</i>删除</button>                  '+
-					'		</div>                                                                                                                              '+
-					'	</td>                                                                                                                                   '+
-					'</tr>');
+				var content = '                                                                                                                            '+
+				'	<tr>                                                                                                                                    '+
+				'	<td align="center">                                                                                                                     '+
+				'		<div class="imgDiv"><img class="layui-upload-img" src="'+data.file_url+'">  </div>                                                                                                    '+
+				'	</td>                                                                                                                                   '+
+				'	<input type="hidden" name="images.is_cover" value="'+isCover+'"/>                                                                                           '+
+				'	<input type="hidden" name="images.attach_path" value="'+data.file_path+'"/>                                                                                        '+
+				'	<input type="hidden" name="images.attach_suffix" value="'+data.file_type+'"/>                                                                                      '+
+				'	<input type="hidden" name="images.attach_name" value="'+data.file_name+'"/>                                                                                        '+
+				'	<td align="center">                                                                                                                     '+
+				'		<input type="text" name="images.space_name" required                                                                                '+
+				'			lay-verify="required" placeholder="请输入" autocomplete="off"  value="'+data.original_name+'"                                                                 '+
+				'			class="layui-input"/>                                                                                                  '+
+				'	</td>                                                                                                                                   ';
+				
+				var selectHtml = $("#spaceTd").html();
+				content+='<td align="center" id="spaceTd">' + selectHtml + '</td>';
+				content+= '	<td align="center">                                                                                                                     '+
+				'		<textarea name="images.description"                                                                                                 '+
+				'			placeholder="请输入内容" class="layui-textarea" required lay-verify="required">                                                                       '+
+				'		</textarea>                                                                                                                         '+
+				'	</td>                                                                                                                                   '+
+				'	<td align="center" class="operator">                                                                                                    '+
+				'		<div class="layui-btn-group">                                                                                                       '+
+				'			<button lay-filter="set_cover"  type="button"                                                                                 '+
+				'				class="set_cover layui-btn "  ><i class="layui-icon">&#xe605;</i>设为封面图</button>            '+
+				'			<button lay-filter="move_up"   type="button"                                                                                      '+
+				'				class="move_up layui-btn "  ><i class="layui-icon">&#xe619;</i>上移</button>                  '+
+				'			<button  lay-filter="move_down"  type="button"                                                                                   '+
+				'				class="move_down layui-btn "  ><i class="layui-icon">&#xe61a;</i>下移</button>                  '+
+				'			<button lay-filter="delete"     type="button"                                                                                      '+
+				'				class="delete layui-btn "><i class="layui-icon">&#xe640;</i>删除</button>                  '+
+				'		</div>                                                                                                                              '+
+				'	</td>                                                                                                                                   '+
+				'</tr>'
+				$("#tbody").append(content);
 				
 					renderTable();
 				
@@ -167,10 +153,10 @@ layui.use([ 'form', 'upload' ], function() {
 		 return data;
 	}
 	
-	function renderHourseSelect($select, houseTypeParentId) {
+	function renderHourseSelect($select) {
 		$.ajax({
 			type : "GET",
-			url : window.siteUrl + '/dic/dic_house_type/get_list_by_parent/' + houseTypeParentId,
+			url : window.siteUrl + '/dic/dic_house_type/get_list',
 			dataType : "json",
 			success : function(data, msg) {
 				if (data.code == '1') {
@@ -179,6 +165,28 @@ layui.use([ 'form', 'upload' ], function() {
 					$select.append("<option value=''>请选择</option>");
 					for (var i in result) {
 						$select.append("<option value='"+result[i].id+"'>"+result[i].house_type_name+"</option>");
+					}
+					form.render('select');
+				} else {
+					layer.msg("加载户型数据失败，请刷新页面--" + data.msg);
+				}
+			}
+
+		});
+	}
+	
+	function renderSpaceSelect($select) {
+		$.ajax({
+			type : "GET",
+			url : window.siteUrl + '/dic/dic_house_space/get_list',
+			dataType : "json",
+			success : function(data, msg) {
+				if (data.code == '1') {
+					var result = data.data;
+					$select.html("");
+					$select.append("<option value=''>请选择</option>");
+					for (var i in result) {
+						$select.append("<option value='"+result[i].id+"'>"+result[i].house_space_name+"</option>");
 					}
 					form.render('select');
 				} else {

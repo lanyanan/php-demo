@@ -25,7 +25,7 @@
                 $this->page = 1;
             }
             if (empty($this->limit)) {
-                $this->limit = 10;
+                $this->limit = 4;
             }
             $this->page += 1;
         }

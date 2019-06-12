@@ -1,0 +1,48 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/loveSearch.css"></link>
+</head>
+<body>
+    <section class="result-page-logo">
+        <img class="home" src="/static/images/home.png"/>
+        <span>大家都爱搜</span>
+        <label  class="home">首页</label>
+    </section>
+    <section class="love-search">
+    	<?php foreach ($data as $data_item): ?>
+			    <span><?php echo $data_item['search_name']; ?></span>
+            <?php endforeach; ?>
+    </section>
+    <section class="result-bottom">
+			<div class="tab-active">
+				<label></label> <span class="home"> 首页 </span>
+			</div>
+			<div>
+				<span> 装修案例 </span>
+			</div>
+			<div>
+				<span  class="loveSearch"> 大家都爱搜 </span>
+			</div>
+			<div>
+				<span> 联系我们 </span>
+			</div>
+		</section>
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<script src="/static/js/common.js"></script>
+<script type="text/javascript">
+$(function() {
+}).on('click', '.love-search span', function(){
+	var text = $(this).text();
+	window.location.href = '/mobile/result?title=' + text;
+})
+</script>
+</html>

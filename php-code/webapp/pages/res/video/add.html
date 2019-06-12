@@ -99,7 +99,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="layui-form-item">
+						<div class="layui-form-item">
 				<div class="layui-inline">
 					<label class="layui-form-label">来源</label>
 					<div class="layui-input-block">
@@ -115,23 +115,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="layui-form-item select_two">
+			<div class="layui-form-item">
 				<div class="layui-inline" >
 					<label class="layui-form-label">户型</label>
-					<div class="layui-input-inline select" >
-						<select name="house_type_1" lay-filter="house_type_1" >
+					<div class="layui-input-block">
+						<select name="house_type_id" lay-filter="house_type_1" >
 							<option value="">请选择户型</option>
 						</select>
 					</div>
-					<div class="layui-input-inline select" >
-						<select name="house_type_2" lay-filter="house_type_2">
-							<option value="">请选择</option>
-						</select>
-						<input type='hidden' name='house_type_id'/>
-					</div>
-					
+				</div>
+				<div class="layui-inline">
 					<label class="layui-form-label">面积</label>
-					<div class="layui-input-inline">
+					<div class="layui-input-block" >
 						<select name="floor_area">
 							<option value=""></option>
 							<option value="0">60m²以下</option>

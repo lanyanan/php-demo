@@ -13,7 +13,13 @@ $(function() {
 	})
 	$(this).addClass("tab-active");
 	var type = $(this).data("value");
-	window.location.href = '/mobile/home/' + type;
+	if (type == '2') {
+		//更多跳到更多页面
+		window.location.href = '/mobile/moreSelect';
+	} else {
+		//推荐、热门根据不同方式排序
+		window.location.href = '/mobile/home/' + type;
+	}
 }).on('keypress', '#search', function(e) {
 	var keycode = e.keyCode;
 	var searchName = $(this).val();

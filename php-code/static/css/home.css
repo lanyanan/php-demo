@@ -365,24 +365,3 @@ body {
     height:4rem;
     background:rgba(0,0,0,0.3)
 }
-.home-search-content .content-card .content-card-top .content-card-img {
-width: 100%;
-position: relative;
-}
-
-.home-search-content .content-card .content-card-top img{
-width: 100%;
-height: auto;
-}
-.home-search-content .content-card .content-card-top .content-card-img label{
-display: block;
-width: 3.75rem;
-height: 3.75rem;
-background: url(../images/play.png) no-repeat left top;
-background-size: 100% 100%;
-position: absolute;
-left: 50%;
-top: 50%;
-margin-left: -1.95rem;
-margin-top: -1.95rem
-}

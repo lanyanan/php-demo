@@ -18,7 +18,7 @@ class LoginFilter
 //     public function checkLogin()
 //     {
         
-//         $uri = @$_SERVER['REQUEST_URI'];
+//         $uri = $_SERVER['REQUEST_URI'];
 //         foreach ($this -> noNeedLogin as $value) {
 //             if (strstr($uri,$value)){
 //                 return;
@@ -37,7 +37,7 @@ class LoginFilter
 //         /*
 //          * 提供两种验证方式：1、请求头token,2、session
 //          */
-//         $token = @$_SERVER['HTTP_TOKEN'];
+//         $token = $_SERVER['HTTP_TOKEN'];
 //         $user = $this->CI->session->tempdata('user');
         
 //         $token_database = $this->CI->sys_token_model->findByToken($token);

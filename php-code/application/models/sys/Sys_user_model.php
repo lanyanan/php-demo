@@ -73,7 +73,7 @@ class Sys_user_model extends Api_Model
     
     public function edit($id = null)
     {
-        $request =  json_decode(@file_get_contents("php://input") , true);
+        $request =  json_decode(file_get_contents("php://input") , true);
         $data = array(
             'nick_name' => $request['nick_name'],
             'user_sex' => $request['user_sex'],

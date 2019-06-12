@@ -78,14 +78,18 @@ class res_video_model extends Api_Model
             'remark'
         );
         $data = get_request_field_array($fields, $this);
-        if (@$data['publish_status'] == '1') {
+        if (array_key_exists('publish_status', $data) && $data['publish_status'] == '1') {
             $data['publish_time'] = date('YmdHis');
         }
         $this->db->insert('res_video', $data);
         $videoId = $this->db->insert_id('id');
         
         //关键词保存
-        $this -> saveTerms(@$data['terms'], $videoId, '0');
+        $content = '';
+        if (array_key_exists('terms', $data)) {
+            $content = $data['terms'];
+        }
+        $this -> saveTerms($content, $videoId, '0');
         return $videoId;
     }
 
@@ -122,7 +126,11 @@ class res_video_model extends Api_Model
         $update = $this->db->update('res_video', $data);
         
         //关键词保存
-        $this -> saveTerms(@$data['terms'], $id, '0');
+        $content = '';
+        if (array_key_exists('terms', $data)) {
+            $content = $data['terms'];
+        }
+        $this -> saveTerms($content, $id, '0');
         return $update;
     }
 

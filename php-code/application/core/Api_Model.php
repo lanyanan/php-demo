@@ -108,31 +108,31 @@ abstract class Api_Model extends CI_Model
                 $data[$field] = $this->input->get($field);
             }
         }
-        if (!empty(@$data['title'])) {
+        if (array_key_exists('title', $data) && !empty($data['title'])) {
             $this->db->like('t.title', $data['title']);
         }
-        if (is_numeric(@$data['publish_type'])) {
+        if (array_key_exists('publish_type', $data) && is_numeric($data['publish_type'])) {
             $this->db->where('t.publish_type', $data['publish_type']);
         }
-        if (!empty(@$data['source'])) {
+        if (array_key_exists('source', $data) && !empty($data['source'])) {
             $this->db->like('t.source', $data['source']);
         }
-        if (!empty(@$data['author'])) {
+        if (array_key_exists('author', $data) && !empty($data['author'])) {
             $this->db->like('t.author', $data['author']);
         }
-        if (is_numeric(@$data['content_category_id'])) {
+        if (array_key_exists('content_category_id', $data) && is_numeric($data['content_category_id'])) {
             $this->db->where('t.content_category_id', $data['content_category_id']);
         }
-        if (is_numeric(@$data['res_type'])) {
+        if (array_key_exists('res_type', $data) && is_numeric($data['res_type'])) {
             $this->db->where('t.res_type', $data['res_type']);
         }
-        if (is_numeric(@$data['style'])) {
+        if (array_key_exists('style', $data) && is_numeric($data['style'])) {
             $this->db->where('t.style', $data['style']);
         }
-        if (is_numeric(@$data['floor_area'])) {
+        if (array_key_exists('floor_area', $data) && is_numeric($data['floor_area'])) {
             $this->db->where('t.floor_area', $data['floor_area']);
         }
-        if (is_numeric(@$data['house_type_id'])) {
+        if (array_key_exists('house_type_id', $data) && is_numeric($data['house_type_id'])) {
             $this->db->where('t.house_type_id', $data['house_type_id']);
         }
     }

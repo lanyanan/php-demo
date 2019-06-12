@@ -16,14 +16,14 @@ function ip() {
 
 function get_request_field_array($fields, $req = FALSE)
 {
-    $request = json_decode(@file_get_contents("php://input"), true);
+    $request = json_decode(file_get_contents("php://input"), true);
     
     if (empty($request) && $req !== FALSE) {
         return get_request_field_array_by_post($fields, $req);
     }
     $data = array();
     foreach ($fields as $field) {
-        if (@$request[$field] != NULL) {
+        if (array_key_exists($field, $request) && $request[$field] != NULL) {
             $data[$field] = $request[$field];
         }
     }
@@ -34,7 +34,7 @@ function get_request_field_array_by_post($fields, $request) {
     $data = array();
     foreach ($fields as $field) {
         $value = $request-> input->post($field);
-        if (@$value != NULL) {
+        if ($value != NULL) {
             $data[$field] = $value;
         }
     }
@@ -45,7 +45,7 @@ function get_request_field_array_by_get($fields, $request) {
     $data = array();
     foreach ($fields as $field) {
         $value = $request-> input->get($field);
-        if (@$value != NULL) {
+        if ($value != NULL) {
             $data[$field] = $value;
         }
     }

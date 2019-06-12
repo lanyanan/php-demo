@@ -82,7 +82,11 @@ class Res_album_model extends Api_Model
         $this->db->insert_batch('res_image', $images);
         
         //关键词保存
-        $this -> saveTerms(@$data['terms'], $album_id, '1');
+        $content = '';
+        if (array_key_exists('terms', $data)) {
+            $content = $data['terms'];
+        }
+        $this -> saveTerms($content, $album_id, '1');
         return $album_id;
     }
     
@@ -117,7 +121,11 @@ class Res_album_model extends Api_Model
             $this->db->insert_batch('res_image', $imagesAdd);
         }
         //关键词保存
-        $this -> saveTerms(@$data['terms'], $id, '1');
+        $content = '';
+        if (array_key_exists('terms', $data)) {
+            $content = $data['terms'];
+        }
+        $this -> saveTerms($content, $id, '1');
         return $result;
     }
     

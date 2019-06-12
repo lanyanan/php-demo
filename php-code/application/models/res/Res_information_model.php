@@ -77,7 +77,12 @@ class res_information_model extends Api_Model
         $this->db->insert('res_information', $data);
         $id =  $this->db->insert_id('id');
         //关键词保存
-        $this -> saveTerms(@$data['terms'], $id, '2');
+        //关键词保存
+        $content = '';
+        if (array_key_exists('terms', $data)) {
+            $content = $data['terms'];
+        }
+        $this -> saveTerms($content, $id, '2');
         return $id;
     }
 
@@ -119,7 +124,12 @@ class res_information_model extends Api_Model
         $this->db->where('id', $id);
         $update = $this->db->update('res_information', $data);
         //关键词保存
-        $this -> saveTerms(@$data['terms'], $id, '2');
+        //关键词保存
+        $content = '';
+        if (array_key_exists('terms', $data)) {
+            $content = $data['terms'];
+        }
+        $this -> saveTerms($content, $id, '2');
         return $update;
     }
 

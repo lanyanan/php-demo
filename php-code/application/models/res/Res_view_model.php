@@ -52,11 +52,11 @@ class res_view_model extends Api_Model
     }
     
     protected  function searchByTermId() {
-        $term_id = @get_request_field_array(array('term_id'), $this)['term_id'];
-        if (@!is_numeric($term_id)) {
+        $term_id = get_request_field_array(array('term_id'), $this)['term_id'];
+        if (!is_numeric($term_id)) {
             $term_id = $this-> input->get('term_id');
         }
-        if (@is_numeric($term_id)) {
+        if (is_numeric($term_id)) {
             $this->db->join('msg_resource_term m', 'm.res_id = t.id and m.res_type = t.res_type ', 'left');
             $this->db->where('m.term_id', $term_id);
         }

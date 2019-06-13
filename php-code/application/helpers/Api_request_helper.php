@@ -23,7 +23,7 @@ function get_request_field_array($fields, $req = FALSE)
     }
     $data = array();
     foreach ($fields as $field) {
-        if (array_key_exists($field, $request) && $request[$field] != NULL) {
+        if (!empty($request) && array_key_exists($field, $request) && $request[$field] != NULL) {
             $data[$field] = $request[$field];
         }
     }

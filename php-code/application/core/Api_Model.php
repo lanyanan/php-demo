@@ -142,16 +142,20 @@ abstract class Api_Model extends CI_Model
      */
     protected function signatureVideoCoverurl($path){
         //OSS配置数据
-        $endpoint =  $this->sys_config_model->detail('oss_url')['prop_value'];
-        $accessKeyId =  $this->sys_config_model->detail('oss_access_key_id')['prop_value'];
-        $accessKeySecret =  $this->sys_config_model->detail('oss_access_key_secret')['prop_value'];
-        $bucket =  $this->sys_config_model->detail('oss_res_bucket')['prop_value'];
-        $expire =  $this->sys_config_model->detail('oss_expire_time')['prop_value'];
+//         $endpoint =  $this->sys_config_model->detail('oss_url')['prop_value'];
+//         $accessKeyId =  $this->sys_config_model->detail('oss_access_key_id')['prop_value'];
+//         $accessKeySecret =  $this->sys_config_model->detail('oss_access_key_secret')['prop_value'];
+//         $bucket =  $this->sys_config_model->detail('oss_res_bucket')['prop_value'];
+//         $expire =  $this->sys_config_model->detail('oss_expire_time')['prop_value'];
         
-        $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
-       $options = array(
-            OssClient::OSS_PROCESS => "video/snapshot,t_100,m_fast" );
-       return $this -> generateUrl($ossClient, $bucket, $path, $expire, 'GET', $options);
+//         $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
+//        $options = array(
+//             OssClient::OSS_PROCESS => "video/snapshot,t_100,m_fast" );
+//        return $this -> generateUrl($ossClient, $bucket, $path, $expire, 'GET', $options);
+
+        //不要签名
+        $url =  $this->sys_config_model->detail('oss_outnet_url')['prop_value'];
+        return $url.$path.'?x-oss-process=video/snapshot,t_10000,m_fast';
     }
     
     /**
@@ -172,14 +176,17 @@ abstract class Api_Model extends CI_Model
      */
     protected function signatureurl($path){
         //OSS配置数据
-        $endpoint =  $this->sys_config_model->detail('oss_url')['prop_value'];
-        $accessKeyId =  $this->sys_config_model->detail('oss_access_key_id')['prop_value'];
-        $accessKeySecret =  $this->sys_config_model->detail('oss_access_key_secret')['prop_value'];
-        $bucket =  $this->sys_config_model->detail('oss_res_bucket')['prop_value'];
-        $expire =  $this->sys_config_model->detail('oss_expire_time')['prop_value'];
+//         $endpoint =  $this->sys_config_model->detail('oss_url')['prop_value'];
+//         $accessKeyId =  $this->sys_config_model->detail('oss_access_key_id')['prop_value'];
+//         $accessKeySecret =  $this->sys_config_model->detail('oss_access_key_secret')['prop_value'];
+//         $bucket =  $this->sys_config_model->detail('oss_res_bucket')['prop_value'];
+//         $expire =  $this->sys_config_model->detail('oss_expire_time')['prop_value'];
         
-        $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
-        return $this -> generateUrl($ossClient, $bucket, $path, $expire, 'GET', NULL);
+//         $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
+//         return $this -> generateUrl($ossClient, $bucket, $path, $expire, 'GET', NULL);
+        //不要签名
+        $url =  $this->sys_config_model->detail('oss_outnet_url')['prop_value'];
+        return $url.$path;
     }
     
     /**

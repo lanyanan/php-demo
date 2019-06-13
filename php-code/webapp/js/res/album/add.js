@@ -72,7 +72,7 @@ layui.use([ 'form', 'upload' ], function() {
 				'	</td>                                                                                                                                   ';
 				
 				var selectHtml = $("#spaceId").html();
-				content+= selectHtml;
+				content+='<td align="center">' + selectHtml + '</td>';
 				content+= '	<td align="center">                                                                                                                     '+
 				'		<textarea name="images.description"                                                                                                 '+
 				'			placeholder="请输入内容" class="layui-textarea" required lay-verify="required">                                                                       '+

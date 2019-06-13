@@ -52,7 +52,11 @@ class res_view_model extends Api_Model
     }
     
     protected  function searchByTermId() {
-        $term_id = get_request_field_array(array('term_id'), $this)['term_id'];
+        $get_request_field_array = get_request_field_array(array('term_id'), $this);
+        $term_id = '';
+        if (array_key_exists('term_id', $get_request_field_array)) {
+            $term_id = $get_request_field_array['term_id'];
+        }
         if (!is_numeric($term_id)) {
             $term_id = $this-> input->get('term_id');
         }

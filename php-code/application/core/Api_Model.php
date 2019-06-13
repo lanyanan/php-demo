@@ -155,7 +155,7 @@ abstract class Api_Model extends CI_Model
 
         //不要签名
         $url =  $this->sys_config_model->detail('oss_outnet_url')['prop_value'];
-        return $url.$path.'?x-oss-process=video/snapshot,t_10000,m_fast';
+        return $url.$path.'?x-oss-process=video/snapshot,t_100,m_fast';
     }
     
     /**

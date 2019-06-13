@@ -38,6 +38,8 @@ layui.use([ 'form', 'upload' ], function() {
 	form.on('select(district_2)', function (data) {
 		$("input[name='district_id']").val(data.value);
 	})
+	
+	var selectHtml = "";
 
 	upload.render({
 		elem : '#test2',
@@ -52,6 +54,7 @@ layui.use([ 'form', 'upload' ], function() {
 			// 第一次提交把table清空
 			if (res.code == 1) {
 				if ($("#fristUpload").val() == '0') {
+					selectHtml = $("#imgTdSelect").html();
 					$("#tbody").html("");
 					$("#fristUpload").val("1");
 				}

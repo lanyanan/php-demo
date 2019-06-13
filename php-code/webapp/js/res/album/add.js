@@ -74,7 +74,6 @@ layui.use([ 'form', 'upload' ], function() {
 				'			class="layui-input"/>                                                                                                  '+
 				'	</td>                                                                                                                                   ';
 				
-				var selectHtml = $("#spaceId").html();
 				content+='<td align="center">' + selectHtml + '</td>';
 				content+= '	<td align="center">                                                                                                                     '+
 				'		<textarea name="images.description"                                                                                                 '+

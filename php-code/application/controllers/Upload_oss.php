@@ -60,7 +60,8 @@ class Upload_oss extends Api_Controller {
             $data['file_path'] = $src;
             $data['file_name'] = $config['file_name'];
             $data['original_name'] = $original_name;
-            $data['file_url'] = $this -> signatureurl($src);
+            //$data['file_url'] = $this -> signatureurl($src);
+            $data['file_url'] = $this -> getUrl($src);
             
             $this -> response_message($data, '1', '上传成功！'); 
             exit;
@@ -106,6 +107,15 @@ class Upload_oss extends Api_Controller {
             }
         }
         return $config;
+    }
+    
+    /**
+     * 不使用签名
+     * @param unknown $path
+     */
+    private function getUrl($path){
+        $url =  $this->sys_config_model->detail('oss_outnet_url')['prop_value'];
+        return $url.$path;
     }
     
     /**

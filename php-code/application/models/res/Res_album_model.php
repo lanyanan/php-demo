@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('PRC'); 
 class Res_album_model extends Api_Model
 {
 

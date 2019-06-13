@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('PRC'); 
 class Sys_token_model extends Api_Model
 {
 

@@ -1,6 +1,6 @@
 <?php
 require_once APPPATH.'third_party/oss-sdk/autoload.php';
-
+date_default_timezone_set('PRC'); 
 use OSS\OssClient;
 use OSS\Core\OssException;
 

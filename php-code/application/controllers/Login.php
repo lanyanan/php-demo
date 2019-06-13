@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+date_default_timezone_set('PRC'); 
 class Login extends CI_Controller
 {
 

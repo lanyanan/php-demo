@@ -71,8 +71,8 @@ layui.use([ 'form', 'upload' ], function() {
 				'			class="layui-input"/>                                                                                                  '+
 				'	</td>                                                                                                                                   ';
 				
-				var selectHtml = $("#spaceTd").html();
-				content+='<td align="center" id="spaceTd">' + selectHtml + '</td>';
+				var selectHtml = $("#spaceId").html();
+				content+= selectHtml;
 				content+= '	<td align="center">                                                                                                                     '+
 				'		<textarea name="images.description"                                                                                                 '+
 				'			placeholder="请输入内容" class="layui-textarea" required lay-verify="required">                                                                       '+

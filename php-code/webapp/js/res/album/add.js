@@ -55,7 +55,6 @@ layui.use([ 'form', 'upload' ], function() {
 			if (res.code == 1) {
 				if ($("#fristUpload").val() == '0') {
 					selectHtml = $("#imgTdSelect").html();
-					selectHtml.replace("disabled","");
 					$("#tbody").html("");
 					$("#fristUpload").val("1");
 				}

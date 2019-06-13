@@ -14,7 +14,7 @@ class Res_view extends Api_Controller {
         $this -> response_page($data);
     }
     
-    public function list($type)
+    public function list_data($type)
     {
         $data = $this->res_view_model->get($type);
         $this -> response_page($data);

@@ -14,7 +14,7 @@ class Msg_term extends Api_Controller {
         $this -> response_page($data);
     }
     
-    public function list()
+    public function list_data()
     {
         $data = $this->msg_term_model->get();
         $this -> response_page($data);

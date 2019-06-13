@@ -14,7 +14,7 @@ class Res_video extends Api_Controller {
         $this -> response_page($data);
     }
     
-    public function list($publish)
+    public function list_data($publish)
     {
         $data = $this->res_video_model->get($publish);
         $this -> response_page($data);

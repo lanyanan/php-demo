@@ -2,7 +2,7 @@ layui.use([ 'table', 'element', 'form' ], function() {
 	var table = layui.table;
 	var element = layui.element;
 	var form = layui.form;
-	var url = window.siteUrl + '/res/res_information/list/wait_publish'
+	var url = window.siteUrl + '/res/res_information/list_data/wait_publish'
 
 	// 加载内容分类
 	renderContentCategorySelect($("select[name='content_category_id']"));
@@ -10,11 +10,11 @@ layui.use([ 'table', 'element', 'form' ], function() {
 	// tab 切换
 	element.on('tab(demo)', function(data) {
 		if ($(this).attr('id') == 'waitPublishTab') {
-			url = window.siteUrl + '/res/res_information/list/wait_publish';
+			url = window.siteUrl + '/res/res_information/list_data/wait_publish';
 		} else if ($(this).attr('id') == 'publishTab') {
-			url = window.siteUrl + '/res/res_information/list/publish';
+			url = window.siteUrl + '/res/res_information/list_data/publish';
 		} else if ($(this).attr('id') == 'soldOutTab') {
-			url = window.siteUrl + '/res/res_information/list/sold_out';
+			url = window.siteUrl + '/res/res_information/list_data/sold_out';
 		}
 		table.reload("table", {
 			url : url

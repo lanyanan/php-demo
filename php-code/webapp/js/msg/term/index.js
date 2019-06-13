@@ -2,7 +2,7 @@ layui.use([ 'table', 'element', 'form' ], function() {
 	var table = layui.table;
 	var element = layui.element;
 	var form = layui.form;
-	var url = window.siteUrl + '/msg/msg_term/list'
+	var url = window.siteUrl + '/msg/msg_term/list_data'
 
 	// 模糊搜索
 	form.on('submit(search)', function(data) {

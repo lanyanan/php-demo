@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <span>@</span>
 						<p><?php $author ?></p>
                     <?php endif; ?>
-                       <p class="detailsV-page-pic-info-detailsV-p"><?php $description ?></p>
+                       <p class="detailsV-page-pic-info-detailsV-p"><?php $title ?></p>
 					</div>
 					<div class="details-page-pic-info-details-upload">
 						<span onClick="showContent()"></span>

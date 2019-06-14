@@ -50,69 +50,56 @@ body {
 .result-page-logo-second  span{
     line-height: 3.9rem;
 }
-
 .result-page-tab {
     width: 100%;
     height: 3.33rem;
-    display: flex;
+    background: #f3f3f3;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.result-page-tab-content {
+    width: 200%;
+    height: 3.33rem;
     background: #f3f3f3;
 }
-.result-page-tab>div {
-    flex:1;
-    text-align: center;
+.result-page-tab-content>div {
+    width: 5rem;
+    float: left;
     line-height: 3.33rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
+    text-align: center;
 }
-.result-page-tab>div:after {
-    content: '';
-    position: absolute;
-    right:0;
-    top: 1.1rem;
-    width: 1px;
-    height: 1.2rem;
-    background: #191919;
-}
-.result-page-tab>div:last-of-type::after {
-    content: '';
-    position: absolute;
-    right:0;
-    top: 1.1rem;
-    width: 0px;
-    height: 1.2rem;
-}
-.result-page-tab>div label {
+
+.result-page-tab-content>div label {
     width: 1.2rem;
     height: 1.2rem;
     display: inline-block;
 }
-.result-page-tab>div label:nth-child(1) {
+.result-page-tab-content>div label:nth-child(1) {
     background: url(../images/tuijian.png);
     background-size: cover;
 }
-.result-page-tab>div label:nth-child(2) {
+.result-page-tab-content>div label:nth-child(2) {
     background: url(../images/hot.png);
     background-size: cover;
 }
-.result-page-tab>div label:nth-child(3) {
+.result-page-tab-content>div label:nth-child(3) {
     background: url(../images/more.png);
     background-size: cover;
 }
-.result-page-tab .tab-active label:nth-child(1) {
+.result-page-tab-content .tab-active label:nth-child(1) {
     background: url(../images/tuijian_active.png);
     background-size: cover;
 }
-.result-page-tab .tab-active label:nth-child(2) {
+.result-page-tab-content .tab-active label:nth-child(2) {
     background: url(../images/hot_active.png);
     background-size: cover;
 }
-.result-page-tab .tab-active label:nth-child(3) {
+.result-page-tab-content .tab-active label:nth-child(3) {
     background: url(../images/more_active.png);
     background-size: cover;
 }
-.result-page-tab>div>span {
+.result-page-tab-content>div>span {
     height: 1.2rem;
     line-height: 1.2rem;
     margin-left: 0.3rem;
@@ -121,7 +108,7 @@ body {
     color:#191919;
     font-weight: 900;
 }
-.result-page-tab .tab-active>span {
+.result-page-tab-content .tab-active>span {
     color: #4dbc15;
     height: 1.2rem;
     line-height: 1.2rem;
@@ -138,7 +125,7 @@ body {
     height: auto;
     z-index: 10;
     background: #fff;
-    display: flex;
+    display: none;
 }
 .hidden-select span{
     display: block;
@@ -147,11 +134,7 @@ body {
     font-size: 1rem;
     color: #000;
 }
-.hidden-select span.active {
-    color: #4dbc15;
-    display: inline-block;
-    font-weight: 900;
-}
+
 .result-search-content {
     width: 100%;
     background: #edecec;

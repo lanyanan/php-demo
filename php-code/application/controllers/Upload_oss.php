@@ -16,6 +16,7 @@ class Upload_oss extends Api_Controller {
      * [testImg 上传文件到OSS]
      */
     public function upload($type = NULL){
+//         echo '{"code":"1","msg":"上传成功！","data":{"file_type":"image\/png","file_path":"dawn\/img\/2019\/06\/13\/20190613193858645.png","file_name":"20190613193858645.png","original_name":"资源_5110.png","file_url":"https:\/\/zzj-file.oss-cn-shenzhen.aliyuncs.com\/dawn\/img\/2019\/06\/13\/20190613193858645.png"}}';
         $config = $this -> get_config($type);
         //OSS配置数据
         $endpoint =  $this->sys_config_model->detail('oss_url')['prop_value'];

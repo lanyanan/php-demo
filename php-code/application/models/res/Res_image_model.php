@@ -4,7 +4,9 @@ class Res_image_model extends Api_Model
     public function get($house_space_id = NULL) {
         $queryField = " * ";
         $this -> simpleQuery($queryField, TRUE);
-        $this->db->where('house_space_id', $house_space_id);
+        if (!empty($house_space_id)) {
+            $this->db->where('house_space_id', $house_space_id);
+        }
         $data = $this -> getCountPage('res_image');
         foreach ($data['data'] as $k => $val) {
             $path = $data['data'][$k]['attach_path'];

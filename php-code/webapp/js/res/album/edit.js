@@ -12,20 +12,11 @@ layui.use([ 'form', 'upload' ], function() {
 	// 加载风格分类
 	renderStyleSelect($("select[name='style']"));
 	
-	//加载户型
-	var houseTypeParentId = '0';
-	renderHourseSelect( $("select[name='house_type_1']"), houseTypeParentId);
-	renderHourseSelect( $("select[name='house_type_2']"), "1");
-	// 户型级联操作
-	form.on('select(house_type_1)', function (data) {
-		$("select[name='house_type_2']").attr('disabled',false);
-		houseTypeParentId = data.value;
-		$("input[name='house_type_id']").val(houseTypeParentId);
-		renderHourseSelect( $("select[name='house_type_2']"), houseTypeParentId);
-    });
-	form.on('select(house_type_2)', function (data) {
-		$("input[name='house_type_id']").val(data.value);
-	})
+	// 加载户型
+	renderHourseSelect( $("select[name='house_type_id']"));
+	// 加载空间
+	renderSpaceSelect( $("select[name='house_space_id']"));
+	var selectHtml = "";
 	//加载城市
 	var districtParentId = '0';
 	renderDistrictSelect( $("select[name='district_1']"), districtParentId, "请选择省份");
@@ -67,20 +58,7 @@ layui.use([ 'form', 'upload' ], function() {
 				}
 				$("#save_publish").show();
 				// 初始化户型
-				if (result.houseTypePid != '0') {
-					renderHourseSelect( $("select[name='house_type_2']"), result.houseTypePid);
-					$("select[name='house_type_2']").attr('disabled',false);
-					setTimeout(function(){
-						form.val("formDemo", {
-							"house_type_1" : result.houseTypePid,
-							"house_type_2" : result.house_type_id,
-						})
-					},500)
-				} else {
-					form.val("album-form", {
-						"house_type_1" : result.house_type_id,
-					})
-				}
+				
 				if (!!result.district_id) {
 					//初始化表单城市
 					renderDistrictSelect($("select[name='district_2']"), result.districtPid);
@@ -271,10 +249,10 @@ layui.use([ 'form', 'upload' ], function() {
 		 return data;
 	}
 	
-	function renderHourseSelect($select, houseTypeParentId) {
+	function renderHourseSelect($select) {
 		$.ajax({
 			type : "GET",
-			url : window.siteUrl + '/dic/dic_house_type/get_list_by_parent/' + houseTypeParentId,
+			url : window.siteUrl + '/dic/dic_house_type/get_list',
 			dataType : "json",
 			success : function(data, msg) {
 				if (data.code == '1') {
@@ -284,6 +262,28 @@ layui.use([ 'form', 'upload' ], function() {
 					for (var i in result) {
 						$select.append("<option value='"+result[i].id+"'>"+result[i].house_type_name+"</option>");
 					}
+					form.render('select');
+				} else {
+					layer.msg("加载户型数据失败，请刷新页面--" + data.msg);
+				}
+			}
+
+		});
+	}
+	function renderSpaceSelect($select) {
+		$.ajax({
+			type : "GET",
+			url : window.siteUrl + '/dic/dic_house_space/get_list',
+			dataType : "json",
+			success : function(data, msg) {
+				if (data.code == '1') {
+					var result = data.data;
+					$select.html("");
+					$select.append("<option value=''>请选择</option>");
+					for (var i in result) {
+						$select.append("<option value='"+result[i].id+"'>"+result[i].house_space_name+"</option>");
+					}
+					selectHtml = $("#imgTdSelect").html();
 					form.render('select');
 				} else {
 					layer.msg("加载户型数据失败，请刷新页面--" + data.msg);

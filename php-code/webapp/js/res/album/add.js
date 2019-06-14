@@ -54,7 +54,6 @@ layui.use([ 'form', 'upload' ], function() {
 			// 第一次提交把table清空
 			if (res.code == 1) {
 				if ($("#fristUpload").val() == '0') {
-					selectHtml = $("#imgTdSelect").html();
 					$("#tbody").html("");
 					$("#fristUpload").val("1");
 				}
@@ -94,8 +93,8 @@ layui.use([ 'form', 'upload' ], function() {
 				'	</td>                                                                                                                                   '+
 				'</tr>'
 				$("#tbody").append(content);
-				
-					renderTable();
+				renderTable();
+				form.render('select');
 				
 			} else {
 				layer.msg(res.msg);
@@ -190,6 +189,7 @@ layui.use([ 'form', 'upload' ], function() {
 					for (var i in result) {
 						$select.append("<option value='"+result[i].id+"'>"+result[i].house_space_name+"</option>");
 					}
+					selectHtml = $("#imgTdSelect").html();
 					form.render('select');
 				} else {
 					layer.msg("加载户型数据失败，请刷新页面--" + data.msg);

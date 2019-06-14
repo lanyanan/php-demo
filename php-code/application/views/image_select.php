@@ -28,14 +28,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
         </section> -->
         <section class="result-page-tab">
-            <div>
-                <section onclick="hiddenSelect()" class="hidden-select">
-                	<span  class="<?php if ($house_space_id ==  ''): ?>active<?php endif; ?>" data-id='' data-type='house_space_id'>空间不限</span>
-                    <?php foreach ($house_space_list as $data_item): ?>
-    			    <span  class="<?php if ($house_space_id ==  $data_item['id']): ?>active<?php endif; ?>" data-id='<?php echo $data_item['id']; ?>' data-type='house_space_id'><?php echo $data_item['house_space_name']; ?></span>
-                <?php endforeach; ?>
-                </section>
-            </div>
+        	<section class="result-page-tab-content">
+                <div class="<?php if ($house_space_id ==  ''): ?>tab-active<?php endif; ?>" >
+                	<span  data-id='' data-type='house_space_id'>全部</span>
+                </div>
+            	<?php foreach ($house_space_list as $data_item): ?>
+            	<div  class="<?php if ($house_space_id ==  $data_item['id']): ?> tab-active <?php endif; ?>">
+    			    <span  data-id='<?php echo $data_item['id']; ?>' data-type='house_space_id'><?php echo $data_item['house_space_name']; ?></span>
+            	</div>
+            	<?php endforeach; ?>
+            </section>
         </section>
         <section id="content" class="result-search-content">
  <?php foreach ($data as $data_item): ?>       	
@@ -98,22 +100,15 @@ $(document).ready(function(){
         });
     });
 
-	//页面初始化高亮选择的条件	
-   /*  $(".result-page-tab div").each(function(){
-    	var text = $(this).find('span:first').data('default');
-        if($(this).find('.active').length != 0) {
-        	text = $(this).find('.active').text();
-        	if(text.indexOf("不限") == -1 && text.indexOf("所有") == -1) {
-            	$(this).addClass('tab-active');
-            }
-        }
-    	$(this).find('span:first').text(text);
-    }); */
 }).on('click','.content-card', function(){
 	var id = $(this).data("album-id");
 	var resType = $(this).data("res-type");
 	window.location.href = '/mobile/res_album/' + id;
-}).on('click','.result-page-tab div section span', function(){
+}).on('click','.result-page-tab div span', function(){
+	var type = $(this).data('type');
+	var id = $(this).data('id');
+	var term_name = $(this).text();
+	window.location.href = '/mobile/image_select?term_name='+term_name+'&'+ type +'=' + id;
 }).on('click','.get-more-list', function() {
 	$this = $(this);
 	$href = $this.data('href');

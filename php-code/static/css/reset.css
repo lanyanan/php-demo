@@ -13,7 +13,8 @@ time, mark, audio, video, input  {
     vertical-align: baseline;
     text-decoration: none;
 }
-
+a:link  {color: inherit}
+a:visited {color: inherit}
 html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
     -webkit-text-size-adjust: none;
 }
@@ -67,5 +68,3 @@ input {
     -ms-user-select:auto;
     user-select:auto;
 }
-a:link  {color: #191919}
-a:visited {color: #191919}

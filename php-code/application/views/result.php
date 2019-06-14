@@ -31,13 +31,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </section> -->
 		<section class="result-page-tab">
 			<div class="<?php if ($type == ''): ?>tab-active<?php endif; ?> tab" data-value="">
-				<label></label> <span> <a title="所有" href="<?php echo site_url('/mobile/result?title='.$title); ?>">所有</a> </span>
+				<label class="all"></label> <span> <a title="所有" href="<?php echo site_url('/mobile/result?title='.$title); ?>">所有</a> </span>
 			</div>
 			<div class="<?php if ($type == '0'): ?>tab-active<?php endif; ?> tab" data-value="0">
-				<label></label> <span> <a title="视频" href="<?php echo site_url('/mobile/result/0?title='.$title); ?>"> 视频</a> </span>
+				<label class="video"></label> <span> <a title="视频" href="<?php echo site_url('/mobile/result/0?title='.$title); ?>"> 视频</a> </span>
 			</div>
 			<div class="<?php if ($type == '1'): ?>tab-active<?php endif; ?> tab" data-value="1">
-				<label></label> <span> <a title="图片" href="<?php echo site_url('/mobile/result/1?title='.$title); ?>"> 图片 </a> </span>
+				<label class="album"></label> <span> <a title="图片" href="<?php echo site_url('/mobile/result/1?title='.$title); ?>"> 图片 </a> </span>
 			</div>
 		</section>
 		<section  id="content"  class="result-search-content">

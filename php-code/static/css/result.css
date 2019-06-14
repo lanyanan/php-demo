@@ -88,28 +88,30 @@ body {
     height: 1.2rem;
     display: inline-block;
 }
-.result-page-tab>div label:nth-child(1) {
-    background: url(../images/tuijian.png);
+.result-page-tab>div label.all {
+    background: url(../images/all.png);
     background-size: cover;
 }
-.result-page-tab>div label:nth-child(2) {
-    background: url(../images/hot.png);
+.result-page-tab>div label.video {
+    background: url(../images/video.png);
+    background-size: cover;
+    width: 1.8rem;
+}
+.result-page-tab>div label.album {
+    background: url(../images/album.png);
     background-size: cover;
 }
-.result-page-tab>div label:nth-child(3) {
-    background: url(../images/more.png);
+.result-page-tab .tab-active label.all {
+    background: url(../images/all_active.png);
     background-size: cover;
 }
-.result-page-tab .tab-active label:nth-child(1) {
-    background: url(../images/tuijian_active.png);
+.result-page-tab .tab-active label.video {
+    background: url(../images/video_active.png);
     background-size: cover;
+    width: 1.8rem;
 }
-.result-page-tab .tab-active label:nth-child(2) {
-    background: url(../images/hot_active.png);
-    background-size: cover;
-}
-.result-page-tab .tab-active label:nth-child(3) {
-    background: url(../images/more_active.png);
+.result-page-tab .tab-active label.album {
+    background: url(../images/album_active.png);
     background-size: cover;
 }
 .result-page-tab>div span {

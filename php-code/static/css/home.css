@@ -113,27 +113,27 @@ body {
     width: 0px;
     height: 1.2rem;
 }
-.home-page-tab>div label:nth-child(1) {
+.home-page-tab>div label.tuijian {
     background: url(../images/tuijian.png);
     background-size: cover;
 }
-.home-page-tab>div label:nth-child(2) {
+.home-page-tab>div label.hot {
     background: url(../images/hot.png);
     background-size: cover;
 }
-.home-page-tab>div label:nth-child(3) {
+.home-page-tab>div label.more {
     background: url(../images/more.png);
     background-size: cover;
 }
-.home-page-tab .tab-active label:nth-child(1) {
+.home-page-tab .tab-active label.tuijian  {
     background: url(../images/tuijian_active.png);
     background-size: cover;
 }
-.home-page-tab .tab-active label:nth-child(2) {
+.home-page-tab .tab-active label.hot {
     background: url(../images/hot_active.png);
     background-size: cover;
 }
-.home-page-tab .tab-active label:nth-child(3) {
+.home-page-tab .tab-active label.more(3) {
     background: url(../images/more_active.png);
     background-size: cover;
 }
@@ -146,7 +146,7 @@ body {
     color:#191919;
     font-weight: 900;
 }
-.home-page-tab .tab-active span {
+.home-page-tab .tab-active span{
     color: #4dbc15;
     height: 1.2rem;
     line-height: 1.2rem;

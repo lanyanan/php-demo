@@ -48,9 +48,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="details-page-pic-info-details-title">
                         <?php if (!!$author): ?>
                     <span>@</span>
-						<p><?php $author ?></p>
+						<p><?php  echo  $author; ?></p>
                     <?php endif; ?>
-                       <p class="detailsV-page-pic-info-detailsV-p"><?php $title ?></p>
+                       <p class="detailsV-page-pic-info-detailsV-p"><?php echo $description; ?></p>
 					</div>
 					<div class="details-page-pic-info-details-upload">
 						<span onClick="showContent()"></span>

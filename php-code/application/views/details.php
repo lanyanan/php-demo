@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="swiper-wrapper">
                     	<?php foreach ($images as $image_item): ?>
                         <div class="swiper-slide">
-							<img title="<?php echo $image_item['title']; ?>" src="<?php echo $image_item['attach_url']; ?>" />
+							<img title="<?php echo $image_item['space_name']; ?>" src="<?php echo $image_item['attach_url']; ?>" />
 						</div>
                         <?php endforeach; ?>
                     </div>
@@ -84,6 +84,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <section class="content-card" data-id="<?php echo $data_item['id']; ?>"
 					data-res-type="<?php echo $data_item['res_type']; ?>">
+<?php if ($data_item['res_type'] == '0'): ?>
+<a href="<?php echo site_url('/mobile/res_video/'.$data_item['id']); ?>">
+<?php else: ?>
+<a href="<?php echo site_url('/mobile/res_album/'.$data_item['id']); ?>">
+<?php endif; ?>
 					<div class="content-card-top">
 						<?php if ($data_item['res_type'] == '0'): ?>
     					<div class="content-card-img">
@@ -102,6 +107,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<label></label> <span>0</span>
 						</div>
 					</section>
+					</a>
 				</section>
 <?php endforeach; ?>
 			</section>
@@ -193,15 +199,6 @@ function showContent(){
         }
     }
         
-$(function() {
-}) .on('click','.content-card', function(){
-	var id = $(this).data("id");
-	var resType = $(this).data("res-type");
-	if (resType == '0') {
-		window.location.href = '/mobile/res_video/' + id;
-	} else {
-		window.location.href = '/mobile/res_album/' + id;
-	}
-});
+
         </script>
 </html>

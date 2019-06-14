@@ -33,14 +33,6 @@ $(function(){
 			$('#content').masonry('reload');
 		});
 	});
-}).on('click','.content-card', function(){
-	var id = $(this).data("id");
-	var resType = $(this).data("res-type");
-	if (resType == '0') {
-		window.location.href = '/mobile/res_video/' + id;
-	} else {
-		window.location.href = '/mobile/res_album/' + id;
-	}
 });
 
 $(window).scroll(function(){

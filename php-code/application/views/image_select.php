@@ -57,10 +57,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <section id="content" class="result-search-content">
  <?php foreach ($data as $data_item): ?>       	
 <section class="content-card"  data-album-id="<?php echo $data_item['album_id']; ?>"  data-id="<?php echo $data_item['id']; ?>">
+<a href="<?php echo site_url('/mobile/res_album/'.$data_item['id']); ?>">
 	<div class="content-card-top">
     	<img  title="<?php echo $data_item['title']; ?>"  src="<?php echo $data_item['attach_url']; ?>" />
 		<p><?php echo $data_item['space_name']; ?></p>
 	</div>
+</a>
 </section>
 <?php endforeach; ?>
 <div style="display:none;" id="template"></div>
@@ -115,10 +117,6 @@ $(document).ready(function(){
         });
     });
 
-}).on('click','.content-card', function(){
-	var id = $(this).data("album-id");
-	var resType = $(this).data("res-type");
-	window.location.href = '/mobile/res_album/' + id;
 }).on('click','.result-page-tab div span', function(){
 	var type = $(this).data('type');
 	var id = $(this).data('id');

@@ -11,6 +11,7 @@ time, mark, audio, video, input  {
     font: inherit;
     font-size:100%;
     vertical-align: baseline;
+    text-decoration: none;
 }
 
 html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {

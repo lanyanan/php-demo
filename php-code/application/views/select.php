@@ -7,7 +7,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>自在家(zizaiplus)-自在新奇之美在家里-金地集团、新家生活、装修设计！</title>
+	<meta name="keywords" content="自在新奇之美在家里,装修案例,装修报价,装修效果图,室内装修,装修视频">
+	<meta name="description" content="自在新奇之美在家里,装修案例,装修报价,装修效果图,室内装修,装修视频">
     <link rel="stylesheet" href="/static/css/select.css"></link>
 </head>
 <body>

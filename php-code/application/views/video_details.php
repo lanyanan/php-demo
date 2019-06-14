@@ -7,7 +7,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Document</title>
+<title><?php echo $description; ?>-<?php echo $terms; ?>-自在家(zizaiplus)-自在新奇之美在家里！</title>
+<meta name="keywords" content="<?php echo $description; ?>-<?php echo $terms; ?>-自在家(zizaiplus)-自在新奇之美在家里！">
+<meta name="description" content="<?php echo $description; ?>-<?php echo $terms; ?>-自在家(zizaiplus)-自在新奇之美在家里！装修案例,装修报价,装修效果图,室内装修,装修视频">
 <link rel="stylesheet" href="/static/css/videoDetails.css"></link>
 </head>
 <body>
@@ -40,10 +42,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</section>
 			<section class="detailsV-page-pic-info-detailsV">
 				<div class="detailsV-page-pic-info-detailsV-title">
-                	<?php if (!!$author): ?>
+                	<!--<?php if (!!$author): ?>
                     <span>@</span>
 					<p><?php  echo  $author; ?></p>
-                    <?php endif; ?>
+                    <?php endif; ?>-->
                 </div>
 				<p class="detailsV-page-pic-info-detailsV-p"><?php  echo $description; ?></p>
 				<div class="detailsV-page-pic-info-detailsV-upload">

@@ -16,22 +16,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <section class="result-page-logo">
         <img class="home" src="/static/images/home.png"/>
         <span>大家都爱搜</span>
-        <label  class="home">首页</label>
+        <label  class="home"><a title="首页" href="/mobile/home">首页</a></label>
     </section>
     <section class="love-search">
     	<?php foreach ($data as $data_item): ?>
-			    <span><?php echo $data_item['search_name']; ?></span>
-            <?php endforeach; ?>
+		    <span><?php echo $data_item['search_name'];?></span>
+        <?php endforeach; ?>
     </section>
     <section class="result-bottom">
 			<div class="tab-active">
-				<label></label> <span class="home"> 首页 </span>
+				<label></label> <span class="home"> <a title="首页" href="/mobile/home">首页</a> </span>
 			</div>
 			<div>
 				<span> 装修案例 </span>
 			</div>
 			<div>
-				<span  class="loveSearch"> 大家都爱搜 </span>
+				<span  class="loveSearch"> <a title="大家都爱搜" href="/mobile/loveSearch">大家都爱搜</a> </span>
 			</div>
 			<div>
 				<span> 联系我们 </span>

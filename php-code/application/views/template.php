@@ -4,11 +4,11 @@
 	<div class="content-card-top">
     	<?php if ($data_item['res_type'] == '0'): ?>
     	<div class="content-card-img">
-    		<img src="<?php echo $data_item['attach_url']; ?>" />
+    		<img  title="<?php echo $data_item['title']; ?>"  src="<?php echo $data_item['attach_url']; ?>" />
     		<label></label>
     	</div>
     	<?php else: ?>
-    		<img src="<?php echo $data_item['attach_url']; ?>" />
+    		<img  title="<?php echo $data_item['title']; ?>"  src="<?php echo $data_item['attach_url']; ?>" />
     	<?php endif; ?>
 		<p><?php echo $data_item['title']; ?></p>
 	</div>

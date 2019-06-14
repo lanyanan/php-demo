@@ -44,11 +44,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="content-card-top">
 						<?php if ($data_item['res_type'] == '0'): ?>
     					<div class="content-card-img">
-        					<img src="<?php echo $data_item['attach_url']; ?>" />
+        					<img  title="<?php echo $data_item['title']; ?>"  src="<?php echo $data_item['attach_url']; ?>" />
         					<label></label>
     					</div>
     					<?php else: ?>
-    						<img src="<?php echo $data_item['attach_url']; ?>" />
+    						<img  title="<?php echo $data_item['title']; ?>"  src="<?php echo $data_item['attach_url']; ?>" />
     					<?php endif; ?>
 						<p><?php echo $data_item['title']; ?></p>
 					</div>
@@ -78,13 +78,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</section>
 		<section class="result-bottom">
 			<div class="tab-active">
-				<label></label> <span class="home"> 首页 </span>
+				<label></label> <span class="home"> <a title="首页" href="/mobile/home">首页</a> </span>
 			</div>
 			<div>
 				<span> 装修案例 </span>
 			</div>
 			<div>
-				<span  class="loveSearch"> 大家都爱搜 </span>
+				<span  class="loveSearch"> <a title="大家都爱搜" href="/mobile/loveSearch">大家都爱搜</a> </span>
 			</div>
 			<div>
 				<span> 联系我们 </span>

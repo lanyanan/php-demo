@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <section class="result-page-logo">
             <img class="home" src="/static/images/home.png"/>
             <span><?php echo $showTitle; ?></span>
-            <label class="home">首页</label>
+            <label class="home"><a title="首页" href="/mobile/home">首页</a></label>
         </section>
         <!-- <section class="result-page-logo result-page-logo-second">
             <span>与各地业主装修那点事</span>
@@ -58,7 +58,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  <?php foreach ($data as $data_item): ?>       	
 <section class="content-card"  data-album-id="<?php echo $data_item['album_id']; ?>"  data-id="<?php echo $data_item['id']; ?>">
 	<div class="content-card-top">
-    	<img src="<?php echo $data_item['attach_url']; ?>" />
+    	<img  title="<?php echo $data_item['title']; ?>"  src="<?php echo $data_item['attach_url']; ?>" />
 		<p><?php echo $data_item['space_name']; ?></p>
 	</div>
 </section>
@@ -80,7 +80,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="tab-active">
                 <label></label>
                 <span class="home">
-                    首页
+                    <a title="首页" href="/mobile/home">首页</a>
                 </span>
             </div>
             <div>

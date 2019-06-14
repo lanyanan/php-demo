@@ -10,7 +10,7 @@
     	<?php else: ?>
     		<img src="<?php echo $data_item['attach_url']; ?>" />
     	<?php endif; ?>
-		<p><?php echo $data_item['description']; ?></p>
+		<p><?php echo $data_item['title']; ?></p>
 	</div>
 	<section class="content-card-bottom">
 		<div class="content-card-bottom-save-active">

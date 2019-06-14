@@ -45,7 +45,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     					<?php else: ?>
     						<img src="<?php echo $data_item['attach_url']; ?>" />
     					<?php endif; ?>
-    					<p><?php echo $data_item['description']; ?></p>
+    					<p><?php echo $data_item['title']; ?></p>
     				</div>
     				<section class="content-card-bottom">
     					<div class="content-card-bottom-save-active">
@@ -65,13 +65,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</section> -->
 		<section class="home-bottom">
 			<div class="tab-active">
-				<label></label> <span  class="home"> 首页 </span>
+				<label></label> <span class="home"> 首页 </span>
 			</div>
 			<div>
-				<span > 装修案例 </span>
+				<span> 装修案例 </span>
 			</div>
 			<div>
-				<span  class="loveSearch"> 大家都爱搜 </span>
+				<span class="loveSearch"> 大家都爱搜 </span>
 			</div>
 			<div>
 				<span> 联系我们 </span>

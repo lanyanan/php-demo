@@ -44,7 +44,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <section class="content-card"  data-album-id="<?php echo $data_item['album_id']; ?>"  data-id="<?php echo $data_item['id']; ?>">
 	<div class="content-card-top">
     	<img src="<?php echo $data_item['attach_url']; ?>" />
-		<p><?php echo $data_item['description']; ?></p>
+		<p><?php echo $data_item['space_name']; ?></p>
 	</div>
 </section>
 <?php endforeach; ?>

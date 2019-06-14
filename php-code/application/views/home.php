@@ -25,13 +25,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</section>
 		<section class="home-page-tab">
 			<div class="<?php if ($type == '0'): ?>tab-active<?php endif; ?> tab" data-value="0">
-				<label></label> <span> 推荐 </span>
+				<label></label> <span> <a href="<?php echo site_url('/mobile/home/0'); ?>" title="推荐">推荐</a> </span>
 			</div>
 			<div class="<?php if ($type == '1'): ?>tab-active<?php endif; ?> tab" data-value="1">
-				<label></label> <span> 热门 </span>
+				<label></label> <span> <a href="<?php echo site_url('/mobile/home/1'); ?>" title="热门">热门</a> </span>
 			</div>
 			<div class="<?php if ($type == '2'): ?>tab-active<?php endif; ?> tab" data-value="2">
-				<label></label> <span> 更多 </span>
+				<label></label> <span> <a href="<?php echo site_url('/mobile/moreSelect'); ?>" title="更多">更多</a> </span>
 			</div>
 		</section>
 		<section id="content" class="home-search-content">

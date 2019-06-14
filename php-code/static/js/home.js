@@ -7,19 +7,6 @@ $(function() {
 		// 每两列之间的间隙为5像素
 		});
 	});
-}).on('click', '.tab', function() {
-	$('.tab').each(function() {
-		$(this).removeClass("tab-active");
-	})
-	$(this).addClass("tab-active");
-	var type = $(this).data("value");
-	if (type == '2') {
-		//更多跳到更多页面
-		window.location.href = '/mobile/moreSelect';
-	} else {
-		//推荐、热门根据不同方式排序
-		window.location.href = '/mobile/home/' + type;
-	}
 }).on('keypress', '#search', function(e) {
 	var keycode = e.keyCode;
 	var searchName = $(this).val();

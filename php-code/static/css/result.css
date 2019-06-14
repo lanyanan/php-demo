@@ -23,7 +23,7 @@ body {
     background: #fff;
 }
 .result-page-logo:after {
-    content:'<a title="首页" href="/mobile/home">首页</a>';
+    content:'首页';
     position: absolute;
     left: 3.1rem;
     top: 1.6rem;

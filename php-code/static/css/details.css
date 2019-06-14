@@ -54,6 +54,7 @@ body {
     right: 0;
     background: url(../images/delete.png);
     background-size: cover;
+    z-index: 9999;
 }
 
 .details-page-pic-info-btns {

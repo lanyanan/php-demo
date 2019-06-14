@@ -67,3 +67,5 @@ input {
     -ms-user-select:auto;
     user-select:auto;
 }
+a:link  {color: #191919}
+a:visited {color: #191919}

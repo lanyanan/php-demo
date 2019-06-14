@@ -84,8 +84,8 @@ body {
     height: 1.2rem;
 }
 .result-page-tab>div label {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     display: inline-block;
 }
 .result-page-tab>div label.all {
@@ -96,6 +96,7 @@ body {
     background: url(../images/video.png);
     background-size: cover;
     width: 1.8rem;
+    height: 1.2rem;
 }
 .result-page-tab>div label.album {
     background: url(../images/album.png);
@@ -109,6 +110,7 @@ body {
     background: url(../images/video_active.png);
     background-size: cover;
     width: 1.8rem;
+    height: 1.2rem;
 }
 .result-page-tab .tab-active label.album {
     background: url(../images/album_active.png);

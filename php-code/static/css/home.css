@@ -92,8 +92,8 @@ body {
     position: relative;
 }
 .home-page-tab>div label {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     display: inline-block;
 }
 .home-page-tab>div:after {

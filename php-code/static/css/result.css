@@ -22,13 +22,19 @@ body {
     text-align: center;
     background: #fff;
 }
-.result-page-logo:after {
-    content:'首页';
+.page-title {
+    width: 5rem;
+    text-align: center;
     position: absolute;
-    left: 3.1rem;
-    top: 1.6rem;
+    left: 0;
+    top: 0;
+    height: 4.58rem;
+    line-height: 4.58rem;
+    background: url('../images/home.png') no-repeat left center;
+    background-size: 1.16rem 1.25rem;
     color:#191919;
     font-size: 1.083rem;
+    margin-left: 1.6rem;
     font-weight: 900;
 }
 .result-page-logo img{

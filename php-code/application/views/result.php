@@ -18,7 +18,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<input id="type" value="<?php echo $type; ?>" type="hidden">
 	<section class="result-page">
 		<section class="result-page-logo">
-			<img class="home" src="/static/images/home.png" /> <span><?php echo $showTitle; ?></span>
+			<div class="page-title">
+                <a href="<?php echo site_url('/mobile/home'); ?>" title="首页">首页</a>
+            </div>
+			<span><?php echo $showTitle; ?></span>
 		</section>
 		<!-- <section class="result-page-search">
             <div class="search-center">

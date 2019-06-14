@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <section class="result-page-logo">
             <img class="home" src="/static/images/home.png"/>
             <span><?php echo $showTitle; ?></span>
-            <label class="home"><a title="首页" href="/mobile/home">首页</a></label>
+            <label class="home"><a title="首页" href="<?php echo site_url('/mobile/home'); ?>">首页</a></label>
         </section>
         <!-- <section class="result-page-logo result-page-logo-second">
             <span>与各地业主装修那点事</span>
@@ -82,7 +82,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="tab-active">
                 <label></label>
                 <span class="home">
-                    <a title="首页" href="/mobile/home">首页</a>
+                    <a title="首页" href="<?php echo site_url('/mobile/home'); ?>">首页</a>
                 </span>
             </div>
             <div>

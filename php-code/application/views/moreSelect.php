@@ -16,7 +16,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <section class="result-page-logo">
         <img class="home" src="/static/images/home.png"/>
         <span>更多装修案例与装修知识</span>
-        <label  class="home"><a title="首页" href="/mobile/home">首页</a></label>
+        <label  class="home"><a title="首页" href="<?php echo site_url('/mobile/home'); ?>">首页</a></label>
     </section>
     <section class="search-reasult">
         <section class="search-reasult-item">
@@ -88,13 +88,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </section>
     <section class="result-bottom">
 			<div class="tab-active">
-				<label></label> <span class="home"> <a title="首页" href="/mobile/home">首页</a> </span>
+				<label></label> <span class="home"> <a title="首页" href="<?php echo site_url('/mobile/home'); ?>">首页</a> </span>
 			</div>
 			<div>
 				<span> 装修案例 </span>
 			</div>
 			<div>
-				<span  class="loveSearch"> <a title="大家都爱搜" href="/mobile/loveSearch">大家都爱搜</a> </span>
+				<span  class="loveSearch"> <a title="大家都爱搜" href="<?php echo site_url('/mobile/loveSearch'); ?>">大家都爱搜</a> </span>
 			</div>
 			<div>
 				<span> 联系我们 </span>

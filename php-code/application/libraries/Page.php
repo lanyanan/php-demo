@@ -40,9 +40,9 @@
                 } else {
                     $url = $this -> url.'?limit=' . $this -> limit .'&page=' . $this -> page;
                 }
-                $p = '<section class="get-more-list" style="display:none;" data-href = "'.$url.'">'.
+                $p = '<a href = "'.$url.'" class="get-more-list" style="display:none;" data-href = "'.$url.'">'.
                         '<span>加载更多</span>'.
-                        '</section>';
+                        '</a>';
                 return $p;
             }
         }

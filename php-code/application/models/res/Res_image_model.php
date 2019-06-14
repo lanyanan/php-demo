@@ -1,11 +1,14 @@
 <?php
 class Res_image_model extends Api_Model
 {
-    public function get($house_space_id = NULL) {
+    public function get($house_space_id = NULL, $style = NULL) {
         $queryField = " * ";
         $this -> simpleQuery($queryField, TRUE);
         if (!empty($house_space_id)) {
-            $this->db->where('house_space_id', $house_space_id);
+            $this->db->where('t.house_space_id', $house_space_id);
+        }
+        if (!empty($style)) {
+            $this->db->where('t.style', $style);
         }
         $data = $this -> getCountPage('res_image');
         foreach ($data['data'] as $k => $val) {

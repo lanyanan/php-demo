@@ -135,15 +135,17 @@ class Mobile extends API_Controller
     }
     
     private function image_data(){
+        $this->load->model('dic/dic_style_model');
         $term_name = $this->input-> get('term_name');
         $house_space_id = $this->input-> get('house_space_id');
+        $style = $this->input-> get('style');
         
         //分页
         $page = $this -> input->get('page');
         $limit = $this -> input->get('limit');
         
         //列表数据
-        $data = $this->res_image_model -> get($house_space_id);
+        $data = $this->res_image_model -> get($house_space_id, $style);
         
         //空间类型
         $this->load->model('dic/dic_house_space_model');
@@ -153,11 +155,12 @@ class Mobile extends API_Controller
         $this->load->library('page',array('count'=> $data['count'], 'url'=> $url,'limit'=> $limit,'page'=>$page));
         
         $data['house_space_id'] = $house_space_id;
+        $data['style'] = $style;
         $data['showTitle'] = $term_name;
         $data['page']= $this-> page -> page_nums();
         //关键词
-        $term = $this -> msg_term_model->get();
-        $data['term'] = $term;
+        $data['term'] = $this -> msg_term_model->get();
+        $data['style_list'] = $this -> dic_style_model -> get_list();
         return $data;
     }
     

@@ -12,6 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 <body>
 	<input type="hidden" name="house_space_id" value="<?php echo $house_space_id; ?>"/>
+	<input type="hidden" name="style" value="<?php echo $style; ?>"/>
     <section class="result-page">
         <section class="result-page-logo">
             <img class="home" src="/static/images/home.png"/>
@@ -35,6 +36,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
             	<?php foreach ($house_space_list as $data_item): ?>
             	<div  class="<?php if ($house_space_id ==  $data_item['id']): ?> tab-active <?php endif; ?>">
     			    <span  data-id='<?php echo $data_item['id']; ?>' data-type='house_space_id'><?php echo $data_item['house_space_name']; ?></span>
+            	</div>
+            	<?php endforeach; ?>
+            </section>
+        </section>
+		<section class="result-page-tab">
+            <section class="result-page-tab-content">
+                <div class="<?php if ($style ==  ''): ?>tab-active<?php endif; ?>" >
+                	<span  data-id='' data-type='style'>全部</span>
+                </div>
+            	<?php foreach ($style_list as $data_item): ?>
+            	<div  class="<?php if ($style ==  $data_item['id']): ?> tab-active <?php endif; ?>">
+    			    <span  data-id='<?php echo $data_item['id']; ?>' data-type='style'><?php echo $data_item['style_name']; ?></span>
             	</div>
             	<?php endforeach; ?>
             </section>
@@ -108,7 +121,11 @@ $(document).ready(function(){
 	var type = $(this).data('type');
 	var id = $(this).data('id');
 	var term_name = $(this).text();
-	window.location.href = '/mobile/image_select?term_name='+term_name+'&'+ type +'=' + id;
+
+	$('[name="'+type+'"]').val(id);
+	var style= $("[name='style']").val();
+	var house_space_id= $("[name='house_space_id']").val();
+	window.location.href = '/mobile/image_select?term_name='+term_name+'&style=' + style+'&house_space_id=' + house_space_id;
 }).on('click','.get-more-list', function() {
 	$this = $(this);
 	$href = $this.data('href');

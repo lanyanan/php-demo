@@ -200,6 +200,7 @@ body {
     height: 22.92rem;
     background: #fff;
     padding-top: 1rem;
+    display:none;
 }
 
 .details-page-iphone-top {

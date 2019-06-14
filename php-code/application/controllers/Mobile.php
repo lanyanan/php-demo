@@ -82,8 +82,9 @@ class Mobile extends API_Controller
         $data['data'] = $result;
         $term = $this -> msg_term_model->get();
         $data['term'] = $term;
+        
+        //echo json_encode($data);
         return $data;
-//         echo json_encode($data);
     }
     
     /**

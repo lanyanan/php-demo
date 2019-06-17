@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="swiper-wrapper">
                     	<?php foreach ($images as $image_item): ?>
                         <div class="swiper-slide">
-							<img title="<?php echo $image_item['space_name']; ?>" src="<?php echo $image_item['attach_url']; ?>" />
+							<img alt="<?php echo $image_item['space_name']; ?>" title="<?php echo $image_item['space_name']; ?>" src="<?php echo $image_item['attach_url']; ?>" />
 						</div>
                         <?php endforeach; ?>
                     </div>
@@ -37,10 +37,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<label></label> <span>分享</span>
 					</div>
 					<div>
-						<label></label> <span><?php if (!$like_count): ?>0<?php else: ?>$<?php $like_count ?><?php endif; ?></span>
+						<label></label> <span><?php echo $like_count; ?></span>
 					</div>
 					<div>
-						<label></label> <span><?php if (!$collect_count): ?>0<?php else: ?><?php $collect_count ?><?php endif; ?></span>
+						<label></label> <span><?php if (!$collect_count): ?>0<?php else: ?><?php echo $collect_count; ?><?php endif; ?></span>
 					</div>
 					<div class="details-info-active">
 						<label></label> <span>报价</span>
@@ -92,19 +92,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="content-card-top">
 						<?php if ($data_item['res_type'] == '0'): ?>
     					<div class="content-card-img">
-							<img src="<?php echo $data_item['attach_url']; ?>" /> <label></label>
+							<img title="<?php echo $data_item['title']; ?>" alt="<?php echo $data_item['title']; ?>" src="<?php echo $data_item['attach_url']; ?>" /> <label></label>
 						</div>
     					<?php else: ?>
-    						<img src="<?php echo $data_item['attach_url']; ?>" />
+    						<img title="<?php echo $data_item['title']; ?>" alt="<?php echo $data_item['title']; ?>"  src="<?php echo $data_item['attach_url']; ?>" />
     					<?php endif; ?>
 						<p><?php echo $data_item['title']; ?></p>
 					</div>
 					<section class="content-card-bottom">
-						<div class="content-card-bottom-save-active">
+						<!-- <div class="content-card-bottom-save-active">
 							<label></label> <span>0</span>
-						</div>
-						<div class="content-card-bottom-love-active">
-							<label></label> <span>0</span>
+						</div> -->
+						<div class="<?php if ($data_item['isLike'] == '1'): ?>content-card-bottom-love-active<?php else: ?><?php echo $collect_count; ?>content-card-bottom-love<?php endif; ?>">
+							<label></label> <span><?php echo $data_item['like_count']; ?></span>
 						</div>
 					</section>
 					</a>

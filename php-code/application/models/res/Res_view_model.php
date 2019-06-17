@@ -48,6 +48,7 @@ class res_view_model extends Api_Model
                 $data['data'][$k]["attach_url"] =  $this->signatureurl($path);
             }
         }
+        $data['data'] = getLikeByArray($data['data']);
         return $data;
     }
     

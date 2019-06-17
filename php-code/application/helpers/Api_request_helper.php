@@ -1,5 +1,40 @@
 <?php
 
+function connectRedis() {
+    $redis = new Redis;
+    $redis->connect('172.17.0.3', 6379);
+    return $redis;
+}
+
+function saveRequestIpForLike($id, $table) {
+    $redis = connectRedis();
+    $key = $table.'_'.$id;
+    $redis->sAdd($key, ip()); 
+}
+
+function getLikeByArray($dataArray, $table = NULL) {
+    foreach($dataArray as  $key=>$value) {
+        if (empty($table)) {
+            if ($dataArray[$key]['res_type'] == '0') {
+                $table = "res_video";
+            }else {
+                $table = "res_album";
+            }
+        }
+        $dataArray[$key] = getLike($dataArray[$key], $table);
+    }
+    return $dataArray;
+}
+
+function getLike($data, $table) {
+    $key = $table.'_'.$data['id'];
+    $redis = connectRedis();
+    $data['like_count'] = strval($redis->sCard($key));
+    $data['isLike'] =  strval($redis->sIsMember($key,ip()));
+//     echo json_encode($data);
+    return $data;
+}
+
 function ip() {
     //strcasecmp 比较两个字符，不区分大小写。返回0，>0，<0。
     if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {

@@ -8,15 +8,15 @@ class Mobile extends API_Controller
         $this->load->view('phpinfo');
     }
     
-      public function get_redis() {
+      public function get_redis($key) {
        $redis =connectRedis();
-       echo json_encode($redis->sMembers('res_album_50'));
+       echo json_encode($redis->sMembers($key));
     }
-    /*
-    public function set_redis() {
-        $this->load->driver('cache');
-        $this->cache->redis->save('foo', 'bar');
-    } */
+    
+    public function set_redis($key) {
+        $redis = connectRedis();
+        $redis->sAdd($key, ip()); 
+    } 
     
     public function __construct()
     {

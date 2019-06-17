@@ -29,7 +29,13 @@ function getLikeByArray($dataArray, $table = NULL) {
 function getLike($data, $table) {
     $key = $table.'_'.$data['id'];
     $redis = connectRedis();
-    $data['like_count'] = strval($redis->sCard($key));
+    $like_count = strval($redis->sCard($key));
+    if (empty($like_count)) {
+        $data['like_count'] = '0';
+    } else {
+        $data['like_count'] = $like_count;
+    }
+    $data['like_count'] = $strval;
     $data['isLike'] =  strval($redis->sIsMember($key,ip()));
 //     echo json_encode($data);
     return $data;

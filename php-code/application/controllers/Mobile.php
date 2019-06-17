@@ -3,7 +3,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Mobile extends API_Controller
 {
-
+    
+    public function phpinfo() {
+        $this->load->view('phpinfo');
+    }
+    
+      public function get_redis() {
+       $redis =connectRedis();
+       echo json_encode($redis->sMembers('res_album_50'));
+    }
+    
+    public function set_redis() {
+        $this->load->driver('cache');
+        $this->cache->redis->save('foo', 'bar');
+    } 
+    
     public function __construct()
     {
         parent::__construct();
@@ -53,6 +67,9 @@ class Mobile extends API_Controller
     public function res_album($id)
     {
         $data = $this->res_album_model->detail($id);
+        //不同ip访问作为一次喜欢
+        saveRequestIpForLike($id, 'res_album');
+        $data = getLike($data, 'res_album');
         $data = $this -> moreData($data);
 //         echo json_encode($data);
         $this->load->view('details', $data);
@@ -65,6 +82,10 @@ class Mobile extends API_Controller
     public function res_video($id)
     {
         $data = $this->res_video_model->detail($id);
+        //不同ip访问作为一次喜欢
+        saveRequestIpForLike($id, 'res_album');
+        $data = getLike($data, 'res_video');
+        
         $data = $this -> moreData($data);
         $this->load->view('video_details', $data);
     }

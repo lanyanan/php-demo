@@ -122,7 +122,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </section>
             <section class="result-search-history-content">
                 <?php foreach ($term['data'] as $term_item): ?>
-                	<span class="term" data-name="<?php echo $term_item['name']; ?>" data-id="<?php echo $term_item['id']; ?>"><?php echo $term_item['name']; ?></span>
+                	<span class="term" data-name="<?php echo $term_item['name']; ?>" data-id="<?php echo $term_item['id']; ?>"><a title="<?php echo $term_item['name']; ?>" href="<?php echo site_url('/mobile/result?term_id='.$term_item['id'] .'&term_name='.$term_item['name']); ?>"><?php echo $term_item['name']; ?></a></span>
                 <?php endforeach; ?>
             </section>
         </section>

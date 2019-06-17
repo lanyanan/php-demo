@@ -7,13 +7,6 @@ $(function(){
 		// 每两列之间的间隙为5像素
 		});
 	});
-}).on('click', '.term', function(){
-	var type = $("#type").val();
-	var id = $(this).data("id");
-	var name = $(this).data("name");
-	var page = $("#page").val();
-	var limit = $("#limit").val();
-	window.location.href = '/mobile/result/' + type + '?term_id=' + id + '&term_name='+ name + '&page=' + page + '&limit=' + limit;
 }).on('click','.get-more-list', function() {
 	$this = $(this);
 	$href = $this.data('href');

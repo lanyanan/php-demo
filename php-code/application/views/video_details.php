@@ -116,7 +116,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <?php foreach ($term['data'] as $term_item): ?>
                 	<span class="term"
 						data-name="<?php echo $term_item['name']; ?>"
-						data-id="<?php echo $term_item['id']; ?>"><?php echo $term_item['name']; ?></span>
+						data-id="<?php echo $term_item['id']; ?>"><a title="<?php echo $term_item['name']; ?>" href="<?php echo site_url('/mobile/result?term_id='.$term_item['id'] .'&term_name='.$term_item['name']); ?>"><?php echo $term_item['name']; ?></a></span>
                 <?php endforeach; ?>
                 <div style="clear: both"></div>
 				</section>

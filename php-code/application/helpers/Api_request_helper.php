@@ -2,7 +2,7 @@
 
 function connectRedis() {
     $redis = new Redis;
-    $redis->connect('172.17.0.3', 6379);
+    $redis->connect('127.0.0.1', 6379);
     return $redis;
 }
 

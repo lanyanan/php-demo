@@ -151,6 +151,7 @@ body {
 .result-search-content .content-card .content-card-top{
     background:#fff;
     margin: 0 auto;
+    border-radius: 6px
 }
 
 .result-search-content .content-card .content-card-top .content-card-img {
@@ -161,6 +162,8 @@ body {
 .result-search-content .content-card .content-card-top  img{
     width: 100%;
     height: auto;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 .result-search-content .content-card .content-card-top .content-card-img label{
     display: block;
@@ -368,5 +371,7 @@ body {
         height: 2.11rem;
         background: #fff;
         margin: 0 auto;
+        border-bottom-left-radius: 6px;
+    	border-bottom-right-radius: 6px;
     }
 }

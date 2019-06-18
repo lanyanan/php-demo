@@ -2,7 +2,7 @@
 
 function connectRedis() {
     $redis = new Redis;
-    $redis->connect('127.0.0.1', 6379);
+    $redis->connect('172.17.0.3', 6379);
     return $redis;
 }
 
@@ -35,7 +35,7 @@ function getLike($data, $table) {
     } else {
         $data['like_count'] = $like_count;
     }
-    $data['like_count'] = $strval;
+    $data['like_count'] = $like_count;
     $data['isLike'] =  strval($redis->sIsMember($key,ip()));
 //     echo json_encode($data);
     return $data;

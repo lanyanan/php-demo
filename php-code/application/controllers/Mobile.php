@@ -83,7 +83,7 @@ class Mobile extends API_Controller
     {
         $data = $this->res_video_model->detail($id);
         //不同ip访问作为一次喜欢
-        saveRequestIpForLike($id, 'res_album');
+        saveRequestIpForLike($id, 'res_video');
         $data = getLike($data, 'res_video');
         
         $data = $this -> moreData($data);

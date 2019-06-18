@@ -108,7 +108,7 @@ body {
     background-size: 100%;
 }
 
-.detailsV-page-pic-info-btns > .detailsV-info-active:nth-child(1) label{
+.detailsV-page-pic-info-btns > :nth-child(1) label.active{
     display: block;
     width: 2.07rem;
     height: 2.07rem;
@@ -116,7 +116,7 @@ body {
     background-size: 100%;
 }
 
-.detailsV-page-pic-info-btns > .detailsV-info-active:nth-child(2) label{
+.detailsV-page-pic-info-btns > :nth-child(2) label.active{
     display: block;
     width: 2.07rem;
     height: 2.07rem;
@@ -124,7 +124,7 @@ body {
     background-size: 100%;
 }
 
-.detailsV-page-pic-info-btns > .detailsV-info-active:nth-child(3) label{
+.detailsV-page-pic-info-btns > :nth-child(3) label.active{
     display: block;
     width: 2.07rem;
     height: 2.07rem;
@@ -132,7 +132,7 @@ body {
     background-size: 100%;
 }
 
-.detailsV-page-pic-info-btns > .detailsV-info-active:nth-child(4) label{
+.detailsV-page-pic-info-btns > :nth-child(4) label.active{
     display: block;
     width: 2.07rem;
     height: 2.07rem;

@@ -33,11 +33,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</section>
 			<section class="details-page-pic-info">
 				<section class="details-page-pic-info-btns">
-					<div class="details-info-active">
+					<div class="">
 						<label></label> <span>分享</span>
 					</div>
 					<div>
-						<label></label> <span><?php echo $like_count; ?></span>
+						<label  class="<?php if ($isLike == '1'): ?>active<?php endif; ?>"></label> <span><?php if (!$like_count): ?>0<?php else: ?><?php echo $like_count; ?><?php endif; ?></span>
 					</div>
 					<div>
 						<label></label> <span><?php if (!$collect_count): ?>0<?php else: ?><?php echo $collect_count; ?><?php endif; ?></span>

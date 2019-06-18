@@ -156,6 +156,7 @@ body {
     width: 100%;
     background: #edecec;
     position: relative;
+    min-height: 1000px;
 }
 .result-search-content .content-card {
     position:absolute; left:0px; top:0px; 

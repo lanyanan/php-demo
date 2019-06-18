@@ -139,6 +139,7 @@ body {
     width: 100%;
     background: #edecec;
     position: relative;
+    min-height: 1000px;
 }
 .result-search-content .content-card {
     position:absolute; left:0px; top:0px; 
@@ -372,5 +373,7 @@ body {
         height: 2.11rem;
         background: #fff;
         margin: 0 auto;
+        border-bottom-left-radius: 6px;
+    	border-bottom-right-radius: 6px;
     }
 }

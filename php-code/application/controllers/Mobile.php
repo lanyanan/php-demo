@@ -8,7 +8,7 @@ class Mobile extends API_Controller
         $this->load->view('phpinfo');
     }
     
-      public function get_redis($key) {
+     /*  public function get_redis($key) {
        $redis =connectRedis();
        echo json_encode($redis->sMembers($key));
     }
@@ -16,7 +16,7 @@ class Mobile extends API_Controller
     public function set_redis($key) {
         $redis = connectRedis();
         $redis->sAdd($key, ip()); 
-    } 
+    }  */
     
     public function __construct()
     {

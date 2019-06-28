@@ -10,7 +10,7 @@ abstract class Api_Model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
-        $this->load->helper('Api_request_helper');
+        //$this->load->helper('Api_request_helper');
         $this->load->model('sys/sys_config_model');
         $this->load->library('session');
     }

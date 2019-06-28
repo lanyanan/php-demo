@@ -33,7 +33,7 @@ class LoginFilter
         $this->CI->load->library('session');
         $this->CI->load->model('sys/sys_token_model');
         $this->CI->load->model('sys/sys_random_model');
-        $this->CI->load->helper('Api_request_helper');
+        //$this->CI->load->helper('Api_request_helper');
 
         $ip = ip();
         /*

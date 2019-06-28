@@ -4,7 +4,7 @@ abstract class Api_Controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->helper('Api_request_helper');
+		//$this->load->helper('Api_request_helper');
 		$this->load->helper(array(
 		    'form',
 		    'url'

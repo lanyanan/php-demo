@@ -12,7 +12,7 @@ class Login extends CI_Controller
         $this->load->library('encryption');
         $this->load->model('sys/sys_random_model');
         $this->load->model('sys/sys_token_model');
-        $this->load->helper('Api_request_helper');
+        //$this->load->helper('Api_request_helper');
     }
 
     public function index()

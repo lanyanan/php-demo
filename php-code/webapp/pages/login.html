@@ -87,7 +87,7 @@ layui.use("layer",function(){
 				if (data.code == '1') {
 					 localStorage.setItem("token",data.data.token);
 					 localStorage.setItem("user",data.data.user);
-					 window.location.href = "/welcome";
+					 window.location.href = "/webapp/pages/index.html";
 				} else {
 					layer.msg(data.msg);
 				}

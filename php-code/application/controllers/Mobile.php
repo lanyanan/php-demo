@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mobile extends API_Controller
+class Mobile extends Api_Controller
 {
     
     public function phpinfo() {

@@ -59,6 +59,8 @@ $route['(:any)/(:any)'] = '$1/$2';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+#admin
+$route['admin'] = 'welcome/index';
 
 
 #配置自己的业务uri

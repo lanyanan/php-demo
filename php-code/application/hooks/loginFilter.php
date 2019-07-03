@@ -17,6 +17,7 @@ class LoginFilter
     
     public function checkLogin()
     {
+        log_message('info', 'check login');
         //首页默认重定向到mobile/home 
         $this->CI = & get_instance();
         $uri = $_SERVER['REQUEST_URI'];
@@ -29,11 +30,11 @@ class LoginFilter
                 return;
             }
         }
-        
+        log_message('info', 'need check login');
         $this->CI->load->library('session');
         $this->CI->load->model('sys/sys_token_model');
         $this->CI->load->model('sys/sys_random_model');
-        //$this->CI->load->helper('Api_request_helper');
+        //$this->CI->load->helper('request');
 
         $ip = ip();
         /*
@@ -41,6 +42,8 @@ class LoginFilter
          */
         if (array_key_exists('HTTP_TOKEN', $_SERVER)) {
             $token = $_SERVER['HTTP_TOKEN'];
+            //echo json_encode($_SERVER);
+            log_message('info','token:'.$token );
             $token_database = $this->CI->sys_token_model->findByToken($token);
             $preTime = $token_database['gmt_modified'];
         }
@@ -50,7 +53,7 @@ class LoginFilter
 
         if (empty($token_database)) {
             if (!empty($token)) {
-                $this->CI->sys_token_model->deleteByToken($token);
+                //$this->CI->sys_token_model->deleteByToken($token);
             }
             echo json_encode(array(
                 'code' => '101',

@@ -26,7 +26,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<img alt="<?php echo $image_item['space_name']; ?>" title="<?php echo $image_item['space_name']; ?>" src="<?php echo $image_item['attach_url']; ?>" />
 						</div>
                         <?php endforeach; ?>
-                    </div>
+					</div>
+					<div class="swiper-pagination"></div>
+
 					<div class="swiper-button-prev swiper-button-white"></div>
 					<div class="swiper-button-next swiper-button-white"></div>
 				</div>
@@ -168,10 +170,13 @@ function showContent(){
 <script>
       var mySwiper = new Swiper ('.swiper-container', {
     direction: 'horizontal', // 垂直切换选项
-    loop: true, // 循环模式选项
+    loop: false, // 循环模式选项
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
+    },
+	pagination: {
+      el: '.swiper-pagination',
     },
     
   })  

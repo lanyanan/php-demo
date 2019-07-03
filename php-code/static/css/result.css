@@ -21,6 +21,7 @@ body {
     position: relative;
     text-align: center;
     background: #fff;
+    height: 4.58rem;
 }
 .page-title {
     width: 5rem;
@@ -376,4 +377,12 @@ body {
         border-bottom-left-radius: 6px;
     	border-bottom-right-radius: 6px;
     }
+}
+
+.not-more-data {
+    width: 100%;
+    text-align: center;
+    height: 10rem;
+    line-height: 10rem;
+    color: #909090;
 }

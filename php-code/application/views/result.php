@@ -41,8 +41,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 		</section>
 		<section  id="content"  class="result-search-content">
+			<?php if (count($data) > 0): ?>
 			<?php foreach ($data as $data_item): ?>
-
                <section class="content-card" data-id="<?php echo $data_item['id']; ?>" data-res-type="<?php echo $data_item['res_type']; ?>">
                <?php if ($data_item['res_type'] == '0'): ?>
 <a href="<?php echo site_url('/mobile/res_video/'.$data_item['id']); ?>">
@@ -70,7 +70,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</section>
 					</a>
 				</section>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
+			<?php else: ?>
+			 	<div class="not-more-data">暂无搜索结果</div>
+			<?php endif; ?>
 		</section>
             <div style="display:none;" id="template"></div>
             <?php echo $page; //输出分页信息 ?>

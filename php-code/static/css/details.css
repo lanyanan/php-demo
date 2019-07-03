@@ -36,16 +36,16 @@ body {
     width: 86.66%;
     margin: 0 auto;
     position: relative;
+    padding-top: 7.83rem;
 }
 .details-page-pic-bg  .swiper-container {
-    padding-top: 7.83rem;
     width: 100%;
 } 
 .details-page-pic-bg  .swiper-container .swiper-slide img{
     width: 100%;
 } 
 
-.details-page-pic-bg span{
+.details-page-pic-bg>span{
     display: block;
     width: 1.875rem;
     height: 1.875rem;

@@ -286,9 +286,9 @@ body {
     padding-top: 2.83rem;
     padding-bottom: 2rem;
     background: #edecec;
-    /* position: fixed;
+    position: fixed;
     left: 0;
-    bottom: 0; */
+    bottom: 0;
 }
  .home-bottom>div {
     flex:1;

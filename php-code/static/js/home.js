@@ -1,7 +1,7 @@
 $(function() {
 	var $container = $('#content');
 	$('.loading').css({
-		display:'block'
+		display:'flex'
 	})
 	$container.imagesLoaded(function() {
 		$container.masonry({
@@ -47,10 +47,9 @@ $(window).scroll(function(){
     if(scrollTop + windowHeight == scrollHeight){
 		$(".get-more-list").click();
 		$('.loading').css({
-			display:'block'
+			display:'flex'
 		})
 	}
-	console.log(scrollTop,navTop)
 	if(scrollTop>navTop){
 		$('.home-page-tab-fixed').css({
 			display:'flex'
@@ -64,8 +63,30 @@ $(window).scroll(function(){
 
 
 $('.home-page').scroll(function(){
-	var scrollTop = $(this).scrollTop();var scrollHeight = $('.home-search-content masonry').height();var windowHeight = $(this).height();
-	console.log(scrollTop,scrollHeight,windowHeight)
+	var scrollTop = $(this).scrollTop();
+	var scrollHeight = $('.home-search-content').height();
+	var windowHeight = $(this).height();
+	var bottomBox = $('.home-bottom').height();
+	var scrollHeightLogo = $('.home-page-logo').height();
+	var scrollHeightTab = $('.home-page-tab').height();
+	var scrollHeightSearch = $('.home-page-search').height();
+	var navTop = $('.home-page-logo').height()+$('.home-page-search').height()+$('.home-page-tab').height();
+	if(scrollTop+windowHeight>scrollHeight+scrollHeightLogo+scrollHeightTab+scrollHeightSearch) {
+		$(".get-more-list").click();
+		$('.loading').css({
+			display:'flex'
+		})
+	}
+
+	if(scrollTop>navTop){
+		$('.home-page-tab-fixed').css({
+			display:'flex'
+		})
+	}else{
+		$('.home-page-tab-fixed').css({
+			display:'none'
+		})
+	}
 	
 })
 

@@ -57,6 +57,9 @@ body {
     overflow-x: scroll;
     overflow-y: hidden;
 }
+.result-page-tab::-webkit-scrollbar {
+    display: none;
+}
 .result-page-tab-content {
     width: 200%;
     height: 3.33rem;
@@ -139,7 +142,7 @@ body {
     width: 100%;
     background: #edecec;
     position: relative;
-    min-height: 1000px;
+    min-height: 500px;
 }
 .result-search-content .content-card {
     position:absolute; left:0px; top:0px; 

@@ -44,6 +44,7 @@ body {
     right: 1.875rem;
     background: url(../images/delete.png);
     background-size: cover;
+    z-index: 1000;
 }
 .detailsV-page-pic-bg video{
     width: 100%;
@@ -296,7 +297,7 @@ body {
     width: 100%;
     background: #edecec;
     position: relative;
-    min-height: 1000px;
+    min-height: 500px;
 }
 .result-search-content .content-card {
     position:absolute; left:0px; top:0px; 

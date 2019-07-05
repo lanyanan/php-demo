@@ -102,14 +102,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     	<?php endif; ?>
 		<p><?php echo $data_item['title']; ?></p>
 	</div>
-	<section class="content-card-bottom">
+	<!-- <section class="content-card-bottom">
 		<div class="content-card-bottom-save-active">
 			<label></label> <span>0</span>
 		</div>
 		<div class="content-card-bottom-love-active">
 			<label></label> <span>0</span>
 		</div>
-	</section>
+	</section> -->
 </a>
 </section>
 <?php endforeach; ?>
@@ -143,13 +143,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     大家都爱搜
                 </span>
             </div>
-            <div>
+            <!-- <div>
                 <span>
                     联系我们
                 </span>
-            </div>
+            </div> -->
         </section>
     </section>
+    <section class="loading">
+		<img src="/static/images/timg.gif"/>
+	</section>
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
 <script src="https://cdn.bootcss.com/masonry/2.1.07/jquery.masonry.min.js"></script>
@@ -163,6 +166,9 @@ $(document).ready(function(){
             itemSelector: '.content-card',
             columnWidth: 1 //每两列之间的间隙为5像素
         });
+        $('.loading').css({
+			display:'none'
+		})
     });
 
 	//页面初始化高亮选择的条件	
@@ -206,17 +212,20 @@ $(document).ready(function(){
 	window.location.href = url + '?term_name='+text+'&floor_area=' + floor_area+'&house_type_id=' + house_type_id+'&style=' + style+'&type=' + type+'&title=' + title+'&cost=' + cost;
 }).on('click','.get-more-list', function() {
 	$this = $(this);
-	$href = $this.data('href');
+    $href = $this.data('href');
 	$("#template").load($href, function(){
 		$("#content").append($("#template").html());
 		$("#template").html("");
 		$this.remove();
 		$('#content').imagesLoaded(function() {
-			$('#content').masonry('reload');
-		});
+            $('#content').masonry('reload');
+            $('.loading').css({
+                display:'none'
+            })
+        });
+
 	});
 });
-
 function showHiddenSelect(num){
     $(".hidden-select").css({
         display:'none'
@@ -233,12 +242,35 @@ function hiddenSelect(num){
     })
 }
 
+$('.result-page').scroll(function(){
+	var scrollTop = $(this).scrollTop();
+	var scrollHeight = $('.result-search-content').outerHeight(true);
+	var windowHeight = $(this).height();
+	var bottomBox = $('.result-bottom').outerHeight(true);
+	var scrollHeightLogo = $('.result-page-logo').outerHeight(true);
+	var scrollHeightTab = $('.result-page-tab').outerHeight(true);
+    var scrollHeightHistory = $('.result-search-history').outerHeight(true);
+    // var scrollHeightSearch = $('.result-bottom').outerHeight(true);
 
-$(window).scroll(function(){
-    var scrollTop = $(this).scrollTop();var scrollHeight = $(document).height();var windowHeight = $(this).height();
-    if(scrollTop + windowHeight == scrollHeight){
-    	$(".get-more-list").click();
-    }
+    // var navTop = $('.result-page-logo').height()+$('.result-page-search').height()+$('.result-page-tab').outerHeight(true);
+    console.log(parseInt(scrollTop+windowHeight),parseInt(scrollHeight+scrollHeightLogo+scrollHeightTab+bottomBox+scrollHeightHistory))
+	if(parseInt(scrollTop+windowHeight)>parseInt(scrollHeight+scrollHeightLogo+scrollHeightTab+bottomBox+scrollHeightHistory)) {
+		$(".get-more-list").click();
+		$('.loading').css({
+			display:'flex'
+		})
+	}
+
+	// if(scrollTop>navTop){
+	// 	$('.home-page-tab-fixed').css({
+	// 		display:'flex'
+	// 	})
+	// }else{
+	// 	$('.home-page-tab-fixed').css({
+	// 		display:'none'
+	// 	})
+	// }
+	
 })
 </script>
 </html>

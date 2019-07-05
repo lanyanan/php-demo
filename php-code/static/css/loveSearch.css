@@ -59,6 +59,8 @@ body {
     height: 3.33rem;
     display: flex;
     padding-bottom: 2rem;
+    position: fixed;
+    bottom: 0;
 }
  .result-bottom>div {
     flex:1;

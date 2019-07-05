@@ -10,6 +10,6 @@ class Res_image extends Api_Controller {
     
     public function delete($id = NULL) {
         $this->res_image_model->delete($id);
-        $this -> response_message($id, '1', '删除成功');
+        $this -> response_message($id, '1', '下架成功');
     }
 }

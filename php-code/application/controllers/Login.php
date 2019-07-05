@@ -56,6 +56,7 @@ class Login extends CI_Controller
                 // 生成tocker
                 $token = $this->generateTocken($username);
                 $data['token'] = $token;
+                log_message('info','generate token'.$token);
                 $this->session->set_tempdata($data, NULL, 3600);
                 echo json_encode(array(
                     'code' => '1',
@@ -101,7 +102,7 @@ MIIEowIBAAKCAQEAo3B+tB0SAStPKkMR1iKHWpuBog/uKjyza4MxOKNICpZ3rhNk73ciF3xUr8/48WRC
         } else {
             echo json_encode(array(
                 'code' => '1',
-                'msg' => '用户未登录',
+                'msg' => '用户未登录,session过期',
                 'data' => $data
             ), JSON_UNESCAPED_UNICODE);
             ;
@@ -155,7 +156,10 @@ MIIEowIBAAKCAQEAo3B+tB0SAStPKkMR1iKHWpuBog/uKjyza4MxOKNICpZ3rhNk73ciF3xUr8/48WRC
         );
         $token = base64_encode(json_encode($header)) . '.' . base64_encode(json_encode($array)); // 数组转成字符
         $token = urlencode($token); // 通过url转码
-        $this->sys_token_model->save_token($key . $ip, $token); // 将用户token存放进用户数据库
+        $ret = $this->sys_token_model->save_token($key . $ip, $token); // 将用户token存放进用户数据库
+
+        log_message('info','sql result:'.$ret);
+        log_message('info','sql:'.$this->sys_token_model->last_sql());
         return $token;
     }
 }

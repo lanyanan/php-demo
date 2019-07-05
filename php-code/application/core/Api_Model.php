@@ -204,4 +204,8 @@ abstract class Api_Model extends CI_Model
             $this->db->where('t.publish_status', 2)  ;
         }
     }
+
+    public function last_sql(){
+        return $this->db->last_query();
+    }
 }

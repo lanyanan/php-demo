@@ -42,8 +42,6 @@ class LoginFilter
          */
         if (array_key_exists('HTTP_TOKEN', $_SERVER)) {
             $token = $_SERVER['HTTP_TOKEN'];
-            //echo json_encode($_SERVER);
-            log_message('info','token:'.$token );
             $token_database = $this->CI->sys_token_model->findByToken($token);
             $preTime = $token_database['gmt_modified'];
         }
@@ -53,7 +51,7 @@ class LoginFilter
 
         if (empty($token_database)) {
             if (!empty($token)) {
-                //$this->CI->sys_token_model->deleteByToken($token);
+                $this->CI->sys_token_model->deleteByToken($token);
             }
             echo json_encode(array(
                 'code' => '101',
@@ -62,7 +60,8 @@ class LoginFilter
             ), JSON_UNESCAPED_UNICODE);
             exit();
         }
-        if (strtotime ($time) - strtotime ($preTime) > 3600) {
+        if (strtotime ($time) - strtotime ($preTime) > 24*60*60) {
+            log_message('info','time expire');
             $this->CI->sys_token_model->deleteByToken($token);
             echo json_encode(array(
                 'code' => '101',
@@ -77,6 +76,6 @@ class LoginFilter
         $data = array(
             'user' => $user
         );
-        $this->CI->session->set_tempdata($data, NULL, 3600);
+        $this->CI->session->set_tempdata($data, NULL, 24*60*60);
     }
 }

@@ -165,7 +165,6 @@ body {
     display: none;
     background: #f3f3f3;
     position: fixed;
-    left: 0;
     top: 0;
     z-index: 10000;
 }

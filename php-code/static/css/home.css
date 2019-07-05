@@ -160,6 +160,7 @@ body {
 
 .home-page-tab-fixed {
     width: 100%;
+    max-width: 600px;
     height: 3.33rem;
     display: none;
     background: #f3f3f3;

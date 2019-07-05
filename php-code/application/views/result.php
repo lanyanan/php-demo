@@ -60,14 +60,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     					<?php endif; ?>
 						<p><?php echo $data_item['title']; ?></p>
 					</div>
-					<section class="content-card-bottom">
+					<!-- <section class="content-card-bottom">
 						<div class="content-card-bottom-save-active">
 							<label></label> <span>0</span>
 						</div>
 						<div class="content-card-bottom-love-active">
 							<label></label> <span>0</span>
 						</div>
-					</section>
+					</section> -->
 					</a>
 				</section>
 			<?php endforeach; ?>
@@ -98,10 +98,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div>
 				<span  class="loveSearch"> <a title="大家都爱搜" href="<?php echo site_url('/mobile/loveSearch'); ?>">大家都爱搜</a> </span>
 			</div>
-			<div>
+			<!-- <div>
 				<span> 联系我们 </span>
-			</div>
+			</div> -->
 		</section>
+	</section>
+	<section class="loading">
+		<img src="/static/images/timg.gif"/>
 	</section>
 	<input type="hidden" id="page" value="1" />
 	<input type="hidden" id="limit" limit="10" />

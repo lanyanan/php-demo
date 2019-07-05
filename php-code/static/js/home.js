@@ -64,14 +64,14 @@ $(window).scroll(function(){
 
 $('.home-page').scroll(function(){
 	var scrollTop = $(this).scrollTop();
-	var scrollHeight = $('.home-search-content').height();
+	var scrollHeight = $('.home-search-content').outerHeight(true);
 	var windowHeight = $(this).height();
-	var bottomBox = $('.home-bottom').height();
-	var scrollHeightLogo = $('.home-page-logo').height();
-	var scrollHeightTab = $('.home-page-tab').height();
-	var scrollHeightSearch = $('.home-page-search').height();
-	var navTop = $('.home-page-logo').height()+$('.home-page-search').height()+$('.home-page-tab').height();
-	if(scrollTop+windowHeight>scrollHeight+scrollHeightLogo+scrollHeightTab+scrollHeightSearch) {
+	var bottomBox = $('.home-bottom').outerHeight(true);
+	var scrollHeightLogo = $('.home-page-logo').outerHeight(true);
+	var scrollHeightTab = $('.home-page-tab').outerHeight(true);
+	var scrollHeightSearch = $('.home-page-search').outerHeight(true);
+	var navTop = $('.home-page-logo').outerHeight(true)+$('.home-page-search').outerHeight(true)+$('.home-page-tab').outerHeight(true);
+	if(parseInt(scrollTop+windowHeight)==parseInt(scrollHeight+scrollHeightLogo+scrollHeightTab+scrollHeightSearch)) {
 		$(".get-more-list").click();
 		$('.loading').css({
 			display:'flex'

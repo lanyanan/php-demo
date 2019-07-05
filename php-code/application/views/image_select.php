@@ -95,11 +95,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     大家都爱搜
                 </span>
             </div>
-            <div>
+            <!-- <div>
                 <span>
                     联系我们
                 </span>
-            </div>
+            </div> -->
         </section>
     </section>
 </body>

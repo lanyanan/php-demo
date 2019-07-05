@@ -27,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<label id="playLable" onclick="toPlay()"></label>
 			</section>
 			<section class="detailsV-page-pic-info-btns">
-				<div class="detailsV-info-active">
+				<!-- <div class="detailsV-info-active">
 					<label></label> <span>分享</span>
 				</div>
 				<div>
@@ -38,7 +38,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</div>
 				<div class="detailsV-info-active">
 					<label></label> <span>报价</span>
-				</div>
+				</div> -->
 			</section>
 			<section class="detailsV-page-pic-info-detailsV">
 				<div class="detailsV-page-pic-info-detailsV-title">
@@ -54,7 +54,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</section>
 		</section>
 
-		<section id="hidden-content" style="display: none">
+		<section id="hidden-content" style="display: none;background: #ececec">
 			<section class="detailsV-page-iphone">
 				<section class="detailsV-page-iphone-top">
 					<input placeholder="请输入你的手机号码" />
@@ -93,14 +93,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     					<?php endif; ?>
 						<p><?php echo $data_item['title']; ?></p>
 					</div>
-					<section class="content-card-bottom">
-						<!-- <div class="content-card-bottom-save-active">
+					<!-- <section class="content-card-bottom">
+						<div class="content-card-bottom-save-active">
 							<label></label> <span>0</span>
-						</div> -->
+						</div>
 						<div class="<?php if ($data_item['isLike'] == '1'): ?>content-card-bottom-love-active<?php else: ?><?php echo $collect_count; ?>content-card-bottom-love<?php endif; ?>">
 							<label></label> <span><?php echo $data_item['like_count']; ?></span>
 						</div>
-					</section>
+					</section> -->
 					</a>
 				</section>
 <?php endforeach; ?>
@@ -131,9 +131,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<div>
 					<span  class="loveSearch"> <a title="大家都爱搜" href="<?php echo site_url('/mobile/loveSearch'); ?>">大家都爱搜</a> </span>
 				</div>
-				<div>
+				<!-- <div>
 					<span> 联系我们 </span>
-				</div>
+				</div> -->
 			</section>
 		</section>
 	</section>

@@ -246,7 +246,7 @@ body {
     width: 100%;
     background: #edecec;
     position: relative;
-    min-height: 1000px;
+    margin-bottom: 8.16rem;
 }
 .home-search-content .content-card {
     position:absolute; left:0px; top:0px; 

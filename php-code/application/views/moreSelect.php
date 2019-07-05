@@ -96,9 +96,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div>
 				<span  class="loveSearch"> <a title="大家都爱搜" href="<?php echo site_url('/mobile/loveSearch'); ?>">大家都爱搜</a> </span>
 			</div>
-			<div>
+			<!-- <div>
 				<span> 联系我们 </span>
-			</div>
+			</div> -->
 		</section>
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>

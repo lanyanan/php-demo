@@ -41,8 +41,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 		</section>
 		<section  id="content"  class="result-search-content">
+			<?php if (count($data) > 0): ?>
 			<?php foreach ($data as $data_item): ?>
-
                <section class="content-card" data-id="<?php echo $data_item['id']; ?>" data-res-type="<?php echo $data_item['res_type']; ?>">
                <?php if ($data_item['res_type'] == '0'): ?>
 <a href="<?php echo site_url('/mobile/res_video/'.$data_item['id']); ?>">
@@ -60,17 +60,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
     					<?php endif; ?>
 						<p><?php echo $data_item['title']; ?></p>
 					</div>
-					<section class="content-card-bottom">
+					<!-- <section class="content-card-bottom">
 						<div class="content-card-bottom-save-active">
 							<label></label> <span>0</span>
 						</div>
 						<div class="content-card-bottom-love-active">
 							<label></label> <span>0</span>
 						</div>
-					</section>
+					</section> -->
 					</a>
 				</section>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
+			<?php else: ?>
+			 	<div class="not-more-data">暂无搜索结果</div>
+			<?php endif; ?>
 		</section>
             <div style="display:none;" id="template"></div>
             <?php echo $page; //输出分页信息 ?>
@@ -95,10 +98,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div>
 				<span  class="loveSearch"> <a title="大家都爱搜" href="<?php echo site_url('/mobile/loveSearch'); ?>">大家都爱搜</a> </span>
 			</div>
-			<div>
+			<!-- <div>
 				<span> 联系我们 </span>
-			</div>
+			</div> -->
 		</section>
+	</section>
+	<section class="loading">
+		<img src="/static/images/timg.gif"/>
 	</section>
 	<input type="hidden" id="page" value="1" />
 	<input type="hidden" id="limit" limit="10" />

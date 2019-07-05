@@ -26,13 +26,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<img alt="<?php echo $image_item['space_name']; ?>" title="<?php echo $image_item['space_name']; ?>" src="<?php echo $image_item['attach_url']; ?>" />
 						</div>
                         <?php endforeach; ?>
-                    </div>
+					</div>
+					<div class="swiper-pagination"></div>
+
 					<div class="swiper-button-prev swiper-button-white"></div>
 					<div class="swiper-button-next swiper-button-white"></div>
 				</div>
 			</section>
 			<section class="details-page-pic-info">
-				<section class="details-page-pic-info-btns">
+				<!-- <section class="details-page-pic-info-btns">
 					<div class="">
 						<label></label> <span>分享</span>
 					</div>
@@ -45,7 +47,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="details-info-active">
 						<label></label> <span>报价</span>
 					</div>
-				</section>
+				</section> -->
 				<section class="details-page-pic-info-details">
 					<div class="details-page-pic-info-details-title">
                         <!--<?php if (!!$author): ?>
@@ -61,7 +63,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</section>
 		</section>
 
-		<section id="hidden-content" style="display: none">
+		<section id="hidden-content" style="display: none;background:#ececec">
 			<section class="details-page-iphone">
 				<section class="details-page-iphone-top">
 					<input placeholder="请输入你的手机号码" />
@@ -99,14 +101,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     					<?php endif; ?>
 						<p><?php echo $data_item['title']; ?></p>
 					</div>
-					<section class="content-card-bottom">
-						<!-- <div class="content-card-bottom-save-active">
+					<!-- <section class="content-card-bottom">
+						 <div class="content-card-bottom-save-active">
 							<label></label> <span>0</span>
-						</div> -->
+						</div>
 						<div class="<?php if ($data_item['isLike'] == '1'): ?>content-card-bottom-love-active<?php else: ?><?php echo $collect_count; ?>content-card-bottom-love<?php endif; ?>">
 							<label></label> <span><?php echo $data_item['like_count']; ?></span>
 						</div>
-					</section>
+					</section> -->
 					</a>
 				</section>
 <?php endforeach; ?>
@@ -137,9 +139,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<div>
 					<span  class="loveSearch"> <a title="大家都爱搜" href="<?php echo site_url('/mobile/loveSearch'); ?>">大家都爱搜</a> </span>
 				</div>
-				<div>
+				<!-- <div>
 					<span> 联系我们 </span>
-				</div>
+				</div> -->
 			</section>
 		</section>
 	</section>
@@ -168,10 +170,13 @@ function showContent(){
 <script>
       var mySwiper = new Swiper ('.swiper-container', {
     direction: 'horizontal', // 垂直切换选项
-    loop: true, // 循环模式选项
+    loop: false, // 循环模式选项
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
+    },
+	pagination: {
+      el: '.swiper-pagination',
     },
     
   })  

@@ -34,6 +34,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<label class="more"></label> <span> <a href="<?php echo site_url('/mobile/moreSelect'); ?>" title="更多">更多</a> </span>
 			</div>
 		</section>
+		<section class="home-page-tab-fixed">
+			<div class="<?php if ($type == '0'): ?>tab-active<?php endif; ?> tab" data-value="0">
+				<label class="tuijian"></label> <span> <a href="<?php echo site_url('/mobile/home/0'); ?>" title="推荐">推荐</a> </span>
+			</div>
+			<div class="<?php if ($type == '1'): ?>tab-active<?php endif; ?> tab" data-value="1">
+				<label class="hot"></label> <span> <a href="<?php echo site_url('/mobile/home/1'); ?>" title="热门">热门</a> </span>
+			</div>
+			<div class="<?php if ($type == '2'): ?>tab-active<?php endif; ?> tab" data-value="2">
+				<label class="more"></label> <span> <a href="<?php echo site_url('/mobile/moreSelect'); ?>" title="更多">更多</a> </span>
+			</div>
+		</section>
 		<section id="content" class="home-search-content">
 			<?php foreach ($data as $data_item): ?>
 
@@ -54,14 +65,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     					<?php endif; ?>
     					<p><?php echo $data_item['title']; ?></p>
     				</div>
-    				<section class="content-card-bottom">
+    				<!-- <section class="content-card-bottom">
     					<div class="content-card-bottom-save-active">
     						<label></label> <span>0</span>
     					</div>
     					<div class="content-card-bottom-love-active">
     						<label></label> <span>0</span>
     					</div>
-    				</section>
+    				</section> -->
     				</a>
     			</section>
             <?php endforeach; ?>
@@ -81,10 +92,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div>
 				<span class="loveSearch"> <a title="大家都爱搜" href="<?php echo site_url('/mobile/loveSearch'); ?>">大家都爱搜</a> </span>
 			</div>
-			<div>
+			<!-- <div>
 				<span> 联系我们 </span>
-			</div>
+			</div> -->
 		</section>
+
+	</section>
+	<section class="loading">
+		<img src="/static/images/timg.gif"/>
 	</section>
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>

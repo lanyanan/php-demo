@@ -17,14 +17,14 @@
     	<?php endif; ?>
 		<p><?php echo $data_item['title']; ?></p>
 	</div>
-	<section class="content-card-bottom">
+	<!-- <section class="content-card-bottom">
 		<div class="content-card-bottom-save-active">
 			<label></label> <span>0</span>
 		</div>
 		<div class="content-card-bottom-love-active">
 			<label></label> <span>0</span>
 		</div>
-	</section>
+	</section> -->
 	</a>
 </section>
 <?php endforeach; ?>

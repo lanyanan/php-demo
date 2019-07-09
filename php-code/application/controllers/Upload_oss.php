@@ -79,7 +79,7 @@ class Upload_oss extends Api_Controller {
      */
     private function get_config($type) {
         $config = array();
-        $config['max_size'] = 30 * 1024;
+        $config['max_size'] = 100 * 1024;
         if ($type == 'img') {
             $config['upload_path']      = 'dawn/img/'.date('Y').'/'.date('m').'/'.date('d').'/';
             $config['allowed_types']    = 'jpg|png|JPG|PNG';

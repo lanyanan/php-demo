@@ -117,6 +117,15 @@ class Mobile extends Api_Controller
         $data = $this->res_view_model->get($type);
         $page = $this -> input->get('page');
         $limit = $this -> input->get('limit');
+
+        log_message('info','page:'.$page."  limit:".$limit);
+
+        if (empty($page)){
+            $page = 1;
+        }
+        if (empty($limit)){
+            $limit = 10;
+        }
         //封装分页（加载更多）按钮
         $this->load->library('page',array('count'=> $data['count'], 'url'=> '/mobile/home_template/'.$type,'limit'=> $limit,'page'=>$page));
         $data['page']= $this-> page -> page_nums();

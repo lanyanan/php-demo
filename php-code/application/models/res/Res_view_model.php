@@ -98,16 +98,16 @@ class res_view_model extends Api_Model
         }
         $this->not_delete();
         $this->publish();
-        #$this->db->join('dic_content_category', 'dic_content_category.id = t.content_category_id', 'left');
-        #$this->db->join('dic_district', 'dic_district.id = t.district_id', 'left');
-        #$this->db->join('statis_res_like_collect st', 't.id = st.res_id  and st.res_type = t.res_type', 'left');
-        #$this->db->join('statis_page_view pv', 't.id = pv.res_id and pv.res_type = t.res_type', 'left');
+        $this->db->join('dic_content_category', 'dic_content_category.id = t.content_category_id', 'left');
+        $this->db->join('dic_district', 'dic_district.id = t.district_id', 'left');
+        $this->db->join('statis_res_like_collect st', 't.id = st.res_id  and st.res_type = t.res_type', 'left');
+        $this->db->join('statis_page_view pv', 't.id = pv.res_id and pv.res_type = t.res_type', 'left');
 
         // 个人是否点过暂，收藏
         // 获取当前用户
         $user = $this->session->tempdata('user');
         if (! empty($user['id'])) {
-            #$this->db->join('statis_user_record ur', 't.id = ur.res_id and ur.res_type = t.res_type and ur.user_id = ' . $user['id'] . ' ', 'left');
+            $this->db->join('statis_user_record ur', 't.id = ur.res_id and ur.res_type = t.res_type and ur.user_id = ' . $user['id'] . ' ', 'left');
         }
     }
 

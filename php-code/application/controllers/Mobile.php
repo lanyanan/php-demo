@@ -113,12 +113,13 @@ class Mobile extends Api_Controller
      */
     public function home($type = '0')
     {
-        //分页
-        $data = $this->res_view_model->get($type);
         $page = $this -> input->get('page');
         $limit = $this -> input->get('limit');
 
         log_message('info','page:'.$page."  limit:".$limit);
+        //分页
+        $data = $this->res_view_model->get($type);
+
 
         if (empty($page)){
             $page = 1;

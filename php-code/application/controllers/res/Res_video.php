@@ -23,6 +23,7 @@ class Res_video extends Api_Controller {
     public function detail($id = NULL)
     {
         $data = $this->res_video_model->detail($id);
+        log_message('info',$this->res_video_model->last_sql());
         $this -> response_found($data);
     }
     

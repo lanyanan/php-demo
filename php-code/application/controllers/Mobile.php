@@ -8,6 +8,12 @@ class Mobile extends Api_Controller
         $this->load->view('phpinfo');
     }
     
+    public function login() {
+        $this->load->view('login');
+    }
+
+
+    
      /*  public function get_redis($key) {
        $redis =connectRedis();
        echo json_encode($redis->sMembers($key));
@@ -32,6 +38,35 @@ class Mobile extends Api_Controller
     public function index()
     {
         $this->home();
+    }
+
+    public function register() {
+        $password = $this->input->post('password');
+        $username = $this->input->post('username');
+        $nickname = $this->input->post('nickname');
+        $usersex = $this->input->post('usersex');
+        $mobile = $this->input->post('usermobile');
+        $name =  $this->input->post('username');
+        if ($this -> validate($username)) {
+            return  $this->load->view('registerError', $name);
+        }
+        $data = array(
+            'nick_name' =>  $nickname,
+            'login_name' => $username,
+            'password' =>  password_hash($password, PASSWORD_DEFAULT),
+            'user_sex' =>  $usersex,
+            'mobile' =>  $mobile,
+        );
+        $this->db->insert('sys_user', $data);
+        $this->load->view('registerSuccess', $name);
+    }
+
+    public function validate($login_name) {
+        $this->db->select('*');
+        $this->db->from('sys_user');
+        $this->db->where('sys_user.login_name', $login_name);
+        $query = $this->db->get();
+        return $query->row_array();
     }
     
     /**

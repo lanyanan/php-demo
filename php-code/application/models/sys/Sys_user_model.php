@@ -46,7 +46,7 @@ class Sys_user_model extends Api_Model
     
     public function add()
     {
-        //登录名不能重复
+        // 登录名不能重复
         $fields = array('nick_name', 'login_name', 'password', 'user_sex', 'mobile');
         $request = get_request_field_array($fields, $this);
         if ($this -> validate($request['login_name'])) {
